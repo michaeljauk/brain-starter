@@ -200,6 +200,7 @@ Edit the `get_category()` function in `.autolink/auto-link.sh` to map your meeti
 
 These work well with this vault setup:
 
+- ✅ **[Todoist Vault Sync](https://github.com/michaeljauk/obsidian-todoist-vault)** — sync Todoist projects & tasks as real markdown files (bidirectional, works with Dataview & Smart Connections)
 - 🔍 **[Smart Connections](https://github.com/brianpetro/obsidian-smart-connections)** — semantic search + related notes
 - 🎙️ **[Granola Sync](https://github.com/mcclellanddj/Granola-to-Obsidian)** — auto-sync AI meeting notes from Granola
 - 🔄 **[Obsidian Git](https://github.com/denolehov/obsidian-git)** — auto-backup to git on interval
