@@ -109,7 +109,7 @@ Say "log decision: [topic]" to Claude Code and it will:
 
 Templates for decisions, meetings, and project briefs are in `docs/templates.md`.
 
-## Commit conventions
+## Commit conventions & releases
 
 Conventional Commits are enforced via commitlint. Common patterns for a brain vault:
 
@@ -120,6 +120,8 @@ chore(vault): backup 2026-03-20             # obsidian auto-sync
 chore(skill): improve wrap-session-up        # skill changes
 feat(skill): add new article-ingest skill    # new skills
 ```
+
+Releases are automated via [release-please](https://github.com/googleapis/release-please). On every push to `main`, it reads your conventional commits and opens a release PR with a generated changelog. Merging the PR creates a GitHub release with a version tag. `feat` commits bump the minor version, `fix` commits bump the patch version.
 
 ## Customization
 
