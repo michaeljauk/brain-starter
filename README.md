@@ -46,12 +46,15 @@ pnpm install
 
 ### 🔌 Optional: enable auto-linking
 
-The auto-link hook classifies notes into projects using a local LLM. To enable it:
+The auto-link script classifies notes into projects using a local LLM. To set it up:
 
 1. Install and run [Ollama](https://ollama.com): `brew install ollama && ollama serve`
 2. Pull a small model: `ollama pull qwen2.5:3b`
 3. Make sure the [Obsidian CLI](https://help.obsidian.md/cli) is available
-4. Uncomment the hook in `.husky/post-commit`
+4. Run manually whenever you want to classify unlinked notes:
+   ```bash
+   bash .autolink/auto-link.sh
+   ```
 
 ---
 
@@ -72,7 +75,7 @@ my-brain/
 ├── 🗄️  archive/        Done/inactive projects
 ├── 🤖 .claude/        Skills + memory for Claude Code
 ├── 🧲 .autolink/      LLM-powered note → project classification
-├── 🪝 .husky/         Git hooks (commitlint + auto-link)
+├── 🪝 .husky/         Git hooks (commitlint)
 └── ⚙️  scripts/        Project sync config
 ```
 
