@@ -1,4 +1,6 @@
-# Auto-link new notes to projects after every commit
+# Auto-link: classify notes → project hubs via local LLM
 # Requires: Ollama running (ollama serve) + Obsidian open
-# Comment out if you don't use the auto-link feature
-bash "$(git rev-parse --show-toplevel)/.autolink/auto-link.sh"
+# Disabled by default — spawns many Obsidian CLI instances per commit.
+# Run manually instead: bash .autolink/auto-link.sh
+# Uncomment the line below to re-enable on every commit:
+# bash "$(git rev-parse --show-toplevel)/.autolink/auto-link.sh"
