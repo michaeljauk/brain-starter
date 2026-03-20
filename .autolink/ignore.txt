@@ -1,0 +1,3 @@
+# Patterns to ignore during auto-linking.
+# Exact match or trailing * wildcard (e.g. "Focus Time*").
+# One pattern per line. Lines starting with # are comments.

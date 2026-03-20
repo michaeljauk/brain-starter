@@ -1,0 +1,4 @@
+# Auto-link new notes to projects after every commit
+# Requires: Ollama running (ollama serve) + Obsidian open
+# Comment out if you don't use the auto-link feature
+bash "$(git rev-parse --show-toplevel)/.autolink/auto-link.sh"
