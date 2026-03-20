@@ -2,7 +2,7 @@
 
 A Claude Code-powered second brain template built on Obsidian. Skills, automation, and conventions for turning a markdown vault into an AI-augmented knowledge system.
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/michaeljauk)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/michaeljauk)
 
 ## What this is
 
