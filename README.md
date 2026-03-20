@@ -1,12 +1,20 @@
 # brain-starter
 
-A Claude Code-powered second brain template built on Obsidian. Skills, automation, and conventions for turning a markdown vault into an AI-augmented knowledge system.
+An opinionated, Claude Code-powered second brain template built on Obsidian. Skills, automation, and conventions for turning a markdown vault into an AI-augmented knowledge system.
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/michaeljauk)
 
 ## What this is
 
-A ready-to-use template for a personal knowledge vault that works with **Claude Code** (Anthropic's CLI) and **Obsidian**. It includes:
+An opinionated, ready-to-use template for a personal knowledge vault that works with **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** (Anthropic's agentic coding tool) and **[Obsidian](https://obsidian.md)**. It's extracted from a real daily-driver vault and encodes specific opinions about how a second brain should work:
+
+- **Everything is a markdown file** — no databases, no proprietary formats, no lock-in
+- **Conventional commits on a knowledge repo** — because your brain deserves the same discipline as your code
+- **AI does the grunt work** — auto-classifying notes, linking projects, preparing meetings — you focus on thinking
+- **Local-first AI** — auto-linking uses Ollama (local LLM), not cloud APIs
+- **Obsidian is the interface, git is the backbone** — version-controlled knowledge with graph view on top
+
+It includes:
 
 - **7 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, and more
 - **LLM-powered auto-linking** — a post-commit hook that uses Ollama to classify notes into projects
