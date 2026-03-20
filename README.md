@@ -121,7 +121,7 @@ chore(skill): improve wrap-session-up        # skill changes
 feat(skill): add new article-ingest skill    # new skills
 ```
 
-Releases are automated via [release-please](https://github.com/googleapis/release-please). On every push to `main`, it reads your conventional commits and opens a release PR with a generated changelog. Merging the PR creates a GitHub release with a version tag. `feat` commits bump the minor version, `fix` commits bump the patch version.
+This template uses conventional commits not just for discipline — they also power the [changelog](https://github.com/michaeljauk/brain-starter/releases). `feat` = new skill or feature, `fix` = bug fix, `docs` = documentation change.
 
 ## Customization
 
