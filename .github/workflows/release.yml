@@ -4,6 +4,17 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '.claude/**'
+      - '.autolink/**'
+      - '.husky/**'
+      - 'scripts/**'
+      - 'docs/templates.md'
+      - 'CLAUDE.md'
+      - 'commitlint.config.js'
+      - 'package.json'
+      - 'release-please-config.json'
+      - '.release-please-manifest.json'
 
 permissions:
   contents: write
