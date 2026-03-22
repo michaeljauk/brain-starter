@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.0](https://github.com/michaeljauk/brain-starter/compare/v1.2.0...v1.3.0) (2026-03-22)
+
+
+### Features
+
+* **docs:** add bootstrap prompt to README ([433900d](https://github.com/michaeljauk/brain-starter/commit/433900de4a3a8cc87cfaf5a1782224033d6c3cf9))
+* **hook:** add daily drip personalization hook ([321ab9d](https://github.com/michaeljauk/brain-starter/commit/321ab9dd45a3de394e5dc000d710080c39f958cf))
+
+
+### Bug Fixes
+
+* **docs:** remove sync-brain-starter from README skill list ([eea6acf](https://github.com/michaeljauk/brain-starter/commit/eea6acf8d12f8f4f0eda2f0b6d6d83733e9177fa))
+* **docs:** translate daily drip template and hook to English ([b9055a7](https://github.com/michaeljauk/brain-starter/commit/b9055a7e9042eec5a15cc6537b486de4ad299f3d))
+
 ## [1.2.0](https://github.com/michaeljauk/brain-starter/compare/v1.1.0...v1.2.0) (2026-03-22)
 
 
