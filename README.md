@@ -100,7 +100,6 @@ Skills are Claude Code's reusable workflows. Each lives in `.claude/skills/` and
 | 🗺️ **json-canvas** | Auto (when working with .canvas files) | Create and edit JSON Canvas files — mind maps, flowcharts, visual connections |
 | 🔄 **project-sync** | `/project-sync [name]` | Pull live git/GitHub/Jira data and update project status docs |
 | 📅 **gws-obsidian-prep** | "prep notes for today" | Fetch Google Calendar events and create meeting prep notes |
-| 🔁 **sync-brain-starter** | `/sync-brain-starter` | Sync skills and configs to a public template repo |
 
 ### Global skills (`~/.claude/skills/`)
 
