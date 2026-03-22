@@ -46,6 +46,24 @@ pnpm install
 #    File → Open Vault → select the my-brain directory
 ```
 
+### 🧠 Bootstrap your brain
+
+After cloning, open Claude Code in your vault directory and paste this prompt to personalize everything:
+
+```
+I just forked brain-starter. Help me set it up:
+
+1. Update CLAUDE.md with my identity (name, role, company, stack defaults)
+2. Create my first project file in projects/
+3. Set up qmd for semantic search: `npm install -g @tobilu/qmd && qmd collection add . --name brain && qmd embed`
+4. Create context/me.md with background context about me
+5. Run a test: /wrap-session-up
+
+Here's who I am: [tell Claude about yourself, your role, your projects]
+```
+
+Claude Code will walk you through personalizing the vault, installing tools, and creating your first notes.
+
 ### 🔌 Optional: enable auto-linking
 
 The auto-link script classifies notes into projects using a local LLM. To set it up:
