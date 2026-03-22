@@ -23,10 +23,11 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 
 ### What's included
 
-- 🛠️ **7 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, and more
+- 🛠️ **15 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, semantic search, and more
 - 🧲 **LLM-powered auto-linking** — a post-commit hook that classifies notes into projects
+- 🔍 **Local semantic search** — [QMD](https://github.com/tobi/qmd) for hybrid BM25 + vector search across your vault
 - ✅ **Conventional commits** — enforced via commitlint + husky
-- 💎 **Obsidian-native** — wikilinks, frontmatter, callouts, graph view as first-class citizens
+- 💎 **Obsidian-native** — wikilinks, frontmatter, callouts, Bases, JSON Canvas, graph view as first-class citizens
 - 📁 **Structured directories** — projects, decisions, notes, meetings, working files, and archive
 
 ---
@@ -86,6 +87,8 @@ my-brain/
 
 Skills are Claude Code's reusable workflows. Each lives in `.claude/skills/` and is triggered by slash commands or natural language.
 
+### Vault skills (`.claude/skills/`)
+
 | Skill | Trigger | What it does |
 |-------|---------|-------------|
 | 🔄 **wrap-session-up** | `/wrap-session-up` | End-of-session review: replay what happened, commit changes, create tasks for loose ends |
@@ -93,8 +96,23 @@ Skills are Claude Code's reusable workflows. Each lives in `.claude/skills/` and
 | 🧹 **defuddle** | Auto (when fetching URLs) | Clean web page extraction via Defuddle CLI — removes clutter, saves tokens |
 | 💻 **obsidian-cli** | Auto (when interacting with vault) | Obsidian CLI reference for reading, creating, searching notes |
 | ✍️ **obsidian-markdown** | Auto (when editing .md files) | Obsidian Flavored Markdown guide — wikilinks, callouts, embeds, properties |
+| 📊 **obsidian-bases** | Auto (when working with .base files) | Create database-like views with filters, formulas, and summaries |
+| 🗺️ **json-canvas** | Auto (when working with .canvas files) | Create and edit JSON Canvas files — mind maps, flowcharts, visual connections |
 | 🔄 **project-sync** | `/project-sync [name]` | Pull live git/GitHub/Jira data and update project status docs |
 | 📅 **gws-obsidian-prep** | "prep notes for today" | Fetch Google Calendar events and create meeting prep notes |
+| 🔁 **sync-brain-starter** | `/sync-brain-starter` | Sync skills and configs to a public template repo |
+
+### Global skills (`~/.claude/skills/`)
+
+These are installed globally and work across all your repos:
+
+| Skill | What it does |
+|-------|-------------|
+| 🔍 **qmd** | Semantic search over markdown vaults via [QMD](https://github.com/tobi/qmd) — hybrid BM25 + vector + LLM reranking |
+| ✅ **todoist-cli** | Manage Todoist tasks, projects, labels via the `td` CLI |
+| 🌐 **browser-use** | Automate browser interactions — web testing, form filling, screenshots, data extraction |
+| 🔎 **find-skills** | Discover and install community agent skills |
+| 🛠️ **skill-creator** | Create, modify, and benchmark agent skills |
 
 ---
 
@@ -190,9 +208,11 @@ Edit the `get_category()` function in `.autolink/auto-link.sh` to map your meeti
 | [pnpm](https://pnpm.io) | ✅ Yes | Package manager for commitlint/husky |
 | [Obsidian CLI](https://help.obsidian.md/cli) | ⚡ For auto-link | Read/write notes from terminal |
 | [Ollama](https://ollama.com) | ⚡ For auto-link | Local LLM for note classification |
-| [Defuddle](https://github.com/nicholasgriffintn/defuddle) | ⚡ For ingest-article | Clean web page extraction |
-| [gws](https://github.com/nicholasgriffintn/gws) | ⚡ For meeting prep | Google Calendar CLI |
+| [QMD](https://github.com/tobi/qmd) | ⚡ For semantic search | Local hybrid search engine (`npm install -g @tobilu/qmd`) |
+| [Defuddle](https://github.com/kepano/defuddle-cli) | ⚡ For ingest-article | Clean web page extraction |
+| [gws](https://github.com/googleworkspace/cli) | ⚡ For meeting prep | Google Calendar CLI |
 | [gh](https://cli.github.com/) | ⚡ For project-sync | GitHub CLI |
+| [Todoist CLI](https://www.npmjs.com/package/@doist/todoist-cli) | ⚡ For task tracking | Todoist from the terminal (`npm install -g @doist/todoist-cli`) |
 
 ---
 
@@ -200,8 +220,7 @@ Edit the `get_category()` function in `.autolink/auto-link.sh` to map your meeti
 
 These work well with this vault setup:
 
-- ✅ **[Todoist Vault Sync](https://github.com/michaeljauk/obsidian-todoist-vault)** — sync Todoist projects & tasks as real markdown files (bidirectional, works with Dataview & Smart Connections)
-- 🔍 **[Smart Connections](https://github.com/brianpetro/obsidian-smart-connections)** — semantic search + related notes
+- ✅ **[Todoist Vault Sync](https://github.com/michaeljauk/obsidian-todoist-vault)** — sync Todoist projects & tasks as real markdown files (bidirectional, works with Dataview)
 - 🎙️ **[Granola Sync](https://github.com/mcclellanddj/Granola-to-Obsidian)** — auto-sync AI meeting notes from Granola
 - 🔄 **[Obsidian Git](https://github.com/denolehov/obsidian-git)** — auto-backup to git on interval
 

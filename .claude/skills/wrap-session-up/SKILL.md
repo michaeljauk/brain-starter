@@ -1,6 +1,6 @@
 ---
 name: wrap-session-up
-description: End-of-session review for a Claude Code conversation. Replays what was discussed, checks for open action items, documents relevant outcomes in the brain vault, and creates tasks for anything untracked. Use at the end of a work session to ensure nothing falls through the cracks.
+description: End-of-session review for a Claude Code conversation. Replays what was discussed, checks for open action items, documents relevant outcomes in the brain vault, and creates Todoist tasks for anything untracked. Use at the end of a work session to ensure nothing falls through the cracks.
 ---
 
 # Wrap Session Up
@@ -45,10 +45,20 @@ Also check for:
 
 ### 3. Cross-reference action items
 
-For each open item, check if it's already tracked in your task manager (Todoist, Linear, Jira, etc.).
+For each open item, check if it's already tracked:
+
+**Check Todoist:**
+```bash
+td task list --filter "search: {keywords}" --json 2>/dev/null
+```
+
+**Check Jira (if related to a Jira-tracked project):**
+```bash
+acli jira workitem search --jql "summary ~ '{keywords}' AND status != Done" --fields "key,summary,status,assignee" --limit 5 --json 2>/dev/null
+```
 
 Categorize each item:
-- **Already tracked** — exists in task manager
+- **Already tracked** — exists in Todoist/Jira
 - **Needs tracking** — not found, should be created
 - **Can skip** — trivial or already handled
 
@@ -56,7 +66,8 @@ Categorize each item:
 
 #### Decisions
 For non-trivial decisions made during the session:
-- Create `decisions/YYYY-MM-DD-short-slug.md` using the template from `docs/templates.md`
+- Business/product/vendor/architecture → create `decisions/YYYY-MM-DD-short-slug.md` using the template from `docs/templates.md`
+- Minor tactical decisions → note in the relevant project file
 
 #### Project notes
 If the session surfaced information that should update a project file:
@@ -71,12 +82,21 @@ If the session produced operational artifacts (plans, specs, handover docs):
 #### Memory
 If the session revealed something about the user, their preferences, or their workflow that would be useful in future conversations — save it as a memory file per the memory system rules.
 
-### 5. Create tasks for untracked items
+### 5. Create Todoist tasks for untracked items
 
-For open items that need tracking and aren't already in your task manager, create them using your configured CLI tool (e.g. `td task add`, `linear issue create`, etc.).
+For open items that need tracking and aren't already in Todoist/Jira:
 
-**Do NOT create tasks for:**
-- Items already tracked elsewhere
+```bash
+td task add "{action item}" --project "{project if clear}" --priority {p1-p4} --due "{date if mentioned}"
+```
+
+**Priority mapping:**
+- Blocking or has a deadline → p1
+- Important, no hard deadline → p2
+- Nice-to-have → p3
+
+**Do NOT create Todoist tasks for:**
+- Items already tracked in Jira (Jira is source of truth for dev work)
 - Vague ideas without a clear next step
 - Things the user explicitly deferred ("maybe someday")
 
@@ -122,9 +142,9 @@ Present a structured summary:
 
 | # | Item | Status | Action |
 |---|------|--------|--------|
-| 1 | ... | Created in task manager | {id} |
-| 2 | ... | Already tracked | {id} |
-| 3 | ... | Skipped (WIP) | {reason} |
+| 1 | ... | ✅ Created in Todoist | td#{id} |
+| 2 | ... | ⏭ Already in Jira | NC-1234 |
+| 3 | ... | ⚠️ Skipped (WIP) | {reason} |
 
 ### Documented
 - `decisions/YYYY-MM-DD-slug.md` — {summary}
@@ -138,7 +158,9 @@ Present a structured summary:
 ## Important constraints
 
 - **Don't invent items** — only surface action items that were actually discussed or implied in the conversation, not hypothetical improvements
-- **Ask before creating** — if more than 3 tasks would be created, list them first and ask for confirmation
+- **Ask before creating** — if more than 3 Todoist tasks would be created, list them first and ask for confirmation
+- **Jira over Todoist for dev work** — dev tasks for Jira-tracked projects should be flagged for Jira, not created in Todoist
 - **Respond in session language** — if the session was in German, report in German
 - **Don't duplicate** — if something is already tracked, don't create a second tracker
+- **Use acli for Jira** — never use Atlassian Rovo MCP tools, always `acli` CLI
 - **Git safety** — smart commit changes (grouped logically), but never push; skip secrets, broken files, and explicit user-deferred changes

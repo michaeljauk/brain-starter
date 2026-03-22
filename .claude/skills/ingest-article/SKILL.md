@@ -60,11 +60,15 @@ Use this decision tree:
 | Article is research for an **in-progress deliverable** | **Create** in `working-files/{project}/` |
 | Otherwise (general knowledge, reference material) | **Create** a new note in `notes/` as a standalone knowledge note |
 
+**Important:** Do NOT merge into curated topic notes like `docs/lenny/*.md` — those are hand-curated from specific sources. Always create a separate knowledge note instead.
+
 **Priority:** Update project notes if directly relevant > Create in working-files if tied to a deliverable > Create standalone note in `notes/`.
 
 ### 4. Search for related content
 
-Before writing, search for related existing notes using Grep and Glob. Also use semantic search (smart-connections MCP) if configured and keyword search is insufficient.
+Before writing, search for related existing notes:
+
+Use Grep to search file contents and Glob to find related files. Also use `qmd vsearch "{keywords}"` for semantic matches if keyword search is insufficient.
 
 Check:
 - `projects/` — any project this relates to?
@@ -76,7 +80,7 @@ If an existing note in `notes/` covers the same topic closely, **update that not
 
 #### If creating a new note in `notes/`:
 
-Filename: `{short-descriptive-slug}.md`
+Filename: `{short-descriptive-slug}.md` (no date prefix for reference notes, per conventions).
 
 ```markdown
 ---
@@ -122,7 +126,7 @@ source: "{URL or description}"
 
 After writing:
 - Add `[[wikilinks]]` to related notes in the new/updated content
-- If the article is highly relevant to a project, consider adding a backlink in the project note
+- If the article is highly relevant to a project, consider adding a backlink in the project note's ## Related or ## Notes section
 
 ### 7. Report to user
 
@@ -143,4 +147,17 @@ Linked to: [[project-a]], [[existing-note-b]]
 - **Distill, don't copy.** Extract insights and frameworks, not paragraphs. The goal is a knowledge base, not an article archive.
 - **Attribute sources.** Always include the URL/source and article title.
 - **No ephemeral content.** Skip news that won't be useful in 3 months. If the article is mostly time-sensitive, warn the user and suggest skipping or saving only the durable insights.
+- **Respect conventions.** Follow `docs/conventions.md` for filenames, frontmatter, and folder placement.
+- **Don't touch curated collections.** Never merge into `docs/lenny/` or other hand-curated topic files. Create separate notes instead.
 - **Dedup before creating.** If `notes/` already has a file on the same topic, update it rather than creating a new file.
+
+## Examples
+
+**User:** "ingest this: https://example.com/article-about-pricing"
+→ Defuddle extracts → general knowledge → creates `notes/saas-pricing-value-metrics.md`
+
+**User:** "ingest article: https://example.com/ai-agent-patterns"
+→ Defuddle extracts → relates to NetCero AI + dectria.ai → creates `notes/ai-agent-patterns.md` with wikilinks to both projects
+
+**User:** "add this to my brain: [pasted text about EU AI Act compliance]"
+→ Raw text → directly relevant to dectria.ai → updates `projects/dectria-ai.md` with key compliance insights

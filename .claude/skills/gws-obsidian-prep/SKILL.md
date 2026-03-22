@@ -6,6 +6,7 @@ Cross-skill recipe: fetch today's (or tomorrow's) Google Calendar events via `gw
 
 - `gws` CLI installed and authenticated (`gws auth login -s calendar`)
 - Obsidian CLI available (`which obsidian` — requires Obsidian running)
+- Vault path: `~/brain/`
 
 ## Trigger phrases
 
@@ -109,9 +110,13 @@ After creating the note body, search for related project notes:
 obsidian search query="{key words from event summary}"
 ```
 
-Check `projects/` results. If a file clearly matches, append a wikilink to the Related section.
+Check `projects/` results. If a file clearly matches (e.g. event is "NetCero sprint review" → `projects/netcero.md`), append a wikilink to the Related section:
 
-Use semantic search (smart-connections MCP) as a fallback if obsidian search returns no clear match.
+```
+[[netcero]]
+```
+
+Use `qmd vsearch "{event summary}"` as a fallback if obsidian search returns no clear match.
 
 ## Output to user
 
@@ -129,12 +134,13 @@ If `gws calendar +agenda` returns an auth error:
 
 ```bash
 gws auth login -s calendar
-# Follow OAuth browser flow
+# Follow OAuth browser flow for jauk.michael14@gmail.com
 ```
 
 Check token status: `gws auth status`
 
 ## Notes
 
-- Prep notes are safe to edit directly — they are not auto-managed.
-- If you use a meeting note sync tool (e.g. Granola), check for existing notes with the same date + title before creating duplicates.
+- `meetings/` files created by this workflow are **not** Granola-managed — they are safe to edit directly.
+- Granola-synced notes use `YYYY-MM-DD_Title With Spaces.md` (spaces); prep notes use hyphens. This is intentional.
+- Do not create prep notes in `meetings/` for events already synced by Granola — check for an existing file with the same date + title first.
