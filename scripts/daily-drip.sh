@@ -25,5 +25,5 @@ echo "$TODAY" > "$STATE_FILE"
 
 # Output additional context
 cat <<'EOF'
-[Daily Drip] Before responding to the user's request, ask them ONE personal question from the Daily Drip pool in docs/templates.md (section "Daily Drip — Frage des Tages"). Pick a question whose answer is NOT already in the user's context file in context/. Keep it casual and short. After they answer, save their response into the matching section of their context file using the Edit tool. Then proceed with their actual request.
+[Daily Drip] Before responding to the user's request, ask them ONE personal question from the Daily Drip pool in docs/templates.md (section "Daily Drip — Question of the Day"). Pick a question whose answer is NOT already in context/me.md. Keep it casual and short. After they answer, save their response into the matching section of context/me.md using the Edit tool. Then proceed with their actual request.
 EOF

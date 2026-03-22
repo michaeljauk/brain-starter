@@ -91,51 +91,70 @@ Why the chosen option wins.
 
 ---
 
-## Daily Drip — Frage des Tages
+## Daily Drip — Question of the Day
 
-Zweck: Täglich eine kurze Frage stellen, um `context/michael.md` organisch mit persönlichem Kontext anzureichern — Vorlieben, Gewohnheiten, Meinungen, die sich schwer in einem Rutsch abfragen lassen.
+Purpose: Ask one short personal question per day to organically build up `context/me.md` with preferences, habits, and opinions that are hard to capture in a single session.
 
-**Ablauf:**
-1. Agent wählt eine Frage aus dem Pool (oder generiert eine neue, die noch nicht beantwortet ist)
-2. Frage wird dem User gestellt (Kanal offen — Todoist, Chat, Daily Note)
-3. Antwort wird in die passende Sektion von `context/michael.md` eingearbeitet
+**How it works:**
+1. Agent picks a question from the pool (or generates a new one not yet answered)
+2. Question is asked at the start of the first session of the day (via `UserPromptSubmit` hook)
+3. Answer is saved into the matching section of `context/me.md`
 
-**Fragen-Pool (Startset):**
+**Setup:** Add the hook to your project settings (`.claude/settings.json` or `~/.claude/projects/.../settings.json`):
+```json
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/daily-drip.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 
-Essen & Trinken:
-- Wie trinkst du deinen Kaffee? (Oder Tee?)
-- Lieblingsgericht unter der Woche vs. wenn du dir was gönnst?
-- Gibt's Essen, das gar nicht geht?
-- Lieblingsrestaurant / Lieblings-Bestell-App?
+**Question pool (starter set):**
 
-Arbeit & Produktivität:
-- Wann bist du am produktivsten? (Tageszeit, Umgebung)
-- Welche Musik/Podcasts beim Arbeiten?
-- Wie sieht dein idealer Deep-Work-Block aus?
-- Tool, ohne das du nicht arbeiten könntest?
+Food & Drink:
+- How do you take your coffee? (Or tea?)
+- Go-to weekday meal vs. treat-yourself meal?
+- Any food you absolutely can't stand?
+- Favorite restaurant or delivery app?
 
-Freizeit & Interessen:
-- Letzter Film/Serie, die dich gepackt hat?
-- Lieblingsspiel (Board, Video, Sport)?
-- Wo fährst du am liebsten hin, wenn du mal rauskommst?
-- Bucket-List-Item Nr. 1?
+Work & Productivity:
+- When are you most productive? (Time of day, environment)
+- Music or podcasts while working? What kind?
+- What does your ideal deep-work block look like?
+- Tool you couldn't work without?
 
-Persönlichkeit & Werte:
-- Worüber kannst du dich richtig aufregen?
-- Welcher Ratschlag hat dir am meisten gebracht?
-- Was würdest du deinem 18-jährigen Ich sagen?
-- Introvertiert oder extrovertiert? (Oder situationsabhängig?)
+Hobbies & Interests:
+- Last movie or show that really grabbed you?
+- Favorite game (board, video, sport)?
+- Where do you go when you need to get away?
+- Bucket list item #1?
+
+Personality & Values:
+- What really gets under your skin?
+- Best advice you've ever received?
+- What would you tell your 18-year-old self?
+- Introvert or extrovert? (Or depends on the situation?)
 
 Meta / AI:
-- Welche AI-Aufgabe spart dir am meisten Zeit?
-- Was soll AI niemals für dich entscheiden?
-- Gibt's eine Aufgabe, die du gern automatisieren würdest, aber noch nicht geschafft hast?
+- Which AI task saves you the most time?
+- What should AI never decide for you?
+- Is there a task you'd love to automate but haven't cracked yet?
 
-**Regeln:**
-- Max. 1 Frage pro Tag
-- Nicht fragen, was schon in `michael.md` dokumentiert ist
-- Antworten direkt in die passende Sektion einpflegen (nicht als separate Datei)
-- Kurz halten — eine Frage, nicht ein Interview
+**Rules:**
+- Max 1 question per day
+- Don't ask what's already documented in `context/me.md`
+- Save answers directly into the matching section (not as a separate file)
+- Keep it short — one question, not an interview
 
 ---
 
