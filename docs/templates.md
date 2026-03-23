@@ -100,24 +100,7 @@ Purpose: Ask one short personal question per day to organically build up `contex
 2. Question is asked at the start of the first session of the day (via `UserPromptSubmit` hook)
 3. Answer is saved into the matching section of `context/me.md`
 
-**Setup:** Add the hook to your project settings (`.claude/settings.json` or `~/.claude/projects/.../settings.json`):
-```json
-{
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash scripts/daily-drip.sh"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+**Setup:** Pre-configured in `.claude/settings.json` — works out of the box. To disable, remove the `UserPromptSubmit` hook from that file.
 
 **Question pool (starter set):**
 
