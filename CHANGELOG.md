@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/michaeljauk/brain-starter/compare/v1.3.0...v1.4.0) (2026-03-23)
+
+
+### Features
+
+* **skill:** add 12 global skills and update README ([a6e85ba](https://github.com/michaeljauk/brain-starter/commit/a6e85baea5e79e0ef16ea177dba5cec1205b8b72))
+
 ## [1.3.0](https://github.com/michaeljauk/brain-starter/compare/v1.2.0...v1.3.0) (2026-03-22)
 
 
