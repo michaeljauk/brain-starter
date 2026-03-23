@@ -23,7 +23,7 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 
 ### What's included
 
-- 🛠️ **15 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, semantic search, and more
+- 🛠️ **27 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, semantic search, document generation, and more
 - 🧲 **LLM-powered auto-linking** — a post-commit hook that classifies notes into projects
 - 🔍 **Local semantic search** — [QMD](https://github.com/tobi/qmd) for hybrid BM25 + vector search across your vault
 - ✅ **Conventional commits** — enforced via commitlint + husky
@@ -130,6 +130,18 @@ These are installed globally and work across all your repos:
 | 🌐 **browser-use** | Automate browser interactions — web testing, form filling, screenshots, data extraction |
 | 🔎 **find-skills** | Discover and install community agent skills |
 | 🛠️ **skill-creator** | Create, modify, and benchmark agent skills |
+| 📰 **last30days** | Deep research across 10+ sources (Reddit, X, YouTube, HN, Bluesky, web) with AI synthesis |
+| 🧪 **webapp-testing** | Test local web apps with Playwright — screenshots, browser logs, UI verification |
+| 📄 **docx** | Create, read, edit Word documents — tables of contents, formatting, images, tracked changes |
+| 📊 **xlsx** | Create, read, edit spreadsheets — formulas, formatting, charts, data cleaning |
+| 📑 **pptx** | Create, read, edit PowerPoint presentations — layouts, speaker notes, templates |
+| 📕 **pdf** | Read, merge, split, rotate, watermark, encrypt, OCR PDF files |
+| 🎨 **frontend-design** | Create production-grade frontend interfaces with high design quality |
+| ⚡ **nextjs** | Build Next.js 16 apps — App Router, Server Components, Cache Components, async params |
+| 🧱 **payload** | Work with Payload CMS 3 — collections, hooks, access control, validation |
+| 🎯 **shadcn-ui** | shadcn/ui component library — installation, forms with React Hook Form + Zod, theming |
+| 🔧 **acli** | Atlassian CLI — query and manage Jira issues, sprints, boards, Confluence pages |
+| 🏗️ **mcp-builder** | Guide for creating MCP servers to integrate external APIs and services |
 
 ---
 
@@ -230,6 +242,8 @@ Edit the `get_category()` function in `.autolink/auto-link.sh` to map your meeti
 | [gws](https://github.com/googleworkspace/cli) | ⚡ For meeting prep | Google Calendar CLI |
 | [gh](https://cli.github.com/) | ⚡ For project-sync | GitHub CLI |
 | [Todoist CLI](https://www.npmjs.com/package/@doist/todoist-cli) | ⚡ For task tracking | Todoist from the terminal (`npm install -g @doist/todoist-cli`) |
+| [browser-use](https://github.com/browser-use/browser-use) | ⚡ For browser automation | AI-powered browser interactions (`pip install browser-use`) |
+| [acli](https://bobswift.atlassian.net/wiki/spaces/ACLI) | ⚡ For Jira/Confluence | Atlassian CLI for issue and page management |
 
 ---
 
