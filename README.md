@@ -23,11 +23,12 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 
 ### What's included
 
-- 🛠️ **27 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, semantic search, document generation, and more
+- 🛠️ **28 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, semantic search, document generation, and more
 - 🧲 **LLM-powered auto-linking** — a post-commit hook that classifies notes into projects
 - 🔍 **Local semantic search** — [QMD](https://github.com/tobi/qmd) for hybrid BM25 + vector search across your vault
 - ✅ **Conventional commits** — enforced via commitlint + husky
 - 💎 **Obsidian-native** — wikilinks, frontmatter, callouts, Bases, JSON Canvas, graph view as first-class citizens
+- 📡 **Integration guides** — Telegram Channels (remote control from phone), Obsidian CLI, QMD, Google Calendar, and more in [`docs/integrations.md`](docs/integrations.md)
 - 📁 **Structured directories** — projects, decisions, notes, meetings, working files, and archive
 
 ---
@@ -117,6 +118,7 @@ Skills are Claude Code's reusable workflows. Each lives in `.claude/skills/` and
 | 📊 **obsidian-bases** | Auto (when working with .base files) | Create database-like views with filters, formulas, and summaries |
 | 🗺️ **json-canvas** | Auto (when working with .canvas files) | Create and edit JSON Canvas files — mind maps, flowcharts, visual connections |
 | 🔄 **project-sync** | `/project-sync [name]` | Pull live git/GitHub/Jira data and update project status docs |
+| 🔬 **research-spike** | `/research-spike [topic]` | Chain `/last30days` into a structured comparison matrix + recommendation note |
 | 📅 **gws-obsidian-prep** | "prep notes for today" | Fetch Google Calendar events and create meeting prep notes |
 
 ### Global skills (`~/.claude/skills/`)
