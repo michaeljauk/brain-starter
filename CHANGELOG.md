@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/michaeljauk/brain-starter/compare/v1.4.0...v1.5.0) (2026-03-24)
+
+
+### Features
+
+* **docs:** add integrations guide and research-spike skill ([ebc511e](https://github.com/michaeljauk/brain-starter/commit/ebc511e2d4b4475218f85646fa5cfa7f82179284))
+
 ## [1.4.0](https://github.com/michaeljauk/brain-starter/compare/v1.3.0...v1.4.0) (2026-03-23)
 
 
