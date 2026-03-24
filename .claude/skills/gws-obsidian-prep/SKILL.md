@@ -110,10 +110,10 @@ After creating the note body, search for related project notes:
 obsidian search query="{key words from event summary}"
 ```
 
-Check `projects/` results. If a file clearly matches (e.g. event is "NetCero sprint review" → `projects/netcero.md`), append a wikilink to the Related section:
+Check `projects/` results. If a file clearly matches (e.g. event is "Acme sprint review" → `projects/acme.md`), append a wikilink to the Related section:
 
 ```
-[[netcero]]
+[[acme]]
 ```
 
 Use `qmd vsearch "{event summary}"` as a fallback if obsidian search returns no clear match.
@@ -134,7 +134,7 @@ If `gws calendar +agenda` returns an auth error:
 
 ```bash
 gws auth login -s calendar
-# Follow OAuth browser flow for jauk.michael14@gmail.com
+# Follow OAuth browser flow for your Google account
 ```
 
 Check token status: `gws auth status`

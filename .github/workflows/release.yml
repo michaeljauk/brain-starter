@@ -21,4 +21,4 @@ jobs:
         if: steps.release.outputs.pr
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr edit ${{ fromJSON(steps.release.outputs.pr).number }} --repo ${{ github.repository }} --add-reviewer michaeljauk
+        run: gh pr edit ${{ fromJSON(steps.release.outputs.pr).number }} --repo ${{ github.repository }} --add-reviewer ${{ github.repository_owner }}

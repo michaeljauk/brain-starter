@@ -77,7 +77,7 @@ Synced:
 No changes:
 - [list of files that were already up to date]
 
-Pushed to: https://github.com/michaeljauk/brain-starter
+Pushed to: https://github.com/{your-username}/brain-starter
 ```
 
 ## Important constraints

@@ -5,18 +5,18 @@ On-demand AI-powered sync of a project's repo state into the brain vault. Reads 
 ## Trigger phrases
 
 - `/project-sync [project-name]`
-- "sync netcero"
+- "sync my-project"
 - "update project docs for [project]"
 - "what's the current state of [project]"
 
-Default project: `netcero` if no argument given.
+No default project - always specify one, or the skill will ask.
 
 ## Config
 
 Load project config from `~/brain/scripts/repos.json`. Each entry has:
 - `repo_path` — local repo path
 - `gh_repo` — GitHub `owner/repo` for `gh` CLI
-- `jira` — (optional) `{ "project_key": "NC", "site": "netcero.atlassian.net" }`
+- `jira` — (optional) `{ "project_key": "PROJ", "site": "your-org.atlassian.net" }`
 - `status_doc` — AI-owned status file (always overwritten)
 - `brain_docs` — list of brain notes to review and potentially update
 
@@ -63,7 +63,7 @@ acli jira workitem search --jql "project = {project_key} AND duedate <= endOfWee
 
 If `acli` is not authenticated or fails, skip Jira data and note it in the status doc.
 
-**NetCero Jira workflow:** To Do → In Progress → Dev Review → Dev (merged to `development`) → Waiting for Merge → Staging / Ready for Release / Done. "Dev" means code is on the `development` branch but not yet released to staging — this is NOT a stale status. Only flag mismatches where Jira says "To Do" but a PR/branch exists, or Jira says "In Progress" but no activity in weeks.
+Only flag mismatches where Jira says "To Do" but a PR/branch exists, or Jira says "In Progress" but no activity in weeks. If your project has a custom workflow (e.g. extra review/staging states), document it in `scripts/repos.json` or the project file so this skill can account for it.
 
 ### 3. Read brain docs
 
@@ -146,8 +146,8 @@ Project sync complete: {project}
 Status doc: projects/{project}-status.md ✓ (overwritten)
 
 Brain doc changes:
-- projects/netcero-ai.md — updated NC-3260 status, DMA IRO
-- projects/netcero.md — no changes needed
+- projects/my-project-api.md — updated PROJ-123 status
+- projects/my-project.md — no changes needed
 
 Review with: git diff
 Commit when satisfied.

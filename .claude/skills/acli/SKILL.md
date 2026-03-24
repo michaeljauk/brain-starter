@@ -48,20 +48,20 @@ acli jira workitem search --jql "<JQL>" --fields "key,summary,status,assignee,pr
 ## Jira: View a single issue
 
 ```bash
-acli jira workitem view NC-3260 --json
+acli jira workitem view PROJ-1234 --json
 
 # Specific fields only
-acli jira workitem view NC-3260 --fields "summary,status,assignee,description,comment" --json
+acli jira workitem view PROJ-1234 --fields "summary,status,assignee,description,comment" --json
 
 # Open in browser
-acli jira workitem view NC-3260 --web
+acli jira workitem view PROJ-1234 --web
 ```
 
 ## Jira: Create issues
 
 ```bash
 acli jira workitem create \
-  --project NC \
+  --project PROJ \
   --type Story \
   --summary "Summary here" \
   --description "Description here" \
@@ -69,10 +69,10 @@ acli jira workitem create \
   --label "label1,label2"
 
 # Self-assign
-acli jira workitem create --project NC --type Task --summary "..." --assignee @me
+acli jira workitem create --project PROJ --type Task --summary "..." --assignee @me
 
 # With parent (sub-task of epic)
-acli jira workitem create --project NC --type Story --summary "..." --parent NC-3227
+acli jira workitem create --project PROJ --type Story --summary "..." --parent PROJ-100
 ```
 
 Types: `Epic`, `Story`, `Task`, `Bug`, `Sub-task`
@@ -81,13 +81,13 @@ Types: `Epic`, `Story`, `Task`, `Bug`, `Sub-task`
 
 ```bash
 # By key
-acli jira workitem edit --key "NC-1234" --summary "Updated" --yes
+acli jira workitem edit --key "PROJ-456" --summary "Updated" --yes
 
 # By JQL (bulk)
-acli jira workitem edit --jql "project = NC AND labels = old-label" --labels "new-label" --yes
+acli jira workitem edit --jql "project = PROJ AND labels = old-label" --labels "new-label" --yes
 
 # Remove assignee
-acli jira workitem edit --key "NC-1234" --remove-assignee --yes
+acli jira workitem edit --key "PROJ-456" --remove-assignee --yes
 ```
 
 Always pass `--yes` to skip interactive confirmation.
@@ -96,10 +96,10 @@ Always pass `--yes` to skip interactive confirmation.
 
 ```bash
 # Single issue
-acli jira workitem transition --key "NC-1234" --status "In Progress" --yes
+acli jira workitem transition --key "PROJ-456" --status "In Progress" --yes
 
 # Bulk via JQL
-acli jira workitem transition --jql "project = NC AND status = 'To Do' AND sprint in openSprints()" --status "In Progress" --yes
+acli jira workitem transition --jql "project = PROJ AND status = 'To Do' AND sprint in openSprints()" --status "In Progress" --yes
 ```
 
 Always pass `--yes` to skip interactive confirmation.
@@ -107,25 +107,25 @@ Always pass `--yes` to skip interactive confirmation.
 ## Jira: Assign
 
 ```bash
-acli jira workitem assign NC-1234 --assignee "user@example.com"
-acli jira workitem assign NC-1234 --assignee @me
+acli jira workitem assign PROJ-456 --assignee "user@example.com"
+acli jira workitem assign PROJ-456 --assignee @me
 ```
 
 ## Jira: Comments
 
 ```bash
 # List comments
-acli jira workitem comment list --workitem NC-1234 --json
+acli jira workitem comment list --workitem PROJ-456 --json
 
 # Add comment
-acli jira workitem comment add --workitem NC-1234 --body "Comment text here"
+acli jira workitem comment add --workitem PROJ-456 --body "Comment text here"
 ```
 
 ## Jira: Sprints & Boards
 
 ```bash
 # Find boards
-acli jira board search --project NC --json
+acli jira board search --project PROJ --json
 
 # List sprints for a board
 acli jira board list-sprints --id {boardId} --state active --json

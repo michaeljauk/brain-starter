@@ -61,7 +61,7 @@ m365 connection list
 m365 connection use --name "<connection-uuid>"
 ```
 
-**Important:** Named connections (e.g. "dectria") get lost on `m365 logout`. Always use UUID connection names from `m365 connection list`.
+**Important:** Named connections (e.g. "my-company") get lost on `m365 logout`. Always use UUID connection names from `m365 connection list`.
 
 Check memory file `reference_m365_cli.md` for the user's configured connection UUIDs and folder IDs.
 
