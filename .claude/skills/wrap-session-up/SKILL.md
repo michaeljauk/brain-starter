@@ -86,6 +86,16 @@ If the session revealed something about the user, their preferences, or their wo
 
 For open items that need tracking and aren't already in Todoist/Jira:
 
+**IMPORTANT: Always show the proposed tasks to the user first and wait for confirmation before creating them.** Present as a table:
+
+```
+| # | Task | Priority | Due |
+|---|------|----------|-----|
+| 1 | ... | p1 | YYYY-MM-DD |
+```
+
+Only after user confirms (or adjusts), create them:
+
 ```bash
 td task add "{action item}" --project "{project if clear}" --priority {p1-p4} --due "{date if mentioned}"
 ```

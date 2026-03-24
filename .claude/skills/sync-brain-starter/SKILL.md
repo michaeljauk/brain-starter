@@ -23,7 +23,7 @@ bash ~/brain/scripts/sync-brain-starter.sh
 ```
 
 This copies:
-- **Skills** (reusable only): `wrap-session-up`, `ingest-article`, `defuddle`, `obsidian-cli`, `obsidian-markdown`, `gws-obsidian-prep`, `project-sync`
+- **Skills** (reusable only): `wrap-session-up`, `ingest-article`, `defuddle`, `obsidian-cli`, `obsidian-markdown`, `gws-obsidian-prep`, `project-sync`, `research-spike`
 - **Configs**: `commitlint.config.js`, `.husky/commit-msg`, `docs/templates.md`
 
 It does NOT copy: `CLAUDE.md`, `README.md`, `.autolink/auto-link.sh`, `package.json`, `.claude/memory/MEMORY.md` — these are generalized differently in the template.
@@ -43,7 +43,18 @@ cd ~/tech/brain-starter && git diff
 
 If any personal references slipped through, fix them in the brain-starter copy before committing. Do NOT modify the brain repo source — the template versions may intentionally differ.
 
-### 3. Commit and push
+### 3. Update the README
+
+If any new skills were added, docs created, or features changed, update `~/tech/brain-starter/README.md`:
+
+- **New skill?** → Add a row to the vault skills or global skills table
+- **New doc (e.g. `docs/integrations.md`)?** → Reference it in the "What's included" section
+- **Skill count changed?** → Update the "X Claude Code skills" number in the intro
+- **New prerequisite tool?** → Add it to the Prerequisites table
+
+Always check the README is accurate before committing — it's the first thing users see.
+
+### 4. Commit and push
 
 Use `feat` or `fix` only for user-facing changes. Use `chore` for everything else — only `feat` and `fix` trigger release PRs.
 
@@ -54,7 +65,7 @@ git commit -m "feat(skill): update [skill-name] with [what changed]"
 git push
 ```
 
-### 4. Report
+### 5. Report
 
 ```
 Brain starter sync complete.

@@ -121,10 +121,16 @@ source: "{URL or description}"
 - Add insights under a relevant section (e.g., ## Research, ## Notes, or a new subsection)
 - Add source attribution inline
 - Keep it concise — project notes should stay scannable
+- Include `[[wikilinks]]` to related notes, other projects, or concepts inline within the update
+
+#### If skipping ephemeral content:
+
+- Still mention related projects using `[[wikilinks]]` in the warning message (e.g., "This relates to [[my-project]] but is too time-sensitive to ingest")
 
 ### 6. Cross-link
 
-After writing:
+**Every output must contain at least one `[[wikilink]]`** — whether it's a new note, a project update, or an ephemeral content warning. This is non-negotiable.
+
 - Add `[[wikilinks]]` to related notes in the new/updated content
 - If the article is highly relevant to a project, consider adding a backlink in the project note's ## Related or ## Notes section
 
@@ -141,6 +147,17 @@ Location: {file path}
 Key insights: {count} extracted
 Linked to: [[project-a]], [[existing-note-b]]
 ```
+
+### 8. Prompt for next steps
+
+After reporting, always ask the user what they want to do with this knowledge. Suggest concrete actions based on the content:
+
+- **If the article describes a tool, method, or workflow:** "Want me to integrate this into an existing skill, install it, or build something based on it?"
+- **If the article relates to an active project:** "Should I create a task in Todoist, update the project plan, or flag this for someone?"
+- **If the article contains a framework or model:** "Want me to apply this framework to [relevant project]?"
+- **If the article is general reference:** "Anything actionable here, or just filing for future reference?"
+
+Keep it to one short question with 2-3 concrete options. The goal is to turn passive ingestion into active application.
 
 ## Content rules
 

@@ -100,7 +100,7 @@ Purpose: Ask one short personal question per day to organically build up `contex
 2. Question is asked at the start of the first session of the day (via `UserPromptSubmit` hook)
 3. Answer is saved into the matching section of `context/me.md`
 
-**Setup:** Pre-configured in `.claude/settings.json` — works out of the box. To disable, remove the `UserPromptSubmit` hook from that file.
+**Setup:** Pre-configured in `.claude/settings.json` - works out of the box. To disable, remove the `UserPromptSubmit` hook from that file.
 
 **Question pool (starter set):**
 
@@ -137,7 +137,7 @@ Meta / AI:
 - Max 1 question per day
 - Don't ask what's already documented in `context/me.md`
 - Save answers directly into the matching section (not as a separate file)
-- Keep it short — one question, not an interview
+- Keep it short - one question, not an interview
 
 ---
 
