@@ -23,7 +23,8 @@ bash ~/brain/scripts/sync-brain-starter.sh
 ```
 
 This copies:
-- **Skills** (reusable only): `wrap-session-up`, `ingest-article`, `defuddle`, `obsidian-cli`, `obsidian-markdown`, `gws-obsidian-prep`, `project-sync`, `research-spike`
+- **Vault skills** (curated list): `wrap-session-up`, `ingest-article`, `defuddle`, `obsidian-cli`, `obsidian-markdown`, `gws-obsidian-prep`, `project-sync`, `research-spike`, `sync-brain-starter`
+- **Global skills** (auto-discovered): scans `~/.claude/skills/` and syncs all skills not already in the vault list or the exclude list (`GLOBAL_SKIP` in the script)
 - **Configs**: `commitlint.config.js`, `.husky/commit-msg`, `docs/templates.md`
 
 It does NOT copy: `CLAUDE.md`, `README.md`, `.autolink/auto-link.sh`, `package.json`, `.claude/memory/MEMORY.md` — these are generalized differently in the template.
@@ -85,4 +86,5 @@ Pushed to: https://github.com/michaeljauk/brain-starter
 - **Check for personal info** — every sync is a potential leak vector
 - **Use correct commit types** — `chore` for infra, `feat` for new skills/features, `fix` for bug fixes. Only `feat`/`fix` create releases.
 - **Don't modify brain repo** — this skill only copies brain → brain-starter, never the reverse
-- **If a new skill was added to brain** that should be public, add it to the `SKILLS` array in `~/brain/scripts/sync-brain-starter.sh` first
+- **If a new vault skill was added to brain** that should be public, add it to the `SKILLS` array in `~/brain/scripts/sync-brain-starter.sh`
+- **Global skills are auto-discovered** — new skills installed in `~/.claude/skills/` are picked up automatically. To exclude a global skill, add it to the `GLOBAL_SKIP` array in the sync script

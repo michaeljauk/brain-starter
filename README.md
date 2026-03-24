@@ -23,7 +23,7 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 
 ### What's included
 
-- 🛠️ **28 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, semantic search, document generation, and more
+- 🛠️ **39 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, semantic search, document generation, and more
 - 🧲 **LLM-powered auto-linking** — a post-commit hook that classifies notes into projects
 - 🔍 **Local semantic search** — [QMD](https://github.com/tobi/qmd) for hybrid BM25 + vector search across your vault
 - ✅ **Conventional commits** — enforced via commitlint + husky
@@ -120,6 +120,7 @@ Skills are Claude Code's reusable workflows. Each lives in `.claude/skills/` and
 | 🔄 **project-sync** | `/project-sync [name]` | Pull live git/GitHub/Jira data and update project status docs |
 | 🔬 **research-spike** | `/research-spike [topic]` | Chain `/last30days` into a structured comparison matrix + recommendation note |
 | 📅 **gws-obsidian-prep** | "prep notes for today" | Fetch Google Calendar events and create meeting prep notes |
+| 📧 **email-triage** | "triage my inbox" | Scan, categorize, and organize Outlook emails — human-in-the-loop before moving |
 
 ### Global skills (`~/.claude/skills/`)
 
@@ -144,6 +145,17 @@ These are installed globally and work across all your repos:
 | 🎯 **shadcn-ui** | shadcn/ui component library — installation, forms with React Hook Form + Zod, theming |
 | 🔧 **acli** | Atlassian CLI — query and manage Jira issues, sprints, boards, Confluence pages |
 | 🏗️ **mcp-builder** | Guide for creating MCP servers to integrate external APIs and services |
+| 📅 **gws-calendar** | Google Calendar — manage calendars and events |
+| 📋 **gws-calendar-agenda** | Google Calendar — show upcoming events across all calendars |
+| 🔗 **gws-shared** | Google Workspace CLI — shared patterns for auth, flags, output formatting |
+| 🗓️ **gws-workflow-meeting-prep** | Google Workflow — prepare for meetings with agenda, attendees, and docs |
+| 📧 **m365** | Microsoft 365 CLI — read, move, and organize Outlook emails |
+| 🪵 **json-canvas** | Create and edit JSON Canvas files — mind maps, flowcharts, visual connections |
+| 🚀 **render-deploy** | Deploy apps to Render — analyze codebases, generate Blueprints |
+| 🐛 **render-debug** | Debug failed Render deployments — logs, metrics, error analysis |
+| 📈 **render-monitor** | Monitor Render services — health, performance, resource usage |
+| 🔄 **render-workflows** | Set up, develop, test, and deploy Render Workflows |
+| 🚚 **render-migrate-from-heroku** | Migrate from Heroku to Render — read project files, generate services |
 
 ---
 
@@ -246,6 +258,8 @@ Edit the `get_category()` function in `.autolink/auto-link.sh` to map your meeti
 | [Todoist CLI](https://www.npmjs.com/package/@doist/todoist-cli) | ⚡ For task tracking | Todoist from the terminal (`npm install -g @doist/todoist-cli`) |
 | [browser-use](https://github.com/browser-use/browser-use) | ⚡ For browser automation | AI-powered browser interactions (`pip install browser-use`) |
 | [acli](https://bobswift.atlassian.net/wiki/spaces/ACLI) | ⚡ For Jira/Confluence | Atlassian CLI for issue and page management |
+| [Render CLI](https://render.com/docs/cli) | ⚡ For Render skills | Deploy, debug, and monitor Render services |
+| [m365 CLI](https://pnp.github.io/cli-microsoft365/) | ⚡ For Outlook email | Microsoft 365 CLI for email triage |
 
 ---
 

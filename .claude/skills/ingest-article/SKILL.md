@@ -174,7 +174,7 @@ Keep it to one short question with 2-3 concrete options. The goal is to turn pas
 → Defuddle extracts → general knowledge → creates `notes/saas-pricing-value-metrics.md`
 
 **User:** "ingest article: https://example.com/ai-agent-patterns"
-→ Defuddle extracts → relates to NetCero AI + dectria.ai → creates `notes/ai-agent-patterns.md` with wikilinks to both projects
+→ Defuddle extracts → relates to multiple projects → creates `notes/ai-agent-patterns.md` with wikilinks to both projects
 
 **User:** "add this to my brain: [pasted text about EU AI Act compliance]"
-→ Raw text → directly relevant to dectria.ai → updates `projects/dectria-ai.md` with key compliance insights
+→ Raw text → directly relevant to an active project → updates the project file with key compliance insights
