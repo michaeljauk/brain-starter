@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.6.0](https://github.com/michaeljauk/brain-starter/compare/v1.5.0...v1.6.0) (2026-03-24)
+
+
+### Features
+
+* **skill:** add 11 new skills via auto-discovery sync ([90f2ca5](https://github.com/michaeljauk/brain-starter/commit/90f2ca5cb4066254b7a9b682c128242862618bd5))
+* **skill:** improve ingest-article, wrap-session-up, and sync workflow ([ae6af2c](https://github.com/michaeljauk/brain-starter/commit/ae6af2c90f295588e60a5e498b1d3ac0bb621481))
+
+
+### Bug Fixes
+
+* **security:** remove all personal and confidential references ([048801c](https://github.com/michaeljauk/brain-starter/commit/048801cd55542e5e5afdd81bb9dbbc3339ef3261))
+
 ## [1.5.0](https://github.com/michaeljauk/brain-starter/compare/v1.4.0...v1.5.0) (2026-03-24)
 
 
