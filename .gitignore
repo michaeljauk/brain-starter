@@ -1,0 +1,32 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Private / sensitive — do not commit; keep local only
+private/
+
+# Obsidian — session state, not useful in git
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Editor / IDE
+*.swp
+*.swo
+*~
+~$*
+
+# Third-party reference material — gitignored (large, may have license constraints)
+# Configure Obsidian Smart Connections to exclude 'sources/' to prevent index bloat
+sources/
+
+# Ignore Smart Environment folder
+.smart-env
+
+# Node (commitlint / husky)
+node_modules/
+
+# Claude Code — transient session state
+.claude/worktrees/
+
+# Logs
+logs/

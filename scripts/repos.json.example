@@ -1,0 +1,14 @@
+{
+  "my-project": {
+    "repo_path": "~/code/my-project",
+    "gh_repo": "your-org/my-project",
+    "jira": {
+      "project_key": "MP",
+      "site": "your-site.atlassian.net"
+    },
+    "status_doc": "projects/my-project-status.md",
+    "brain_docs": [
+      "projects/my-project.md"
+    ]
+  }
+}
