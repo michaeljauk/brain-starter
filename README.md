@@ -23,7 +23,7 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 
 ### What's included
 
-- 🛠️ **39 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, semantic search, document generation, and more
+- 🛠️ **75 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, semantic search, document generation, QA testing, code review, deployment workflows, and more
 - 🧲 **LLM-powered auto-linking** — a post-commit hook that classifies notes into projects
 - 🔍 **Local semantic search** — [QMD](https://github.com/tobi/qmd) for hybrid BM25 + vector search across your vault
 - ✅ **Conventional commits** — enforced via commitlint + husky
@@ -124,41 +124,118 @@ Skills are Claude Code's reusable workflows. Each lives in `.claude/skills/` and
 | 🔬 **research-spike** | `/research-spike [topic]` | Chain `/last30days` into a structured comparison matrix + recommendation note |
 | 📅 **gws-obsidian-prep** | "prep notes for today" | Fetch Google Calendar events and create meeting prep notes |
 | 📧 **email-triage** | "triage my inbox" | Scan, categorize, and organize Outlook emails — human-in-the-loop before moving |
+| 🔄 **sync-brain-starter** | `/sync-brain-starter` | Sync reusable skills and configs to a public template repo |
 
 ### Global skills (`~/.claude/skills/`)
 
 These are installed globally and work across all your repos:
 
+**Search & Research**
+
 | Skill | What it does |
 |-------|-------------|
 | 🔍 **qmd** | Semantic search over markdown vaults via [QMD](https://github.com/tobi/qmd) — hybrid BM25 + vector + LLM reranking |
-| ✅ **todoist-cli** | Manage Todoist tasks, projects, labels via the `td` CLI |
-| 🌐 **browser-use** | Automate browser interactions — web testing, form filling, screenshots, data extraction |
-| 🔎 **find-skills** | Discover and install community agent skills |
-| 🛠️ **skill-creator** | Create, modify, and benchmark agent skills |
 | 📰 **last30days** | Deep research across 10+ sources (Reddit, X, YouTube, HN, Bluesky, web) with AI synthesis |
-| 🧪 **webapp-testing** | Test local web apps with Playwright — screenshots, browser logs, UI verification |
-| 📄 **docx** | Create, read, edit Word documents — tables of contents, formatting, images, tracked changes |
-| 📊 **xlsx** | Create, read, edit spreadsheets — formulas, formatting, charts, data cleaning |
-| 📑 **pptx** | Create, read, edit PowerPoint presentations — layouts, speaker notes, templates |
-| 📕 **pdf** | Read, merge, split, rotate, watermark, encrypt, OCR PDF files |
-| 🎨 **frontend-design** | Create production-grade frontend interfaces with high design quality |
-| ⚡ **nextjs** | Build Next.js 16 apps — App Router, Server Components, Cache Components, async params |
-| 🧱 **payload** | Work with Payload CMS 3 — collections, hooks, access control, validation |
-| 🎯 **shadcn-ui** | shadcn/ui component library — installation, forms with React Hook Form + Zod, theming |
+| 🔎 **find-skills** | Discover and install community agent skills |
+
+**Task & Project Management**
+
+| Skill | What it does |
+|-------|-------------|
+| ✅ **todoist-cli** | Manage Todoist tasks, projects, labels via the `td` CLI |
 | 🔧 **acli** | Atlassian CLI — query and manage Jira issues, sprints, boards, Confluence pages |
-| 🏗️ **mcp-builder** | Guide for creating MCP servers to integrate external APIs and services |
+| 📧 **m365** | Microsoft 365 CLI — read, move, and organize Outlook emails |
 | 📅 **gws-calendar** | Google Calendar — manage calendars and events |
 | 📋 **gws-calendar-agenda** | Google Calendar — show upcoming events across all calendars |
 | 🔗 **gws-shared** | Google Workspace CLI — shared patterns for auth, flags, output formatting |
 | 🗓️ **gws-workflow-meeting-prep** | Google Workflow — prepare for meetings with agenda, attendees, and docs |
-| 📧 **m365** | Microsoft 365 CLI — read, move, and organize Outlook emails |
-| 🪵 **json-canvas** | Create and edit JSON Canvas files — mind maps, flowcharts, visual connections |
+
+**Development & Frameworks**
+
+| Skill | What it does |
+|-------|-------------|
+| 🎨 **frontend-design** | Create production-grade frontend interfaces with high design quality |
+| ⚡ **nextjs** | Build Next.js 16 apps — App Router, Server Components, Cache Components, async params |
+| 🧱 **payload** | Work with Payload CMS 3 — collections, hooks, access control, validation |
+| 🎯 **shadcn-ui** | shadcn/ui component library — installation, forms with React Hook Form + Zod, theming |
+| 🔐 **workos** | WorkOS authentication — SSO, SAML, SCIM, RBAC, roles, permissions |
+| 🧩 **workos-widgets** | Build and integrate WorkOS Widgets for user management and admin portals |
+| 🏗️ **mcp-builder** | Guide for creating MCP servers to integrate external APIs and services |
+
+**Testing & QA**
+
+| Skill | What it does |
+|-------|-------------|
+| 🧪 **webapp-testing** | Test local web apps with Playwright — screenshots, browser logs, UI verification |
+| 🌐 **browser-use** | Automate browser interactions — web testing, form filling, screenshots, data extraction |
+| 🔍 **browse** | Fast headless browser for QA testing and site dogfooding |
+| 🏁 **qa** | Systematically QA test a web app and fix bugs found |
+| 📋 **qa-only** | Report-only QA testing — structured report without fixing |
+| 🍪 **setup-browser-cookies** | Import cookies from your real browser into headless sessions |
+| 🔌 **connect-chrome** | Launch real Chrome controlled by skills with Side Panel extension |
+| 📊 **benchmark** | Performance regression detection — page load, Core Web Vitals, resource sizes |
+| 🐦 **canary** | Post-deploy canary monitoring — watch for console errors, regressions |
+
+**Code Review & Shipping**
+
+| Skill | What it does |
+|-------|-------------|
+| 🔍 **review** | Pre-landing PR review — SQL safety, trust boundaries, conditional side effects |
+| 🚀 **ship** | Ship workflow — tests, review, version bump, changelog, PR creation |
+| 🛬 **land-and-deploy** | Merge PR, wait for CI, verify production health |
+| ⚙️ **setup-deploy** | Configure deployment settings for land-and-deploy |
+| 🤖 **codex** | OpenAI Codex CLI — independent review, adversarial challenges, consultation |
+
+**Planning & Strategy**
+
+| Skill | What it does |
+|-------|-------------|
+| 👔 **plan-ceo-review** | CEO/founder-mode plan review — rethink the problem, find the 10-star product |
+| 🎨 **plan-design-review** | Designer's eye plan review — rates design dimensions, suggests improvements |
+| 🔧 **plan-eng-review** | Eng manager-mode plan review — architecture, data flow, edge cases |
+| 📐 **autoplan** | Auto-review pipeline — runs CEO, design, and eng reviews sequentially |
+| 🏢 **office-hours** | YC Office Hours — startup forcing questions or builder-mode brainstorming |
+| 🔒 **cso** | Chief Security Officer mode — infrastructure audit, OWASP, STRIDE modeling |
+
+**Document Generation**
+
+| Skill | What it does |
+|-------|-------------|
+| 📄 **docx** | Create, read, edit Word documents — tables of contents, formatting, images |
+| 📊 **xlsx** | Create, read, edit spreadsheets — formulas, formatting, charts, data cleaning |
+| 📑 **pptx** | Create, read, edit PowerPoint presentations — layouts, speaker notes, templates |
+| 📕 **pdf** | Read, merge, split, rotate, watermark, encrypt, OCR PDF files |
+| 🎨 **design-html** | Generate production-quality HTML/CSS from approved mockups |
+| 🎯 **design-shotgun** | Generate multiple design variants and compare in a board |
+| 🖌️ **design-consultation** | Design system creation — aesthetic, typography, color, layout, motion |
+| 🔍 **design-review** | Designer's eye QA — visual inconsistency, spacing, hierarchy, AI slop detection |
+
+**DevOps & Infrastructure**
+
+| Skill | What it does |
+|-------|-------------|
 | 🚀 **render-deploy** | Deploy apps to Render — analyze codebases, generate Blueprints |
 | 🐛 **render-debug** | Debug failed Render deployments — logs, metrics, error analysis |
 | 📈 **render-monitor** | Monitor Render services — health, performance, resource usage |
 | 🔄 **render-workflows** | Set up, develop, test, and deploy Render Workflows |
 | 🚚 **render-migrate-from-heroku** | Migrate from Heroku to Render — read project files, generate services |
+
+**Utilities**
+
+| Skill | What it does |
+|-------|-------------|
+| 🛠️ **skill-creator** | Create, modify, and benchmark agent skills |
+| 📖 **document-release** | Post-ship documentation update — README, CHANGELOG, ARCHITECTURE |
+| 📒 **learn** | Manage project learnings — review, search, prune, export |
+| 🔄 **retro** | Weekly engineering retrospective — commit analysis, work patterns, team contributions |
+| ❤️ **health** | Code quality dashboard — type checker, linter, tests, dead code, composite score |
+| 💾 **checkpoint** | Save and resume working state checkpoints across sessions |
+| 🔒 **freeze** | Restrict file edits to a specific directory for the session |
+| 🔓 **unfreeze** | Clear the freeze boundary, allow edits everywhere again |
+| 🛡️ **careful** | Safety guardrails for destructive commands — warns before rm -rf, DROP TABLE, force-push |
+| 🛡️ **guard** | Full safety mode — combines careful + freeze for maximum protection |
+| ⬆️ **gstack-upgrade** | Upgrade gstack skill pack to the latest version |
+| 🧰 **gstack** | Fast headless browser for QA testing and site dogfooding |
 
 ---
 
@@ -215,7 +292,7 @@ Create subdirectories in `projects/` - one per project. The auto-linker reads th
 
 ### Configure project sync
 
-Copy `docs/scripts/repos.json.example` to `scripts/repos.json` and add your repos:
+Copy `docs/scripts/repos.json.example` to `docs/scripts/repos.json` and add your repos:
 
 ```json
 {
