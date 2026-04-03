@@ -57,12 +57,12 @@ Use this decision tree:
 | Condition | Action |
 |-----------|--------|
 | Article directly relates to an **active project** (check `projects/`) | **Update** the project note with a new section or append insights |
-| Article is research for an **in-progress deliverable** | **Create** in `working-files/{project}/` |
-| Otherwise (general knowledge, reference material) | **Create** a new note in `notes/` as a standalone knowledge note |
+| Article is research for an **in-progress deliverable** | **Create** in `projects/{project}/` |
+| Otherwise (general knowledge, reference material) | **Create** a new note in `research/` as a standalone knowledge note |
 
-**Important:** Do NOT merge into curated topic notes like `docs/lenny/*.md` — those are hand-curated from specific sources. Always create a separate knowledge note instead.
+**Important:** Do NOT merge into curated topic notes like `knowledge/lenny/*.md` — those are hand-curated from specific sources. Always create a separate knowledge note instead.
 
-**Priority:** Update project notes if directly relevant > Create in working-files if tied to a deliverable > Create standalone note in `notes/`.
+**Priority:** Update project notes if directly relevant > Create in working-files if tied to a deliverable > Create standalone note in `research/`.
 
 ### 4. Search for related content
 
@@ -72,13 +72,13 @@ Use Grep to search file contents and Glob to find related files. Also use `qmd v
 
 Check:
 - `projects/` — any project this relates to?
-- `notes/` — any existing note on this exact topic that should be updated instead of creating a new file?
+- `research/` — any existing note on this exact topic that should be updated instead of creating a new file?
 
-If an existing note in `notes/` covers the same topic closely, **update that note** rather than creating a duplicate.
+If an existing note in `research/` covers the same topic closely, **update that note** rather than creating a duplicate.
 
 ### 5. Write the content
 
-#### If creating a new note in `notes/`:
+#### If creating a new note in `research/`:
 
 Filename: `{short-descriptive-slug}.md` (no date prefix for reference notes, per conventions).
 
@@ -165,16 +165,16 @@ Keep it to one short question with 2-3 concrete options. The goal is to turn pas
 - **Attribute sources.** Always include the URL/source and article title.
 - **No ephemeral content.** Skip news that won't be useful in 3 months. If the article is mostly time-sensitive, warn the user and suggest skipping or saving only the durable insights.
 - **Respect conventions.** Follow `docs/conventions.md` for filenames, frontmatter, and folder placement.
-- **Don't touch curated collections.** Never merge into `docs/lenny/` or other hand-curated topic files. Create separate notes instead.
-- **Dedup before creating.** If `notes/` already has a file on the same topic, update it rather than creating a new file.
+- **Don't touch curated collections.** Never merge into `knowledge/lenny/` or other hand-curated topic files. Create separate notes instead.
+- **Dedup before creating.** If `research/` already has a file on the same topic, update it rather than creating a new file.
 
 ## Examples
 
 **User:** "ingest this: https://example.com/article-about-pricing"
-→ Defuddle extracts → general knowledge → creates `notes/saas-pricing-value-metrics.md`
+→ Defuddle extracts → general knowledge → creates `research/saas-pricing-value-metrics.md`
 
 **User:** "ingest article: https://example.com/ai-agent-patterns"
-→ Defuddle extracts → relates to multiple projects → creates `notes/ai-agent-patterns.md` with wikilinks to both projects
+→ Defuddle extracts → relates to multiple projects → creates `research/ai-agent-patterns.md` with wikilinks to both projects
 
 **User:** "add this to my brain: [pasted text about EU AI Act compliance]"
 → Raw text → directly relevant to an active project → updates the project file with key compliance insights

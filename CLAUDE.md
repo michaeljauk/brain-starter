@@ -9,13 +9,12 @@ This repo is a personal second brain — reference docs, project notes, meeting 
 
 | Directory | Content | Examples |
 |-----------|---------|---------|
-| `projects/` | Project overviews, status pages | `my-saas.md`, `side-project.md` |
-| `decisions/` | Non-trivial choices with context + alternatives | `YYYY-MM-DD-short-slug.md` |
-| `notes/` | Analyses, brainstorms, research, webinar notes, deep-dives | `api-design-patterns.md` |
-| `docs/` | Reference docs, conventions, templates, integrations | `templates.md`, `integrations.md` |
+| `projects/` | Project knowledge, one subdir per project | `projects/my-saas/`, `projects/side-project/` |
+| `research/` | Non-project research, topic-grouped | `research/ai-agents/`, `research/infrastructure/` |
+| `knowledge/` | Curated long-lived reference | `knowledge/tools.md` |
+| `decisions/` | Cross-cutting decisions with context + alternatives | `YYYY-MM-DD-short-slug.md` |
+| `docs/` | Repo meta, templates, skill output | `templates.md`, `integrations.md` |
 | `meetings/` | Meeting notes (read-only if managed by Granola or similar) | — |
-| `context/` | Background context (people, companies, clients) | `clients.md` |
-| `working-files/` | Operational files, agent handover prompts, organized by project | `working-files/my-project/` |
 | `sources/` | Third-party reference material (gitignored) | — |
 | `tasks/` | Task manager sync (managed) | — |
 | `tmp/` | Temporary/ephemeral files (email drafts, etc.) | `.eml`, `.html` |
@@ -25,11 +24,11 @@ This repo is a personal second brain — reference docs, project notes, meeting 
 - **New project repos / codebases** — keep those in their own repos
 
 ### How to choose the right directory
-- **Project overview or status page?** → `projects/`
-- **Non-trivial choice with alternatives?** → `decisions/`
-- **Analysis, brainstorm, or event-based note?** → `notes/`
+- **Project overview, working file, or anything project-specific?** → `projects/{project}/`
+- **Non-project research, analysis, or tool evaluation?** → `research/{topic}/`
+- **Curated reference material?** → `knowledge/`
+- **Non-trivial choice with alternatives?** → `decisions/` (cross-cutting only; project-specific go in `projects/{project}/decisions/`)
 - **Stable reference, convention, or template?** → `docs/`
-- **Operational/working file for a project?** → `working-files/{project}/`
 - **Temporary/ephemeral output?** → `tmp/`
 
 ## Decision Logging

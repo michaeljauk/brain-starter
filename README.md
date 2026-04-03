@@ -29,7 +29,7 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 - ✅ **Conventional commits** — enforced via commitlint + husky
 - 💎 **Obsidian-native** — wikilinks, frontmatter, callouts, Bases, JSON Canvas, graph view as first-class citizens
 - 📡 **Integration guides** — Telegram Channels (remote control from phone), Obsidian CLI, QMD, Google Calendar, and more in [`docs/integrations.md`](docs/integrations.md)
-- 📁 **Structured directories** — projects, decisions, notes, meetings, working files, and archive
+- 📁 **Structured directories** — projects (one subdir per project), research (topic-grouped), knowledge, decisions, meetings, and archive
 
 ---
 
@@ -57,7 +57,7 @@ I just forked brain-starter. Help me set it up:
 1. Update CLAUDE.md with my identity (name, role, company, stack defaults)
 2. Create my first project file in projects/
 3. Set up qmd for semantic search: `npm install -g @tobilu/qmd && qmd collection add . --name brain && qmd embed`
-4. Create context/me.md with background context about me
+4. Create knowledge/me.md with background context about me
 5. Run a test: /wrap-session-up
 
 Here's who I am: [tell Claude about yourself, your role, your projects]
@@ -83,21 +83,24 @@ The auto-link script classifies notes into projects using a local LLM. To set it
 
 ```
 my-brain/
-├── 📋 projects/       Project overviews and status pages
-├── ⚖️  decisions/      Non-trivial choices with context + alternatives
-├── 📝 notes/          Analyses, brainstorms, research, deep-dives
-├── 📚 docs/           Reference docs, conventions, templates
+├── 📋 projects/       Project knowledge, one subdir per project
+│   ├── my-saas/       Overview, decisions, working files for this project
+│   └── side-project/  Everything about this project in one place
+├── 🔬 research/       Non-project research, topic-grouped
+│   ├── ai-agents/     AI agent ecosystem, patterns, tools
+│   ├── infrastructure/ Hosting, deployment, databases
+│   └── business/      Pricing, GTM, startup strategy
+├── 📚 knowledge/      Curated long-lived reference material
+├── ⚖️  decisions/      Cross-cutting decisions (project-specific live in projects/)
+├── 📄 docs/           Repo meta, conventions, templates, skill output
 ├── 🗓️  meetings/       Meeting notes (manual or auto-synced)
-├── 👥 context/        Background context (people, companies, clients)
-├── 🔧 working-files/  Operational files, organized by project
 ├── ✅ tasks/          Task manager sync (if applicable)
 ├── 📦 sources/        Third-party reference material (gitignored)
 ├── 🗑️  tmp/            Temporary/ephemeral files
 ├── 🗄️  archive/        Done/inactive projects
 ├── 🤖 .claude/        Skills + memory for Claude Code
 ├── 🧲 .autolink/      LLM-powered note → project classification
-├── 🪝 .husky/         Git hooks (commitlint)
-└── ⚙️  scripts/        Project sync config
+└── 🪝 .husky/         Git hooks (commitlint)
 ```
 
 ---
@@ -163,7 +166,7 @@ These are installed globally and work across all your repos:
 
 The `.autolink/auto-link.sh` script uses a local LLM to automatically organize your notes:
 
-1. 🔍 Finds unlinked notes in `meetings/`, `notes/`, and `working-files/`
+1. 🔍 Finds unlinked notes in `meetings/`, `projects/`, and `research/`
 2. 🤖 Sends each to Ollama with your project list for classification
 3. 🏷️ Sets `project` and `category` frontmatter properties
 4. 🔗 Appends a `[[projects/...]]` wikilink
@@ -208,11 +211,11 @@ This template is actively maintained. Check the [**Releases**](https://github.co
 
 ### Add your projects
 
-Create files in `projects/` — one per project. The auto-linker reads these to classify notes.
+Create subdirectories in `projects/` - one per project. The auto-linker reads these to classify notes.
 
 ### Configure project sync
 
-Copy `scripts/repos.json.example` to `scripts/repos.json` and add your repos:
+Copy `docs/scripts/repos.json.example` to `scripts/repos.json` and add your repos:
 
 ```json
 {

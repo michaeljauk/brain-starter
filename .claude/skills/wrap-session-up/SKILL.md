@@ -77,12 +77,46 @@ If the session surfaced information that should update a project file:
 
 #### Working files
 If the session produced operational artifacts (plans, specs, handover docs):
-- Save to `working-files/{project}/` with a descriptive filename
+- Save to `projects/{project}/` with a descriptive filename
 
 #### Memory
 If the session revealed something about the user, their preferences, or their workflow that would be useful in future conversations — save it as a memory file per the memory system rules.
 
-### 5. Create Todoist tasks for untracked items
+### 5. Compound session outputs
+
+Review the session for Q&A exchanges, research results, or analysis that produced valuable knowledge but wasn't explicitly saved to a file. Common patterns:
+
+- User asked a question, Claude researched the vault/web and gave a detailed answer
+- A comparison or analysis was done verbally but not persisted
+- A framework or mental model was discussed that would be useful later
+- Research was done (web searches, vault queries) that surfaced non-obvious connections
+
+For each valuable output found:
+
+1. **Check if it's already captured** - was a note or file created during the session? If yes, skip.
+2. **Assess durability** - will this be useful in 3+ months? Skip ephemeral/obvious stuff.
+3. **Propose filing** - suggest creating a note in the appropriate location:
+   - Research findings -> `research/{topic}/{descriptive-slug}.md`
+   - Project-specific insights -> append to `projects/{project}.md`
+   - Decision rationale -> `decisions/YYYY-MM-DD-{slug}.md`
+4. **Present to user** - show what would be saved and where, get confirmation before creating
+
+Format for the user:
+
+```
+### Compound Outputs
+
+Found N session outputs worth persisting:
+
+| # | Output | Proposed location | Action |
+|---|--------|-------------------|--------|
+| 1 | {brief description} | `research/ai-agents/foo.md` | Create new |
+| 2 | {brief description} | `projects/bar.md` | Append |
+```
+
+The goal: explorations and queries in this session should "add up" in the knowledge base (per Karpathy's pattern), not evaporate when the context window closes.
+
+### 6. Create Todoist tasks for untracked items
 
 For open items that need tracking and aren't already in Todoist/Jira:
 
@@ -110,7 +144,7 @@ td task add "{action item}" --project "{project if clear}" --priority {p1-p4} --
 - Vague ideas without a clear next step
 - Things the user explicitly deferred ("maybe someday")
 
-### 6. Smart commit changes
+### 7. Smart commit changes
 
 If there are uncommitted changes, group and commit them intelligently:
 
@@ -133,7 +167,7 @@ If there are uncommitted changes, group and commit them intelligently:
 
 If unsure whether something should be committed (e.g., experimental changes, WIP code), ask the user before committing.
 
-### 7. Report to user
+### 8. Report to user
 
 Present a structured summary:
 

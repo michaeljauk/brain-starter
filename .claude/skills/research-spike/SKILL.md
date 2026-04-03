@@ -64,7 +64,7 @@ qmd vsearch "[topic keywords]"
 
 Also check:
 - `research/` — any prior /last30days raw output on this topic?
-- `notes/` — any existing spike or research note on this topic?
+- `research/` — any existing spike or research note on this topic?
 - `decisions/` — any past decision that's relevant?
 - `projects/` — constraints from the target project?
 
@@ -106,7 +106,7 @@ Produce a clear recommendation with reasoning:
 
 ### 6. Save to brain vault
 
-Save the complete research as a note in `notes/`:
+Save the complete research as a note in `research/`:
 
 Filename: `spike-{short-slug}.md`
 
@@ -165,15 +165,15 @@ Next step: {action}
 - **Recency matters.** Prefer signals from the last 30 days over older knowledge. Flag if the landscape changed recently.
 - **No auto-posting.** Never push results to Jira, Linear, or Confluence without the user asking. The note lives in the brain vault.
 - **Respect existing decisions.** Check `decisions/` first — if there's a prior decision on this topic, reference it and explain what changed.
-- **Dedup.** If `notes/` already has a spike on this exact topic, update it rather than creating a new file.
+- **Dedup.** If `research/` already has a spike on this exact topic, update it rather than creating a new file.
 
 ## Examples
 
 **User:** "spike on vector databases for my project"
-→ `/last30days vector databases 2024` → comparison of pgvector vs Pinecone vs Weaviate vs Qdrant → saves `notes/spike-vector-db.md` with recommendation grounded in community data + project constraints
+→ `/last30days vector databases 2024` → comparison of pgvector vs Pinecone vs Weaviate vs Qdrant → saves `research/spike-vector-db.md` with recommendation grounded in community data + project constraints
 
 **User:** "evaluate Playwright vs Cypress"
-→ `/last30days Playwright vs Cypress` (comparison mode) → side-by-side matrix → saves `notes/spike-playwright-vs-cypress.md`
+→ `/last30days Playwright vs Cypress` (comparison mode) → side-by-side matrix → saves `research/spike-playwright-vs-cypress.md`
 
 **User:** "what auth provider should we use?"
-→ Checks `projects/` for constraints → `/last30days Next.js auth providers` → comparison of NextAuth vs Clerk vs Auth0 vs Keycloak → saves `notes/spike-auth-provider.md`
+→ Checks `projects/` for constraints → `/last30days Next.js auth providers` → comparison of NextAuth vs Clerk vs Auth0 vs Keycloak → saves `research/spike-auth-provider.md`

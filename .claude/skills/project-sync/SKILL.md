@@ -63,7 +63,7 @@ acli jira workitem search --jql "project = {project_key} AND duedate <= endOfWee
 
 If `acli` is not authenticated or fails, skip Jira data and note it in the status doc.
 
-Only flag mismatches where Jira says "To Do" but a PR/branch exists, or Jira says "In Progress" but no activity in weeks. If your project has a custom workflow (e.g. extra review/staging states), document it in `scripts/repos.json` or the project file so this skill can account for it.
+Only flag mismatches where Jira says "To Do" but a PR/branch exists, or Jira says "In Progress" but no activity in weeks. If your project has a custom workflow, document it in `scripts/repos.json` or the project file.
 
 ### 3. Read brain docs
 
