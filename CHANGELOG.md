@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/michaeljauk/brain-starter/compare/v2.0.0...v3.0.0) (2026-04-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **vault:** Directory structure completely changed. notes/, context/, working-files/, and logs/ are removed. Content now lives in projects/{project}/, research/{topic}/, and knowledge/. Existing users must migrate their files.
+
+### Features
+
+* **vault:** restructure to project/topic-based directory layout ([7017b4d](https://github.com/michaeljauk/brain-starter/commit/7017b4de7be13f5ae8e98d36f3b686050f5fce6c))
+
 ## 2.0.0 (2026-03-24)
 
 Fresh start with sanitized history. All personal and confidential references removed.
