@@ -18,13 +18,11 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 - 📄 **Everything is a markdown file** — no databases, no proprietary formats, no lock-in
 - 🔒 **Conventional commits on a knowledge repo** — your brain deserves the same discipline as your code
 - 🤖 **AI does the grunt work** — classifying notes, linking projects, prepping meetings — you focus on thinking
-- 🏠 **Local-first AI** — auto-linking runs on [Ollama](https://ollama.com) (local LLM), not cloud APIs
 - 🔗 **Obsidian is the interface, git is the backbone** — version-controlled knowledge with graph view on top
 
 ### What's included
 
 - 🛠️ **76 Claude Code skills** — session wrap-up, article ingestion, vault health checks, project sync, meeting prep, semantic search, document generation, QA testing, code review, deployment workflows, and more
-- 🧲 **LLM-powered auto-linking** — a post-commit hook that classifies notes into projects
 - 🔍 **Local semantic search** — [QMD](https://github.com/tobi/qmd) for hybrid BM25 + vector search across your vault
 - 📇 **MANIFEST.md indexes** — auto-generated directory indexes for LLM two-tier retrieval (read index first, then fetch specific files)
 - ✅ **Conventional commits** — enforced via commitlint + husky
@@ -67,18 +65,6 @@ Here's who I am: [tell Claude about yourself, your role, your projects]
 
 Claude Code will walk you through personalizing the vault, installing tools, and creating your first notes.
 
-### 🔌 Optional: enable auto-linking
-
-The auto-link script classifies notes into projects using a local LLM. To set it up:
-
-1. Install and run [Ollama](https://ollama.com): `brew install ollama && ollama serve`
-2. Pull a small model: `ollama pull qwen2.5:3b`
-3. Make sure the [Obsidian CLI](https://help.obsidian.md/cli) is available
-4. Run manually whenever you want to classify unlinked notes:
-   ```bash
-   bash .autolink/auto-link.sh
-   ```
-
 ---
 
 ## 📁 Directory structure
@@ -101,7 +87,6 @@ my-brain/
 ├── 🗑️  tmp/            Temporary/ephemeral files
 ├── 🗄️  archive/        Done/inactive projects
 ├── 🤖 .claude/        Skills + memory for Claude Code
-├── 🧲 .autolink/      LLM-powered note → project classification
 └── 🪝 .husky/         Git hooks (commitlint + meta-doc sync)
 ```
 
@@ -244,21 +229,6 @@ These are installed globally and work across all your repos:
 
 ---
 
-## 🧲 Auto-linking
-
-The `.autolink/auto-link.sh` script uses a local LLM to automatically organize your notes:
-
-1. 🔍 Finds unlinked notes in `meetings/`, `projects/`, and `research/`
-2. 🤖 Sends each to Ollama with your project list for classification
-3. 🏷️ Sets `project` and `category` frontmatter properties
-4. 🔗 Appends a `[[projects/...]]` wikilink
-5. ⛓️ Chains meeting series chronologically (within subdirectories)
-6. 📌 Links task files back to project hubs
-
-It learns from corrections in `.autolink/corrections.md` — when it gets one wrong, add a row and it won't repeat the mistake.
-
----
-
 ## ⚖️ Decision logging
 
 Say **"log decision: [topic]"** to Claude Code and it will:
@@ -293,7 +263,7 @@ This template is actively maintained. Check the [**Releases**](https://github.co
 
 ### Add your projects
 
-Create subdirectories in `projects/` - one per project. The auto-linker reads these to classify notes.
+Create subdirectories in `projects/` - one per project.
 
 ### Configure project sync
 
@@ -321,12 +291,6 @@ description: What it does and when to trigger it.
 ---
 ```
 
-### Customize auto-link categories
-
-Edit the `get_category()` function in `.autolink/auto-link.sh` to map your meeting subdirectories to category slugs.
-
----
-
 ## 📋 Prerequisites
 
 | Tool | Required | Purpose |
@@ -334,8 +298,6 @@ Edit the `get_category()` function in `.autolink/auto-link.sh` to map your meeti
 | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | ✅ Yes | AI assistant that uses the skills |
 | [Obsidian](https://obsidian.md) | ✅ Yes | Vault interface |
 | [pnpm](https://pnpm.io) | ✅ Yes | Package manager for commitlint/husky |
-| [Obsidian CLI](https://help.obsidian.md/cli) | ⚡ For auto-link | Read/write notes from terminal |
-| [Ollama](https://ollama.com) | ⚡ For auto-link | Local LLM for note classification |
 | [QMD](https://github.com/tobi/qmd) | ⚡ For semantic search | Local hybrid search engine (`npm install -g @tobilu/qmd`) |
 | [Defuddle](https://github.com/kepano/defuddle-cli) | ⚡ For ingest-article | Clean web page extraction |
 | [gws](https://github.com/googleworkspace/cli) | ⚡ For meeting prep | Google Calendar CLI |

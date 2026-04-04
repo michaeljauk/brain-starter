@@ -27,7 +27,7 @@ This copies:
 - **Global skills** (auto-discovered): scans `~/.claude/skills/` and syncs all skills not already in the vault list or the exclude list (`GLOBAL_SKIP` in the script)
 - **Configs**: `commitlint.config.js`, `.husky/commit-msg`, `docs/templates.md`
 
-It does NOT copy: `CLAUDE.md`, `README.md`, `.autolink/auto-link.sh`, `package.json`, `.claude/memory/MEMORY.md` — these are generalized differently in the template.
+It does NOT copy: `CLAUDE.md`, `README.md`, `package.json`, `.claude/memory/MEMORY.md` — these are generalized differently in the template.
 
 ### 2. Review the diff
 
