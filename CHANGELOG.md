@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.1.0](https://github.com/michaeljauk/brain-starter/compare/v3.0.0...v3.1.0) (2026-04-04)
+
+
+### Features
+
+* add automatic meeting classification script ([08eb9d4](https://github.com/michaeljauk/brain-starter/commit/08eb9d42df31e5d8e0304631116385abe2a79b12))
+* remove auto-link script, replace with lint-brain + wrap-session-up ([62ff71e](https://github.com/michaeljauk/brain-starter/commit/62ff71ea2c2ee0d57fa121b37be380ce0c4c8e18))
+* **skill:** add lint-brain, manifest indexes, pre-commit meta-doc sync ([0abb798](https://github.com/michaeljauk/brain-starter/commit/0abb7986cc5075404d8affe14821fd941b267939))
+
 ## [3.0.0](https://github.com/michaeljauk/brain-starter/compare/v2.0.0...v3.0.0) (2026-04-03)
 
 
