@@ -144,7 +144,17 @@ td task add "{action item}" --project "{project if clear}" --priority {p1-p4} --
 - Vague ideas without a clear next step
 - Things the user explicitly deferred ("maybe someday")
 
-### 7. Smart commit changes
+### 7. Regenerate vault indexes
+
+If any `.md` files in `projects/`, `research/`, `knowledge/`, or `decisions/` were created, deleted, or had their frontmatter changed during this session, regenerate the MANIFEST.md indexes:
+
+```bash
+bash docs/scripts/generate-manifests.sh
+```
+
+This keeps the LLM navigation indexes fresh. Skip if no vault notes were touched.
+
+### 8. Smart commit changes (including regenerated manifests)
 
 If there are uncommitted changes, group and commit them intelligently:
 
@@ -167,7 +177,7 @@ If there are uncommitted changes, group and commit them intelligently:
 
 If unsure whether something should be committed (e.g., experimental changes, WIP code), ask the user before committing.
 
-### 8. Report to user
+### 9. Report to user
 
 Present a structured summary:
 

@@ -23,10 +23,12 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 
 ### What's included
 
-- 🛠️ **75 Claude Code skills** — session wrap-up, article ingestion, project sync, meeting prep, semantic search, document generation, QA testing, code review, deployment workflows, and more
+- 🛠️ **76 Claude Code skills** — session wrap-up, article ingestion, vault health checks, project sync, meeting prep, semantic search, document generation, QA testing, code review, deployment workflows, and more
 - 🧲 **LLM-powered auto-linking** — a post-commit hook that classifies notes into projects
 - 🔍 **Local semantic search** — [QMD](https://github.com/tobi/qmd) for hybrid BM25 + vector search across your vault
+- 📇 **MANIFEST.md indexes** — auto-generated directory indexes for LLM two-tier retrieval (read index first, then fetch specific files)
 - ✅ **Conventional commits** — enforced via commitlint + husky
+- 🔔 **Pre-commit meta-doc sync warning** — warns if project files changed but README/AGENTS.md weren't updated
 - 💎 **Obsidian-native** — wikilinks, frontmatter, callouts, Bases, JSON Canvas, graph view as first-class citizens
 - 📡 **Integration guides** — Telegram Channels (remote control from phone), Obsidian CLI, QMD, Google Calendar, and more in [`docs/integrations.md`](docs/integrations.md)
 - 📁 **Structured directories** — projects (one subdir per project), research (topic-grouped), knowledge, decisions, meetings, and archive
@@ -100,8 +102,10 @@ my-brain/
 ├── 🗄️  archive/        Done/inactive projects
 ├── 🤖 .claude/        Skills + memory for Claude Code
 ├── 🧲 .autolink/      LLM-powered note → project classification
-└── 🪝 .husky/         Git hooks (commitlint)
+└── 🪝 .husky/         Git hooks (commitlint + meta-doc sync)
 ```
+
+> **Tip:** Run `bash docs/scripts/generate-manifests.sh` to generate `MANIFEST.md` index files for each directory. These give the LLM a table of contents for efficient two-tier retrieval.
 
 ---
 
@@ -125,6 +129,7 @@ Skills are Claude Code's reusable workflows. Each lives in `.claude/skills/` and
 | 📅 **gws-obsidian-prep** | "prep notes for today" | Fetch Google Calendar events and create meeting prep notes |
 | 📧 **email-triage** | "triage my inbox" | Scan, categorize, and organize Outlook emails — human-in-the-loop before moving |
 | 🔄 **sync-brain-starter** | `/sync-brain-starter` | Sync reusable skills and configs to a public template repo |
+| 🩺 **lint-brain** | `/lint-brain` | Vault health check: orphan notes, broken wikilinks, missing frontmatter, staleness, duplicates, decision decay |
 
 ### Global skills (`~/.claude/skills/`)
 
