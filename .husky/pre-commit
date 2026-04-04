@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Warn if projects/ changed but meta-docs (AGENTS.md, README.md) were not updated.
+# This is a soft check - warns but does not block the commit.
+
+STAGED=$(git diff --cached --name-only)
+
+projects_changed=false
+meta_changed=false
+
+while IFS= read -r file; do
+  case "$file" in
+    projects/*) projects_changed=true ;;
+    AGENTS.md|README.md) meta_changed=true ;;
+  esac
+done <<< "$STAGED"
+
+if [ "$projects_changed" = true ] && [ "$meta_changed" = false ]; then
+  echo ""
+  echo "  WARNING: files in projects/ changed but AGENTS.md and README.md were not updated."
+  echo "  If you added/removed a project, update both meta-docs to keep them in sync."
+  echo "  (This is a warning, not a blocker - commit proceeds.)"
+  echo ""
+fi
