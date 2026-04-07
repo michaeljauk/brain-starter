@@ -56,7 +56,7 @@ I just forked brain-starter. Help me set it up:
 
 1. Update CLAUDE.md with my identity (name, role, company, stack defaults)
 2. Create my first project file in projects/
-3. Set up qmd for semantic search: `npm install -g @tobilu/qmd && qmd collection add . --name brain && qmd embed`
+3. Set up qmd for semantic search: `bun install -g @tobilu/qmd && qmd collection add . --name brain && qmd embed`
 4. Create knowledge/me.md with background context about me
 5. Run a test: /wrap-session-up
 
@@ -304,7 +304,7 @@ description: What it does and when to trigger it.
 | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | ✅ Yes | AI assistant that uses the skills |
 | [Obsidian](https://obsidian.md) | ✅ Yes | Vault interface |
 | [pnpm](https://pnpm.io) | ✅ Yes | Package manager for commitlint/husky |
-| [QMD](https://github.com/tobi/qmd) | ⚡ For semantic search | Local hybrid search engine (`npm install -g @tobilu/qmd`) |
+| [QMD](https://github.com/tobi/qmd) | ⚡ For semantic search | Local hybrid search engine (`bun install -g @tobilu/qmd`) |
 | [Defuddle](https://github.com/kepano/defuddle-cli) | ⚡ For ingest-article | Clean web page extraction |
 | [gws](https://github.com/googleworkspace/cli) | ⚡ For meeting prep | Google Calendar CLI |
 | [gh](https://cli.github.com/) | ⚡ For project-sync | GitHub CLI |
