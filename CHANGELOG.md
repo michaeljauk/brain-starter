@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.3.0](https://github.com/michaeljauk/brain-starter/compare/v3.2.0...v3.3.0) (2026-04-07)
+
+
+### Features
+
+* **skill:** switch to plugin architecture, keep only 15 vault-native skills ([0759bb7](https://github.com/michaeljauk/brain-starter/commit/0759bb7e1e7d9462c266c680c6c59932cfc501b9))
+
+
+### Bug Fixes
+
+* **docs:** use bun instead of npm for qmd install instructions ([13d452b](https://github.com/michaeljauk/brain-starter/commit/13d452be22f36750d5725f03dd5f3de5d767706e))
+
 ## [3.2.0](https://github.com/michaeljauk/brain-starter/compare/v3.1.0...v3.2.0) (2026-04-07)
 
 
