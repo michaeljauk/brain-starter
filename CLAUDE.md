@@ -17,7 +17,7 @@ This repo is a personal second brain — reference docs, project notes, meeting 
 | `meetings/` | Meeting notes (read-only if managed by Granola or similar) | — |
 | `sources/` | Third-party reference material (gitignored) | — |
 | `tasks/` | Task manager sync (managed) | — |
-| `tmp/` | Temporary/ephemeral files (email drafts, etc.) | `.eml`, `.html` |
+| `tmp/` | Truly ephemeral files with no project association | — |
 | `archive/` | Done/inactive projects | — |
 
 ### What does NOT belong in this repo
@@ -29,7 +29,8 @@ This repo is a personal second brain — reference docs, project notes, meeting 
 - **Curated reference material?** → `knowledge/`
 - **Non-trivial choice with alternatives?** → `decisions/` (cross-cutting only; project-specific go in `projects/{project}/decisions/`)
 - **Stable reference, convention, or template?** → `docs/`
-- **Temporary/ephemeral output?** → `tmp/`
+- **Output files (email drafts, PDFs, data files)?** → `projects/{project}/outputs/`
+- **Truly ephemeral, no project association?** → `tmp/`
 
 ## Decision Logging
 
