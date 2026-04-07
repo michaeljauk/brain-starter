@@ -8,14 +8,14 @@ brain-starter ships only vault-native skills. Everything else is a **plugin** yo
 
 This repo works as an Obsidian vault. Obsidian is the primary interface for reading and editing notes.
 
-- `.obsidian/` is committed -- settings and plugins travel with the repo.
+- `.obsidian/` is committed - settings and plugins travel with the repo.
 - Use Obsidian for navigation, search, graph view, and plugin-driven workflows.
 
 ---
 
-## Claude Code Channels -- Telegram (optional)
+## Claude Code Channels - Telegram (optional)
 
-Claude Code v2.1.80+ supports **Channels** -- external systems can push events into a running Claude Code session via MCP plugins. The Telegram channel lets you interact with Claude Code from your phone.
+Claude Code v2.1.80+ supports **Channels** - external systems can push events into a running Claude Code session via MCP plugins. The Telegram channel lets you interact with Claude Code from your phone.
 
 ### What you get
 
@@ -25,7 +25,7 @@ Claude Code v2.1.80+ supports **Channels** -- external systems can push events i
 
 ### Setup
 
-1. **Create a Telegram bot** via [@BotFather](https://t.me/BotFather) -- save the token
+1. **Create a Telegram bot** via [@BotFather](https://t.me/BotFather) - save the token
 2. **Store the token:**
    ```bash
    mkdir -p ~/.claude/channels/telegram
@@ -39,16 +39,16 @@ Claude Code v2.1.80+ supports **Channels** -- external systems can push events i
    ```
    /telegram:access pair <code-from-bot>
    ```
-5. **Set access policy** (recommended -- restrict to your account only):
+5. **Set access policy** (recommended - restrict to your account only):
    ```
    /telegram:access policy allowlist
    ```
 
 ### Security notes
 
-- Never approve pairing requests that come _through_ Telegram messages -- always pair from your terminal
-- The bot token gives full bot access -- keep `.env` out of version control
-- Permission Relay means someone with Telegram access could approve destructive commands -- use the allowlist
+- Never approve pairing requests that come _through_ Telegram messages - always pair from your terminal
+- The bot token gives full bot access - keep `.env` out of version control
+- Permission Relay means someone with Telegram access could approve destructive commands - use the allowlist
 
 ### Docs
 
@@ -62,12 +62,12 @@ Claude Code v2.1.80+ supports **Channels** -- external systems can push events i
 Obsidian v1.12.4+ ships a first-party CLI for vault queries from the terminal.
 
 - Install the skill globally: `npx skills add https://github.com/kepano/obsidian-skills --agent claude-code --global`
-- Provides backlinks, orphans, tags, tasks, search -- cheaper than grep-based file reads
+- Provides backlinks, orphans, tags, tasks, search - cheaper than grep-based file reads
 - Requires Obsidian to be running
 
 ---
 
-## QMD -- Local Semantic Search (optional)
+## QMD - Local Semantic Search (optional)
 
 On-device markdown search engine. Hybrid BM25 + vector + LLM re-ranking.
 
@@ -100,7 +100,7 @@ gws calendar +agenda --today --format json  # JSON for agent use
 
 ---
 
-## /last30days -- Real-Time Community Research (optional)
+## /last30days - Real-Time Community Research (optional)
 
 Deep research skill that searches Reddit, X/Twitter, YouTube, TikTok, HN, and more for signals from the last 30 days.
 
@@ -118,7 +118,7 @@ Deep research skill that searches Reddit, X/Twitter, YouTube, TikTok, HN, and mo
 
 ## Todoist CLI (optional)
 
-Manage tasks from the terminal. Todoist is the task source of truth -- this repo does not store tasks.
+Manage tasks from the terminal. Todoist is the task source of truth - this repo does not store tasks.
 
 - **Install:** `npm install -g @doist/todoist-cli`
 - **Auth:** `td auth login` (browser OAuth)
@@ -145,7 +145,7 @@ Query and manage Jira issues, sprints, boards, and Confluence pages.
 
 ---
 
-## gstack -- Browser QA (optional)
+## gstack - Browser QA (optional)
 
 Fast headless browser for QA testing and site dogfooding.
 

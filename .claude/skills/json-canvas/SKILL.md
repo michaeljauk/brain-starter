@@ -90,7 +90,7 @@ Nodes are objects placed on the canvas. Array order determines z-index: first no
 }
 ```
 
-**Newline pitfall**: Use `\n` for line breaks in JSON strings. Do **not** use the literal `\\n` -- Obsidian renders that as the characters `\` and `n`.
+**Newline pitfall**: Use `\n` for line breaks in JSON strings. Do **not** use the literal `\\n` - Obsidian renders that as the characters `\` and `n`.
 
 ### File Nodes
 
@@ -193,7 +193,7 @@ The `canvasColor` type accepts either a hex string or a preset number:
 | `"5"` | Cyan |
 | `"6"` | Purple |
 
-Preset color values are intentionally undefined -- applications use their own brand colors.
+Preset color values are intentionally undefined - applications use their own brand colors.
 
 ## ID Generation
 

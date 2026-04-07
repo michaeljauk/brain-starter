@@ -11,25 +11,25 @@ An opinionated, Claude Code-powered second brain template built on Obsidian.
 
 ## What this is
 
-A ready-to-fork template that turns a markdown vault into an **AI-augmented knowledge system** using **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** and **[Obsidian](https://obsidian.md)**. Extracted from a real daily-driver vault -- not a toy example.
+A ready-to-fork template that turns a markdown vault into an **AI-augmented knowledge system** using **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** and **[Obsidian](https://obsidian.md)**. Extracted from a real daily-driver vault - not a toy example.
 
 ### Opinions baked in
 
-- **Everything is a markdown file** -- no databases, no proprietary formats, no lock-in
-- **Conventional commits on a knowledge repo** -- your brain deserves the same discipline as your code
-- **AI does the grunt work** -- classifying notes, linking projects, prepping meetings -- you focus on thinking
-- **Obsidian is the interface, git is the backbone** -- version-controlled knowledge with graph view on top
-- **Plugins install themselves** -- brain-starter ships only vault-native skills; everything else is a plugin you add when you need it
+- **Everything is a markdown file** - no databases, no proprietary formats, no lock-in
+- **Conventional commits on a knowledge repo** - your brain deserves the same discipline as your code
+- **AI does the grunt work** - classifying notes, linking projects, prepping meetings - you focus on thinking
+- **Obsidian is the interface, git is the backbone** - version-controlled knowledge with graph view on top
+- **Plugins install themselves** - brain-starter ships only vault-native skills; everything else is a plugin you add when you need it
 
 ### What's included
 
-- 15 vault-native Claude Code skills -- session wrap-up, article ingestion, vault health, semantic search, project sync, and more
-- MANIFEST.md indexes -- auto-generated directory indexes for LLM two-tier retrieval
-- Conventional commits -- enforced via commitlint + husky
-- Pre-commit meta-doc sync warning -- warns if project files changed but README/AGENTS.md weren't updated
-- Obsidian-native -- wikilinks, frontmatter, callouts, Bases, JSON Canvas, graph view as first-class citizens
-- Integration guides -- Telegram Channels, Obsidian CLI, QMD, Google Calendar, and more in [`docs/integrations.md`](docs/integrations.md)
-- Structured directories -- projects, research, knowledge, decisions, meetings, and archive
+- 15 vault-native Claude Code skills - session wrap-up, article ingestion, vault health, semantic search, project sync, and more
+- MANIFEST.md indexes - auto-generated directory indexes for LLM two-tier retrieval
+- Conventional commits - enforced via commitlint + husky
+- Pre-commit meta-doc sync warning - warns if project files changed but README/AGENTS.md weren't updated
+- Obsidian-native - wikilinks, frontmatter, callouts, Bases, JSON Canvas, graph view as first-class citizens
+- Integration guides - Telegram Channels, Obsidian CLI, QMD, Google Calendar, and more in [`docs/integrations.md`](docs/integrations.md)
+- Structured directories - projects, research, knowledge, decisions, meetings, and archive
 
 ---
 
@@ -108,24 +108,24 @@ These ship with brain-starter in `.claude/skills/` and work out of the box:
 | **gws-obsidian-prep** | "prep notes for today" | Fetch Google Calendar events and create meeting prep notes |
 | **sync-brain-starter** | `/sync-brain-starter` | Sync vault skills and configs to a public template repo |
 | **find-skills** | `/find-skills [query]` | Discover and install community agent skills |
-| **defuddle** | Auto (URL extraction) | Clean web page extraction via Defuddle CLI -- removes clutter, saves tokens |
-| **qmd** | Auto (vault search) | Semantic search over the vault via QMD -- hybrid BM25 + vector + LLM reranking |
-| **obsidian-markdown** | Auto (.md files) | Obsidian Flavored Markdown guide -- wikilinks, callouts, embeds, properties |
+| **defuddle** | Auto (URL extraction) | Clean web page extraction via Defuddle CLI - removes clutter, saves tokens |
+| **qmd** | Auto (vault search) | Semantic search over the vault via QMD - hybrid BM25 + vector + LLM reranking |
+| **obsidian-markdown** | Auto (.md files) | Obsidian Flavored Markdown guide - wikilinks, callouts, embeds, properties |
 | **obsidian-bases** | Auto (.base files) | Create database-like views with filters, formulas, and summaries |
 | **obsidian-cli** | Auto (vault interaction) | Obsidian CLI reference for reading, creating, searching notes |
-| **json-canvas** | Auto (.canvas files) | Create and edit JSON Canvas files -- mind maps, flowcharts, visual connections |
+| **json-canvas** | Auto (.canvas files) | Create and edit JSON Canvas files - mind maps, flowcharts, visual connections |
 
 ---
 
 ## Extend with plugins
 
-brain-starter is intentionally minimal. Add capabilities by installing plugin skills globally -- they'll be available in every repo, not just your brain.
+brain-starter is intentionally minimal. Add capabilities by installing plugin skills globally - they'll be available in every repo, not just your brain.
 
 ### How plugins work
 
 Claude Code loads skills from two places:
-1. **Project skills** (`.claude/skills/`) -- shipped with this template, vault-specific
-2. **Global skills** (`~/.claude/skills/`) -- installed once, available everywhere
+1. **Project skills** (`.claude/skills/`) - shipped with this template, vault-specific
+2. **Global skills** (`~/.claude/skills/`) - installed once, available everywhere
 
 When you install a plugin, it adds its skill to `~/.claude/skills/` and Claude Code picks it up automatically. No changes to brain-starter needed.
 
@@ -185,7 +185,7 @@ chore(skill): improve wrap-session-up        # skill changes
 feat(skill): add new article-ingest skill    # new skills
 ```
 
-This template is actively maintained. Check the [**Releases**](https://github.com/michaeljauk/brain-starter/releases) page for the latest version, changelog, and downloadable snapshots. Releases are cut automatically from conventional commits -- `feat` bumps minor, `fix` bumps patch.
+This template is actively maintained. Check the [**Releases**](https://github.com/michaeljauk/brain-starter/releases) page for the latest version, changelog, and downloadable snapshots. Releases are cut automatically from conventional commits - `feat` bumps minor, `fix` bumps patch.
 
 > **Tip:** Watch this repo (Releases only) to get notified when new skills or features land.
 
@@ -195,7 +195,7 @@ This template is actively maintained. Check the [**Releases**](https://github.co
 
 ### Add your projects
 
-Create subdirectories in `projects/` -- one per project.
+Create subdirectories in `projects/` - one per project.
 
 ### Configure project sync
 
@@ -240,15 +240,15 @@ Everything else is a plugin. Install what you need from the [plugin list](#recom
 
 These work well with this vault setup:
 
-- **[Todoist Vault Sync](https://github.com/michaeljauk/obsidian-todoist-vault)** -- sync Todoist projects & tasks as real markdown files
-- **[Granola Sync](https://github.com/mcclellanddj/Granola-to-Obsidian)** -- auto-sync AI meeting notes from Granola
-- **[Obsidian Git](https://github.com/denolehov/obsidian-git)** -- auto-backup to git on interval
+- **[Todoist Vault Sync](https://github.com/michaeljauk/obsidian-todoist-vault)** - sync Todoist projects & tasks as real markdown files
+- **[Granola Sync](https://github.com/mcclellanddj/Granola-to-Obsidian)** - auto-sync AI meeting notes from Granola
+- **[Obsidian Git](https://github.com/denolehov/obsidian-git)** - auto-backup to git on interval
 
 ---
 
 ## License
 
-MIT -- use it, fork it, make it yours.
+MIT - use it, fork it, make it yours.
 
 ---
 
