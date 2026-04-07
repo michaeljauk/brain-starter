@@ -221,7 +221,7 @@ Score: X/100
 ...
 
 ### Suggested Cross-Links (N suggestions)
-- `research/ai-agents/a.md` <-> `projects/my-project/b.md` - shared tags: [ai, tools]
+- `research/ai-agents/a.md` <-> `projects/my-saas/b.md` - shared tags: [ai, agents]
 ...
 
 ### Staleness Tiers (N found)
@@ -230,7 +230,7 @@ Score: X/100
 ...
 
 ### Near-Duplicates (N found)
-- `research/ai-agents/tool-analysis.md` ~ `projects/my-project/tool-analysis.md` - title overlap 85%
+- `research/ai-agents/tool-comparison.md` ~ `projects/my-saas/tool-comparison.md` - title overlap 85%
 ...
 
 ### Decision Decay (N found)
@@ -284,3 +284,14 @@ When fixing:
 - Never delete any files
 - Always show what will change before applying fixes
 - Apply fixes one category at a time, confirming with the user between categories
+
+## Activity log
+
+After presenting the report (and after any fixes), append an entry to `log.md` in the vault root:
+
+```markdown
+## [YYYY-MM-DD] lint | Brain vault health check
+- **Score:** {X}/100
+- **Issues:** {orphans: N, broken links: N, missing frontmatter: N, stale: N, duplicates: N, islands: N}
+- **Fixed:** {what was fixed, if anything, or "report only"}
+```

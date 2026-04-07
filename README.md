@@ -22,7 +22,7 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 
 ### What's included
 
-- 🛠️ **76 Claude Code skills** — session wrap-up, article ingestion, vault health checks, project sync, meeting prep, semantic search, document generation, QA testing, code review, deployment workflows, and more
+- 🛠️ **80 Claude Code skills** — session wrap-up, article ingestion, vault health checks, project sync, meeting prep, semantic search, document generation, QA testing, code review, deployment workflows, and more
 - 🔍 **Local semantic search** — [QMD](https://github.com/tobi/qmd) for hybrid BM25 + vector search across your vault
 - 📇 **MANIFEST.md indexes** — auto-generated directory indexes for LLM two-tier retrieval (read index first, then fetch specific files)
 - ✅ **Conventional commits** — enforced via commitlint + husky
@@ -127,6 +127,7 @@ These are installed globally and work across all your repos:
 | 🔍 **qmd** | Semantic search over markdown vaults via [QMD](https://github.com/tobi/qmd) — hybrid BM25 + vector + LLM reranking |
 | 📰 **last30days** | Deep research across 10+ sources (Reddit, X, YouTube, HN, Bluesky, web) with AI synthesis |
 | 🔎 **find-skills** | Discover and install community agent skills |
+| 💾 **save-answer** | File conversation outputs (research, analysis) back into the vault so they compound |
 
 **Task & Project Management**
 
@@ -135,6 +136,7 @@ These are installed globally and work across all your repos:
 | ✅ **todoist-cli** | Manage Todoist tasks, projects, labels via the `td` CLI |
 | 🔧 **acli** | Atlassian CLI — query and manage Jira issues, sprints, boards, Confluence pages |
 | 📧 **m365** | Microsoft 365 CLI — read, move, and organize Outlook emails |
+| 📧 **gws-gmail** | Gmail — send, read, and manage email |
 | 📅 **gws-calendar** | Google Calendar — manage calendars and events |
 | 📋 **gws-calendar-agenda** | Google Calendar — show upcoming events across all calendars |
 | 🔗 **gws-shared** | Google Workspace CLI — shared patterns for auth, flags, output formatting |
@@ -186,6 +188,9 @@ These are installed globally and work across all your repos:
 | 📐 **autoplan** | Auto-review pipeline — runs CEO, design, and eng reviews sequentially |
 | 🏢 **office-hours** | YC Office Hours — startup forcing questions or builder-mode brainstorming |
 | 🔒 **cso** | Chief Security Officer mode — infrastructure audit, OWASP, STRIDE modeling |
+| 🔍 **devex-review** | Live developer experience audit — navigate docs, test getting started, time TTHW |
+| 📐 **plan-devex-review** | Developer Experience plan review — rates 8 DX dimensions with scorecard |
+| 🔬 **investigate** | Systematic debugging — investigate, analyze, hypothesize, implement. No fixes without root cause |
 
 **Document Generation**
 
@@ -224,6 +229,7 @@ These are installed globally and work across all your repos:
 | 🔓 **unfreeze** | Clear the freeze boundary, allow edits everywhere again |
 | 🛡️ **careful** | Safety guardrails for destructive commands — warns before rm -rf, DROP TABLE, force-push |
 | 🛡️ **guard** | Full safety mode — combines careful + freeze for maximum protection |
+| 📈 **parqet** | Portfolio tracker CLI — fetch value, holdings, performance, and activities |
 | ⬆️ **gstack-upgrade** | Upgrade gstack skill pack to the latest version |
 | 🧰 **gstack** | Fast headless browser for QA testing and site dogfooding |
 
