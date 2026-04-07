@@ -1,6 +1,6 @@
-# Integrations
+# Integrations & Plugins
 
-Reference for tools and services connected to this brain vault. Update when adding, changing, or removing an integration.
+brain-starter ships only vault-native skills. Everything else is a **plugin** you install when you need it. Plugins install globally (`~/.claude/skills/`) and work across all your repos.
 
 ---
 
@@ -8,14 +8,14 @@ Reference for tools and services connected to this brain vault. Update when addi
 
 This repo works as an Obsidian vault. Obsidian is the primary interface for reading and editing notes.
 
-- `.obsidian/` is committed — settings and plugins travel with the repo.
+- `.obsidian/` is committed -- settings and plugins travel with the repo.
 - Use Obsidian for navigation, search, graph view, and plugin-driven workflows.
 
 ---
 
-## Claude Code Channels — Telegram (optional)
+## Claude Code Channels -- Telegram (optional)
 
-Claude Code v2.1.80+ supports **Channels** — external systems can push events into a running Claude Code session via MCP plugins. The Telegram channel lets you interact with Claude Code from your phone.
+Claude Code v2.1.80+ supports **Channels** -- external systems can push events into a running Claude Code session via MCP plugins. The Telegram channel lets you interact with Claude Code from your phone.
 
 ### What you get
 
@@ -25,7 +25,7 @@ Claude Code v2.1.80+ supports **Channels** — external systems can push events 
 
 ### Setup
 
-1. **Create a Telegram bot** via [@BotFather](https://t.me/BotFather) — save the token
+1. **Create a Telegram bot** via [@BotFather](https://t.me/BotFather) -- save the token
 2. **Store the token:**
    ```bash
    mkdir -p ~/.claude/channels/telegram
@@ -39,25 +39,21 @@ Claude Code v2.1.80+ supports **Channels** — external systems can push events 
    ```
    /telegram:access pair <code-from-bot>
    ```
-5. **Set access policy** (recommended — restrict to your account only):
+5. **Set access policy** (recommended -- restrict to your account only):
    ```
    /telegram:access policy allowlist
    ```
 
 ### Security notes
 
-- Never approve pairing requests that come _through_ Telegram messages — always pair from your terminal
-- The bot token gives full bot access — keep `.env` out of version control
-- Permission Relay means someone with Telegram access could approve destructive commands — use the allowlist
+- Never approve pairing requests that come _through_ Telegram messages -- always pair from your terminal
+- The bot token gives full bot access -- keep `.env` out of version control
+- Permission Relay means someone with Telegram access could approve destructive commands -- use the allowlist
 
 ### Docs
 
 - [Channels overview](https://code.claude.com/docs/en/channels)
 - [Channels reference](https://code.claude.com/docs/en/channels-reference)
-
-### Known issues
-
-- GitHub #36460 — feature flag `tengu_harbor` may block Channels on some personal Max plans
 
 ---
 
@@ -66,18 +62,18 @@ Claude Code v2.1.80+ supports **Channels** — external systems can push events 
 Obsidian v1.12.4+ ships a first-party CLI for vault queries from the terminal.
 
 - Install the skill globally: `npx skills add https://github.com/kepano/obsidian-skills --agent claude-code --global`
-- Provides backlinks, orphans, tags, tasks, search — cheaper than grep-based file reads
+- Provides backlinks, orphans, tags, tasks, search -- cheaper than grep-based file reads
 - Requires Obsidian to be running
 
 ---
 
-## QMD — Local Semantic Search (optional)
+## QMD -- Local Semantic Search (optional)
 
 On-device markdown search engine. Hybrid BM25 + vector + LLM re-ranking.
 
 - **Install:** `bun install -g @tobilu/qmd` (or `npm install -g @tobilu/qmd`)
 - **Setup:** `qmd init` in your vault directory to create a collection
-- **Skill:** install globally via `npx skills add https://github.com/tobi/qmd --agent claude-code --global`
+- **Skill:** included with brain-starter (`.claude/skills/qmd/`)
 
 ```bash
 qmd search "keywords"              # BM25 keyword search
@@ -104,29 +100,75 @@ gws calendar +agenda --today --format json  # JSON for agent use
 
 ---
 
-## /last30days — Real-Time Community Research (optional)
+## /last30days -- Real-Time Community Research (optional)
 
 Deep research skill that searches Reddit, X/Twitter, YouTube, TikTok, HN, and more for signals from the last 30 days.
 
 - **Install:** Clone [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill) and symlink to `~/.claude/skills/last30days`
 - **Requires:** ScrapeCreators API key in `~/.config/last30days/.env`
-- **Output:** Raw research → `research/` (gitignored), synthesized spikes → `notes/spike-{slug}.md`
+- **Output:** Raw research to `research/` (gitignored), synthesized spikes via `/research-spike`
 
 ```bash
 /last30days [topic]              # One-shot research
 /last30days [X] vs [Y]           # Comparison mode
-/research-spike [topic]          # Full spike → brain vault note
+/research-spike [topic]          # Full spike -> brain vault note
 ```
 
 ---
 
 ## Todoist CLI (optional)
 
-Manage tasks from the terminal. Todoist is the task source of truth — this repo does not store tasks.
+Manage tasks from the terminal. Todoist is the task source of truth -- this repo does not store tasks.
 
 - **Install:** `npm install -g @doist/todoist-cli`
 - **Auth:** `td auth login` (browser OAuth)
-- **Skill:** install globally via `npx skills add https://github.com/doist/todoist-cli --agent claude-code --global`
+- **Skill:** `npx skills add https://github.com/doist/todoist-cli --agent claude-code --global`
+
+---
+
+## Microsoft 365 CLI (optional)
+
+Read, move, and organize Outlook emails across multiple tenants.
+
+- **Install:** `npm install -g @pnp/cli-microsoft365`
+- **Auth:** `m365 login` (browser OAuth)
+- **Skill:** `npx skills add https://github.com/pnp/cli-microsoft365 --agent claude-code --global` (or install manually)
+
+---
+
+## Atlassian CLI (optional)
+
+Query and manage Jira issues, sprints, boards, and Confluence pages.
+
+- **Install:** See [acli docs](https://bobswift.atlassian.net/wiki/spaces/ACLI)
+- **Skill:** install the acli skill globally for Claude Code integration
+
+---
+
+## gstack -- Browser QA (optional)
+
+Fast headless browser for QA testing and site dogfooding.
+
+- **Install:** See [gstack repo](https://github.com/anthropics/gstack)
+- **Skills:** Adds 30+ skills for QA, browser automation, design review, benchmarking, and more
+
+---
+
+## browser-use (optional)
+
+AI-powered browser automation for web testing, form filling, and data extraction.
+
+- **Install:** `pip install browser-use` (or use a venv)
+- **Skill:** ships with browser-use package
+
+---
+
+## Render CLI (optional)
+
+Deploy, debug, and monitor Render services.
+
+- **Install:** See [Render CLI docs](https://render.com/docs/cli)
+- **Skills:** render-deploy, render-debug, render-monitor, render-workflows, render-migrate-from-heroku
 
 ---
 
