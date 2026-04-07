@@ -25,6 +25,7 @@ Review the full conversation history. Extract:
 3. **Decisions made** — technology choices, architecture decisions, approach changes
 4. **New knowledge surfaced** — things learned about the project, codebase, or tools that should be persisted
 5. **Files touched** — all files created or modified during the session
+6. **Friction points** — anything that caused repeated correction, workarounds, or user frustration (skill misbehaved, tool returned wrong output, Claude misunderstood something repeatedly, a convention was unclear). Only log if it happened more than once or was explicitly called out.
 
 Run `git diff --stat` to get a concrete picture of what changed.
 
@@ -116,6 +117,26 @@ Found N session outputs worth persisting:
 
 The goal: explorations and queries in this session should "add up" in the knowledge base (per Karpathy's pattern), not evaporate when the context window closes.
 
+After saving any compound outputs, append entries to `log.md` in the vault root:
+
+```markdown
+## [YYYY-MM-DD] save | {Short title}
+- **Type:** {research finding | comparison | framework | decision rationale | technical insight}
+- **Action:** {Created | Updated} `{file path}`
+- **Linked to:** [[note-a]], [[note-b]]
+```
+
+### 5b. Auto project-sync (when outside brain repo)
+
+If the current working directory is **not** `~/brain`, check whether it matches a known project repo:
+
+1. Read `~/brain/scripts/repos.json`
+2. Expand `~` in each project's `repo_paths` and compare against `$PWD` (match if `$PWD` starts with any repo path)
+3. If a match is found, run the `/project-sync` skill for that project name -- this updates the brain's status doc and brain docs with fresh repo/Jira data
+4. If no match is found, skip silently -- the repo isn't tracked in the brain
+
+This ensures the brain vault stays current whenever you wrap up a session in a project repo. The synced files will be included in the smart commit step later.
+
 ### 6. Create Todoist tasks for untracked items
 
 For open items that need tracking and aren't already in Todoist/Jira:
@@ -177,7 +198,26 @@ If there are uncommitted changes, group and commit them intelligently:
 
 If unsure whether something should be committed (e.g., experimental changes, WIP code), ask the user before committing.
 
-### 9. Report to user
+### 9a. Log friction points (Kaizen data collection)
+
+If any friction points were identified in step 1, append to `~/brain/log.md`:
+
+```markdown
+## [YYYY-MM-DD] kaizen-friction | {skill or system name}
+- **What:** {specific thing that broke or annoyed — be concrete}
+- **Frequency:** {first time | recurring}
+- **Hypothesis:** {why it probably happened}
+```
+
+One entry per distinct friction point. Skip if nothing was genuinely friction — don't manufacture entries. The goal is a data trail for the weekly Kaizen review, not noise.
+
+### 9c. Mine session for shared agent knowledge (cq)
+
+If the `cq` plugin is installed, run `/cq:reflect` to mine the session for reusable learnings. This captures error resolutions, workarounds, and domain-specific knowledge that can prevent future agents from repeating the same mistakes.
+
+If cq is not installed, skip this step silently.
+
+### 10. Report to user
 
 Present a structured summary:
 

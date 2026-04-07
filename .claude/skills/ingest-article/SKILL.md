@@ -127,12 +127,32 @@ source: "{URL or description}"
 
 - Still mention related projects using `[[wikilinks]]` in the warning message (e.g., "This relates to [[my-project]] but is too time-sensitive to ingest")
 
-### 6. Cross-link
+### 6. Cross-link and ripple
 
-**Every output must contain at least one `[[wikilink]]`** — whether it's a new note, a project update, or an ephemeral content warning. This is non-negotiable.
+**Every output must contain at least one `[[wikilink]]`** -- whether it's a new note, a project update, or an ephemeral content warning. This is non-negotiable.
 
 - Add `[[wikilinks]]` to related notes in the new/updated content
 - If the article is highly relevant to a project, consider adding a backlink in the project note's ## Related or ## Notes section
+
+**Ripple updates (MANDATORY):** An ingest that only creates a note without linking it back is passive archiving, not knowledge management. After writing the main note, you MUST update related files:
+
+1. **Project notes** -- if the article is relevant to an active project, append a cross-link (1-2 lines) in the project file's ## See also, ## Notes, or ## Research section, with a wikilink back to the new note. This is NOT optional -- if the actionability assessment identified a project, that project note gets updated.
+2. **Related research notes** -- if the article strengthens, contradicts, or extends an existing research note, add a brief cross-reference there
+3. **Concept pages** -- if the article introduces or significantly develops a concept that has its own page, update that page
+
+Target: 2-5 files touched per ingest (including the primary note). The primary note + at least one project/research backlink is the minimum. Only skip backlinks if there is genuinely no connection to any existing note.
+
+### 6b. Append to activity log
+
+Add an entry to `log.md` in the vault root:
+
+```markdown
+## [YYYY-MM-DD] ingest | {Article title}
+- **Source:** {URL or "raw text"}
+- **Action:** {Created | Updated} `{file path}`
+- **Insights:** {count} extracted
+- **Linked to:** [[note-a]], [[note-b]]
+```
 
 ### 7. Report to user
 
@@ -158,6 +178,16 @@ After reporting, always ask the user what they want to do with this knowledge. S
 - **If the article is general reference:** "Anything actionable here, or just filing for future reference?"
 
 Keep it to one short question with 2-3 concrete options. The goal is to turn passive ingestion into active application.
+
+## Batch ingestion
+
+When the user provides multiple URLs or texts at once:
+
+1. Fetch and create all notes (parallelized where possible)
+2. After all notes are created, run a **consolidated actionability assessment**: review all ingested content against active projects (check memory for the active projects list) and surface anything that warrants a task, follow-up, or project update
+3. Present as a single summary table, not per-item prompts
+
+This replaces step 8 for batch mode -- one assessment at the end instead of per-item questions.
 
 ## Content rules
 
