@@ -23,11 +23,12 @@ bash ~/brain/scripts/sync-brain-starter.sh
 ```
 
 This copies:
-- **Vault skills** (curated list): `wrap-session-up`, `ingest-article`, `defuddle`, `obsidian-cli`, `obsidian-markdown`, `gws-obsidian-prep`, `project-sync`, `research-spike`, `sync-brain-starter`
-- **Global skills** (auto-discovered): scans `~/.claude/skills/` and syncs all skills not already in the vault list or the exclude list (`GLOBAL_SKIP` in the script)
-- **Configs**: `commitlint.config.js`, `.husky/commit-msg`, `docs/templates.md`
+- **Vault skills** (curated list): `wrap-session-up`, `ingest-article`, `defuddle`, `obsidian-cli`, `obsidian-markdown`, `obsidian-bases`, `json-canvas`, `gws-obsidian-prep`, `project-sync`, `research-spike`, `save-answer`, `lint-brain`, `qmd`, `find-skills`, `sync-brain-starter`
+- **Configs**: `commitlint.config.js`, `.husky/commit-msg`, `docs/templates.md`, `docs/integrations.md`
 
-It does NOT copy: `CLAUDE.md`, `README.md`, `package.json`, `.claude/memory/MEMORY.md` — these are generalized differently in the template.
+It does NOT copy:
+- `CLAUDE.md`, `README.md`, `package.json`, `.claude/memory/MEMORY.md` -- these are generalized differently in the template
+- **Global/plugin skills** -- brain-starter no longer bundles plugin skills (gstack, gws, todoist, m365, etc.). Users install these globally via their own install commands.
 
 ### 2. Review the diff
 
@@ -87,4 +88,4 @@ Pushed to: https://github.com/{your-username}/brain-starter
 - **Use correct commit types** — `chore` for infra, `feat` for new skills/features, `fix` for bug fixes. Only `feat`/`fix` create releases.
 - **Don't modify brain repo** — this skill only copies brain → brain-starter, never the reverse
 - **If a new vault skill was added to brain** that should be public, add it to the `SKILLS` array in `~/brain/scripts/sync-brain-starter.sh`
-- **Global skills are auto-discovered** — new skills installed in `~/.claude/skills/` are picked up automatically. To exclude a global skill, add it to the `GLOBAL_SKIP` array in the sync script
+- **Global/plugin skills are NOT synced** -- brain-starter only ships vault-native skills. Plugin skills (gstack, gws, todoist, render, etc.) install themselves globally via their own repos
