@@ -83,7 +83,7 @@ my-brain/
 ├── meetings/       Meeting notes (manual or auto-synced)
 ├── tasks/          Task manager sync (if applicable)
 ├── sources/        Third-party reference material (gitignored)
-├── tmp/            Temporary/ephemeral files
+├── tmp/            Truly ephemeral files with no project association
 ├── archive/        Done/inactive projects
 ├── .claude/        Skills + memory for Claude Code
 └── .husky/         Git hooks (commitlint + meta-doc sync)
