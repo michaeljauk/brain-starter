@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.1](https://github.com/michaeljauk/brain-starter/compare/v3.3.0...v3.3.1) (2026-04-07)
+
+
+### Bug Fixes
+
+* correct file placement rules, outputs go to project directories not tmp/ ([c1d22a2](https://github.com/michaeljauk/brain-starter/commit/c1d22a2103d8f440aabbadc60f3199757cc78fc5))
+
 ## [3.3.0](https://github.com/michaeljauk/brain-starter/compare/v3.2.0...v3.3.0) (2026-04-07)
 
 
