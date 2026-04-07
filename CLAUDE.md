@@ -1,7 +1,7 @@
-# Brain Repo — Claude Instructions
+# Brain Repo - Claude Instructions
 
 ## Purpose
-This repo is a personal second brain — reference docs, project notes, meeting notes, and knowledge. Your task manager (Todoist, Linear, etc.) is the task source of truth.
+This repo is a personal second brain - reference docs, project notes, meeting notes, and knowledge. Your task manager (Todoist, Linear, etc.) is the task source of truth.
 
 ## File Placement Rules
 
@@ -14,14 +14,14 @@ This repo is a personal second brain — reference docs, project notes, meeting 
 | `knowledge/` | Curated long-lived reference | `knowledge/tools.md` |
 | `decisions/` | Cross-cutting decisions with context + alternatives | `YYYY-MM-DD-short-slug.md` |
 | `docs/` | Repo meta, templates, skill output | `templates.md`, `integrations.md` |
-| `meetings/` | Meeting notes (read-only if managed by Granola or similar) | — |
-| `sources/` | Third-party reference material (gitignored) | — |
-| `tasks/` | Task manager sync (managed) | — |
-| `tmp/` | Truly ephemeral files with no project association | — |
-| `archive/` | Done/inactive projects | — |
+| `meetings/` | Meeting notes (read-only if managed by Granola or similar) | - |
+| `sources/` | Third-party reference material (gitignored) | - |
+| `tasks/` | Task manager sync (managed) | - |
+| `tmp/` | Truly ephemeral files with no project association | - |
+| `archive/` | Done/inactive projects | - |
 
 ### What does NOT belong in this repo
-- **New project repos / codebases** — keep those in their own repos
+- **New project repos / codebases** - keep those in their own repos
 
 ### How to choose the right directory
 - **Project overview, working file, or anything project-specific?** → `projects/{project}/`

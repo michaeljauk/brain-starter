@@ -4,7 +4,7 @@ Copy the relevant block when creating a new note.
 
 ## Meeting note
 
-> **Note:** `meetings/` is primarily managed by the `granola-sync-plus` Obsidian plugin. Use this template only for manually created meeting notes (e.g. notes taken outside Granola). Granola-synced files use a different filename pattern (`YYYY-MM-DD_Title With Spaces.md`) — that's intentional.
+> **Note:** `meetings/` is primarily managed by the `granola-sync-plus` Obsidian plugin. Use this template only for manually created meeting notes (e.g. notes taken outside Granola). Granola-synced files use a different filename pattern (`YYYY-MM-DD_Title With Spaces.md`) - that's intentional.
 
 Save in `meetings/` as `YYYY-MM-DD-short-title.md`.
 
@@ -91,7 +91,7 @@ Why the chosen option wins.
 
 ---
 
-## Daily Drip — Question of the Day
+## Daily Drip - Question of the Day
 
 Purpose: Ask one short personal question per day to organically build up `context/me.md` with preferences, habits, and opinions that are hard to capture in a single session.
 

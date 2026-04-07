@@ -14,11 +14,11 @@ No default project - always specify one, or the skill will ask.
 ## Config
 
 Load project config from `~/brain/scripts/repos.json`. Each entry has:
-- `repo_path` — local repo path
-- `gh_repo` — GitHub `owner/repo` for `gh` CLI
-- `jira` — (optional) `{ "project_key": "PROJ", "site": "your-org.atlassian.net" }`
-- `status_doc` — AI-owned status file (always overwritten)
-- `brain_docs` — list of brain notes to review and potentially update
+- `repo_path` - local repo path
+- `gh_repo` - GitHub `owner/repo` for `gh` CLI
+- `jira` - (optional) `{ "project_key": "PROJ", "site": "your-org.atlassian.net" }`
+- `status_doc` - AI-owned status file (always overwritten)
+- `brain_docs` - list of brain notes to review and potentially update
 
 ## Step-by-step workflow
 
@@ -75,13 +75,13 @@ Overwrite `{status_doc}` completely. Use this template:
 
 ```markdown
 ---
-title: "{Project} — Repo Status"
+title: "{Project} - Repo Status"
 updated: YYYY-MM-DD HH:MM
 type: project-status
 tags: [auto-sync, {project}]
 ---
 
-# {Project} — Repo Status
+# {Project} - Repo Status
 
 _Auto-synced: {timestamp}. Review with `git diff` before committing._
 
@@ -89,7 +89,7 @@ _Auto-synced: {timestamp}. Review with `git diff` before committing._
 
 ## Recent Activity
 
-{List of commits from last 14 days, grouped by theme if clear patterns emerge. Not a raw dump — summarise clusters of related commits.}
+{List of commits from last 14 days, grouped by theme if clear patterns emerge. Not a raw dump - summarise clusters of related commits.}
 
 ## Open PRs ({count})
 
@@ -101,7 +101,7 @@ _Auto-synced: {timestamp}. Review with `git diff` before committing._
 
 ## Jira Snapshot
 
-{Only if jira config exists. Summarise current sprint status: how many To Do / In Progress / Done. List blocked issues. List issues due this week. Flag tickets with no assignee or stale status. Cross-reference Jira ticket statuses with git/PR activity — flag mismatches (e.g. ticket says "To Do" but a PR exists).}
+{Only if jira config exists. Summarise current sprint status: how many To Do / In Progress / Done. List blocked issues. List issues due this week. Flag tickets with no assignee or stale status. Cross-reference Jira ticket statuses with git/PR activity - flag mismatches (e.g. ticket says "To Do" but a PR exists).}
 
 ## Deadlines & Hot Path
 
@@ -109,7 +109,7 @@ _Auto-synced: {timestamp}. Review with `git diff` before committing._
 
 ## Claude's Read
 
-> {2–4 sentences of actual analysis: what is the team focused on right now, any risks or blockers visible from the data, what deserves attention. Be direct and specific — not generic.}
+> {2–4 sentences of actual analysis: what is the team focused on right now, any risks or blockers visible from the data, what deserves attention. Be direct and specific - not generic.}
 ```
 
 ### 4. Review and update brain docs
@@ -118,15 +118,15 @@ For each file in `brain_docs`, read its current content and compare against fres
 
 **Safe to update:**
 - Status fields (e.g. `**Status:** In Arbeit` → reflect latest)
-- Ticket status tables — update using Jira status as source of truth, cross-referenced with commits/PRs
-- `## Aktive Capabilities` table — update status column using Jira ticket status + git/PR evidence
-- `## Offene Action Items` — mark items as done if evidence exists
+- Ticket status tables - update using Jira status as source of truth, cross-referenced with commits/PRs
+- `## Aktive Capabilities` table - update status column using Jira ticket status + git/PR evidence
+- `## Offene Action Items` - mark items as done if evidence exists
 
 **Never touch:**
 - Architecture sections, design decisions, team tables
 - ADR references
 - Sections with no new signal from the repo data
-- The `## Wave-Plan` structure — only update status within it, not the structure
+- The `## Wave-Plan` structure - only update status within it, not the structure
 
 When making edits, use the Edit tool for precise in-place changes. Do not rewrite whole sections.
 
@@ -146,8 +146,8 @@ Project sync complete: {project}
 Status doc: projects/{project}-status.md ✓ (overwritten)
 
 Brain doc changes:
-- projects/my-project-api.md — updated PROJ-123 status
-- projects/my-project.md — no changes needed
+- projects/my-project-api.md - updated PROJ-123 status
+- projects/my-project.md - no changes needed
 
 Review with: git diff
 Commit when satisfied.
@@ -156,8 +156,8 @@ Commit when satisfied.
 ## Important constraints
 
 - Always show `git diff` output at the end so the user can review before committing
-- Never commit — the user reviews and commits manually
+- Never commit - the user reviews and commits manually
 - If `gh` CLI is not authenticated, skip PR data and note it in the status doc
 - If the repo path doesn't exist, stop and tell the user
-- The status doc is fully AI-owned — overwrite without hesitation
-- Brain docs are user-owned — edit only what is clearly outdated, with surgical precision
+- The status doc is fully AI-owned - overwrite without hesitation
+- Brain docs are user-owned - edit only what is clearly outdated, with surgical precision

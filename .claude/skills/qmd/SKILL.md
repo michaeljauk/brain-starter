@@ -34,9 +34,9 @@ Local search engine for markdown content.
 
 | Type | Method | Input |
 |------|--------|-------|
-| `lex` | BM25 | Keywords — exact terms, names, code |
-| `vec` | Vector | Question — natural language |
-| `hyde` | Vector | Answer — hypothetical result (50-100 words) |
+| `lex` | BM25 | Keywords - exact terms, names, code |
+| `vec` | Vector | Question - natural language |
+| `hyde` | Vector | Answer - hypothetical result (50-100 words) |
 
 ### Writing Good Queries
 
@@ -58,7 +58,7 @@ Local search engine for markdown content.
 **expand (auto-expand)**
 - Use a single-line query (implicit) or `expand: question` on its own line
 - Lets the local LLM generate lex/vec/hyde variations
-- Do not mix `expand:` with other typed lines — it's either a standalone expand query or a full query document
+- Do not mix `expand:` with other typed lines - it's either a standalone expand query or a full query document
 
 ### Intent (Disambiguation)
 
@@ -73,7 +73,7 @@ When a query term is ambiguous, add `intent` to steer results:
 }
 ```
 
-Intent affects expansion, reranking, chunk selection, and snippet extraction. It does not search on its own — it's a steering signal that disambiguates queries like "performance" (web-perf vs team health vs fitness).
+Intent affects expansion, reranking, chunk selection, and snippet extraction. It does not search on its own - it's a steering signal that disambiguates queries like "performance" (web-perf vs team health vs fitness).
 
 ### Combining Types
 
@@ -85,7 +85,7 @@ Intent affects expansion, reranking, chunk selection, and snippet extraction. It
 | Complex topic | `lex` + `vec` + `hyde` |
 | Ambiguous query | Add `intent` to any combination above |
 
-First query gets 2x weight in fusion — put your best guess first.
+First query gets 2x weight in fusion - put your best guess first.
 
 ### Lex Query Syntax
 

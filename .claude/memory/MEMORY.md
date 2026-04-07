@@ -1,7 +1,7 @@
-# Brain Repo — Memory
+# Brain Repo - Memory
 
 Claude Code's auto-memory index. Memories are stored as individual files in this directory.
-This file is loaded into every conversation — keep it concise (under 200 lines).
+This file is loaded into every conversation - keep it concise (under 200 lines).
 
 ## Tools
 <!-- Add your installed tools here as you configure them -->

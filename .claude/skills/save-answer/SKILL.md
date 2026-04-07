@@ -31,11 +31,11 @@ If no clear output is identifiable, ask: "Which part of our conversation should 
 ### 1. Identify the output
 
 Extract the valuable content from the conversation. Common types:
-- **Research finding** -- answer to a question that required multi-source synthesis
-- **Comparison/analysis** -- a table or structured evaluation of options
-- **Framework application** -- a mental model applied to a specific problem
-- **Decision rationale** -- reasoning behind a choice (if not already logged as a decision)
-- **Technical insight** -- something learned about a tool, API, or system
+- **Research finding** - answer to a question that required multi-source synthesis
+- **Comparison/analysis** - a table or structured evaluation of options
+- **Framework application** - a mental model applied to a specific problem
+- **Decision rationale** - reasoning behind a choice (if not already logged as a decision)
+- **Technical insight** - something learned about a tool, API, or system
 
 ### 2. Determine placement
 
@@ -71,14 +71,14 @@ source: "conversation"
 
 ## Key Findings
 
-{The actual content -- distilled, not a transcript dump:
+{The actual content - distilled, not a transcript dump:
 - Lead with conclusions
 - Include specific data, comparisons, or frameworks
 - Keep it scannable}
 
 ## Relevance
 
-- [[project-or-note]] -- {how it connects}
+- [[project-or-note]] - {how it connects}
 ```
 
 For appending to existing notes:

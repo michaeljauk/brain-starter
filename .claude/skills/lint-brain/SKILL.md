@@ -89,7 +89,7 @@ Check required YAML frontmatter fields per directory.
 Find project files that haven't been touched in 60+ days.
 
 **Method:**
-1. For each project directory in `projects/`, run `git log -1 --format="%ai" -- <file>` to get the last commit date
+1. For each project directory in `projects/`, run `git log -1 --format="%ai" - <file>` to get the last commit date
 2. Calculate days since last modification
 3. Flag any file with 60+ days since last commit
 
@@ -119,7 +119,7 @@ Flag notes that may need refresh or archival based on directory-specific thresho
 - `decisions/` notes: warn at 180+ days (decision decay - may need re-evaluation)
 
 **Method:**
-1. For each `.md` file in the target directories, run `git log -1 --format="%ai" -- <file>`
+1. For each `.md` file in the target directories, run `git log -1 --format="%ai" - <file>`
 2. Calculate days since last modification
 3. Categorize into: OK, WARN (approaching threshold), STALE (past threshold)
 4. For decisions, also check if the decision has an "Outcome / follow-up" section that is empty or contains only "-"
