@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/michaeljauk/brain-starter/compare/v3.3.1...v3.4.0) (2026-04-24)
+
+
+### Features
+
+* **skill:** sync latest skills and docs from brain vault ([843f7a1](https://github.com/michaeljauk/brain-starter/commit/843f7a1fb88437bbb6a4349966b5353b26fc5a45))
+
 ## [3.3.1](https://github.com/michaeljauk/brain-starter/compare/v3.3.0...v3.3.1) (2026-04-07)
 
 
