@@ -5,7 +5,7 @@ Cross-skill recipe: fetch today's (or tomorrow's) Google Calendar events via `gw
 ## Prerequisites
 
 - `gws` CLI installed and authenticated (`gws auth login -s calendar`)
-- Obsidian CLI available (`which obsidian` - requires Obsidian running)
+- Obsidian CLI available (`which obsidian` — requires Obsidian running)
 - Vault path: `~/brain/`
 
 ## Trigger phrases
@@ -99,7 +99,7 @@ tags: [meeting-prep]
 
 ## Related
 
-{wikilinks to matching project notes - see Project matching below}
+{wikilinks to matching project notes — see Project matching below}
 ```
 
 ### 6. Project matching
@@ -141,6 +141,6 @@ Check token status: `gws auth status`
 
 ## Notes
 
-- `meetings/` files created by this workflow are **not** Granola-managed - they are safe to edit directly.
+- `meetings/` files created by this workflow are **not** Granola-managed — they are safe to edit directly.
 - Granola-synced notes use `YYYY-MM-DD_Title With Spaces.md` (spaces); prep notes use hyphens. This is intentional.
-- Do not create prep notes in `meetings/` for events already synced by Granola - check for an existing file with the same date + title first.
+- Do not create prep notes in `meetings/` for events already synced by Granola — check for an existing file with the same date + title first.

@@ -5,7 +5,7 @@ description: Create and edit Obsidian Flavored Markdown with wikilinks, embeds, 
 
 # Obsidian Flavored Markdown Skill
 
-Create and edit valid Obsidian Flavored Markdown. Obsidian extends CommonMark and GFM with wikilinks, embeds, callouts, properties, comments, and other syntax. This skill covers only Obsidian-specific extensions - standard Markdown (headings, bold, italic, lists, quotes, code blocks, tables) is assumed knowledge.
+Create and edit valid Obsidian Flavored Markdown. Obsidian extends CommonMark and GFM with wikilinks, embeds, callouts, properties, comments, and other syntax. This skill covers only Obsidian-specific extensions -- standard Markdown (headings, bold, italic, lists, quotes, code blocks, tables) is assumed knowledge.
 
 ## Workflow: Creating an Obsidian Note
 

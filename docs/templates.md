@@ -4,7 +4,7 @@ Copy the relevant block when creating a new note.
 
 ## Meeting note
 
-> **Note:** `meetings/` is primarily managed by the `granola-sync-plus` Obsidian plugin. Use this template only for manually created meeting notes (e.g. notes taken outside Granola). Granola-synced files use a different filename pattern (`YYYY-MM-DD_Title With Spaces.md`) - that's intentional.
+> **Note:** `meetings/` is primarily managed by the `granola-sync-plus` Obsidian plugin. Use this template only for manually created meeting notes (e.g. notes taken outside Granola). Granola-synced files use a different filename pattern (`YYYY-MM-DD_Title With Spaces.md`) — that's intentional.
 
 Save in `meetings/` as `YYYY-MM-DD-short-title.md`.
 
@@ -91,53 +91,200 @@ Why the chosen option wins.
 
 ---
 
-## Daily Drip - Question of the Day
+## Daily Drip — Frage des Tages
 
-Purpose: Ask one short personal question per day to organically build up `context/me.md` with preferences, habits, and opinions that are hard to capture in a single session.
+Zweck: Täglich eine kurze Frage stellen, um `knowledge/me.md` organisch mit persönlichem Kontext anzureichern — Vorlieben, Gewohnheiten, Meinungen, die sich schwer in einem Rutsch abfragen lassen.
 
-**How it works:**
-1. Agent picks a question from the pool (or generates a new one not yet answered)
-2. Question is asked at the start of the first session of the day (via `UserPromptSubmit` hook)
-3. Answer is saved into the matching section of `context/me.md`
+**Ablauf:**
+1. Agent wählt eine Frage aus dem Pool (oder generiert eine neue, die noch nicht beantwortet ist)
+2. Frage wird dem User gestellt (Kanal offen — Todoist, Chat, Daily Note)
+3. Antwort wird in die passende Sektion von `knowledge/me.md` eingearbeitet
 
-**Setup:** Pre-configured in `.claude/settings.json` - works out of the box. To disable, remove the `UserPromptSubmit` hook from that file.
+**Fragen-Pool (Startset):**
 
-**Question pool (starter set):**
+Essen & Trinken:
+- Wie trinkst du deinen Kaffee? (Oder Tee?)
+- Lieblingsgericht unter der Woche vs. wenn du dir was gönnst?
+- Gibt's Essen, das gar nicht geht?
+- Lieblingsrestaurant / Lieblings-Bestell-App?
 
-Food & Drink:
-- How do you take your coffee? (Or tea?)
-- Go-to weekday meal vs. treat-yourself meal?
-- Any food you absolutely can't stand?
-- Favorite restaurant or delivery app?
+Arbeit & Produktivität:
+- Wann bist du am produktivsten? (Tageszeit, Umgebung)
+- Welche Musik/Podcasts beim Arbeiten?
+- Wie sieht dein idealer Deep-Work-Block aus?
+- Tool, ohne das du nicht arbeiten könntest?
 
-Work & Productivity:
-- When are you most productive? (Time of day, environment)
-- Music or podcasts while working? What kind?
-- What does your ideal deep-work block look like?
-- Tool you couldn't work without?
+Freizeit & Interessen:
+- Letzter Film/Serie, die dich gepackt hat?
+- Lieblingsspiel (Board, Video, Sport)?
+- Wo fährst du am liebsten hin, wenn du mal rauskommst?
+- Bucket-List-Item Nr. 1?
 
-Hobbies & Interests:
-- Last movie or show that really grabbed you?
-- Favorite game (board, video, sport)?
-- Where do you go when you need to get away?
-- Bucket list item #1?
-
-Personality & Values:
-- What really gets under your skin?
-- Best advice you've ever received?
-- What would you tell your 18-year-old self?
-- Introvert or extrovert? (Or depends on the situation?)
+Persönlichkeit & Werte:
+- Worüber kannst du dich richtig aufregen?
+- Welcher Ratschlag hat dir am meisten gebracht?
+- Was würdest du deinem 18-jährigen Ich sagen?
+- Introvertiert oder extrovertiert? (Oder situationsabhängig?)
 
 Meta / AI:
-- Which AI task saves you the most time?
-- What should AI never decide for you?
-- Is there a task you'd love to automate but haven't cracked yet?
+- Welche AI-Aufgabe spart dir am meisten Zeit?
+- Was soll AI niemals für dich entscheiden?
+- Gibt's eine Aufgabe, die du gern automatisieren würdest, aber noch nicht geschafft hast?
 
-**Rules:**
-- Max 1 question per day
-- Don't ask what's already documented in `context/me.md`
-- Save answers directly into the matching section (not as a separate file)
-- Keep it short - one question, not an interview
+**Regeln:**
+- Max. 1 Frage pro Tag
+- Nicht fragen, was schon in `me.md` dokumentiert ist
+- Antworten direkt in die passende Sektion einpflegen (nicht als separate Datei)
+- Kurz halten — eine Frage, nicht ein Interview
+
+---
+
+## Research note
+
+Save in `research/{topic}/` as `short-descriptive-title.md`.
+
+```markdown
+---
+title: "Research topic title"
+date: YYYY-MM-DD
+type: research
+tags: []
+source: ""
+---
+
+# Research topic title
+
+## Summary
+
+One-paragraph TL;DR of what was found.
+
+## Key findings
+
+- 
+
+## Analysis
+
+Details, comparisons, data points.
+
+## Relevance
+
+How this connects to active projects or decisions.
+
+## Sources
+
+- 
+```
+
+## Vision board monthly check-in
+
+Save in `projects/vision-board-checkins/` as `YYYY-MM.md`. Do this on the last day of each month.
+
+```markdown
+---
+title: "Vision Board Check-In — YYYY-MM"
+date: YYYY-MM-DD
+type: vision-checkin
+tags: [personal, vision]
+---
+
+# Vision Board Check-In — Month YYYY
+
+## Pillar Health
+
+| Pillar | Status | Note |
+|--------|--------|------|
+| Build | on track / slipping / stuck | |
+| Freedom & Purpose | on track / slipping / stuck | |
+| Wealth | on track / slipping / stuck | |
+| Resilience | on track / slipping / stuck | |
+| Experience | on track / slipping / stuck | |
+| Legacy | on track / slipping / stuck | |
+| Partnership | on track / slipping / stuck | |
+| Self-Mastery | on track / slipping / stuck | |
+
+## Wins This Month
+
+One concrete thing per pillar. Skip any that had no movement.
+
+- **Build:**
+- **Freedom & Purpose:**
+- **Wealth:**
+- **Resilience:**
+- **Experience:**
+- **Legacy:**
+- **Partnership:**
+- **Self-Mastery:**
+
+## The Three Questions
+
+1. **Does my current trajectory match this board?**
+
+2. **What did I do this month that moved me closer?**
+
+3. **What should I add or remove from this board?**
+
+## Honest Check
+
+- Which pillar am I avoiding?
+- What am I telling myself that isn't true?
+- What would the version of me on this board do differently tomorrow?
+```
+
+---
+
+## Vision board quarterly review
+
+Save in `projects/vision-board-checkins/` as `YYYY-QN-review.md`. Do this at the end of each quarter.
+
+```markdown
+---
+title: "Vision Board Quarterly Review — YYYY QN"
+date: YYYY-MM-DD
+type: vision-review
+tags: [personal, vision]
+---
+
+# Vision Board Quarterly Review — QN YYYY
+
+## Stoic Filter
+
+Run each pillar through the filter before deciding to keep, change, or remove it.
+
+| Pillar | Dichotomy of Control | Memento Mori (5 years left?) | Preferred Indifferent? | Verdict |
+|--------|---------------------|------------------------------|----------------------|---------|
+| Build | | | | keep / evolve / remove |
+| Freedom & Purpose | | | | keep / evolve / remove |
+| Wealth | | | | keep / evolve / remove |
+| Resilience | | | | keep / evolve / remove |
+| Experience | | | | keep / evolve / remove |
+| Legacy | | | | keep / evolve / remove |
+| Partnership | | | | keep / evolve / remove |
+| Self-Mastery | | | | keep / evolve / remove |
+
+## Trend Review
+
+Look at the last 3 monthly check-ins. What patterns do you see?
+
+- Consistently strong:
+- Consistently neglected:
+- Improving:
+- Declining:
+
+## Board Changes
+
+- **Add:**
+- **Remove:**
+- **Reword:**
+
+## Updated Mantras
+
+Are the 4 mantras still hitting? If not, swap them.
+
+1.
+2.
+3.
+4.
+```
 
 ---
 
