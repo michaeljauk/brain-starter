@@ -1,6 +1,6 @@
 ---
 name: research-spike
-description: Research a topic using /last30days community signals, then produce a structured comparison matrix and recommendation note in the brain vault. Use when evaluating tools, libraries, vendors, or approaches - e.g. "spike on auth providers", "research X vs Y", "evaluate options for Z".
+description: Research a topic using /last30days community signals, then produce a structured comparison matrix and recommendation note in the brain vault. Use when evaluating tools, libraries, vendors, or approaches — e.g. "spike on auth providers", "research X vs Y", "evaluate options for Z".
 ---
 
 # Research Spike
@@ -19,9 +19,9 @@ Runs a structured research spike: gathers real-time community signals via `/last
 ## Input
 
 The user provides:
-- **Topic** (required) - what to research (e.g., "auth providers for Next.js", "Playwright vs Cypress", "vector databases")
-- **Context** (optional) - project constraints, must-haves, dealbreakers
-- **Candidates** (optional) - specific options to compare. If not provided, the skill discovers them during research.
+- **Topic** (required) — what to research (e.g., "auth providers for Next.js", "Playwright vs Cypress", "vector databases")
+- **Context** (optional) — project constraints, must-haves, dealbreakers
+- **Candidates** (optional) — specific options to compare. If not provided, the skill discovers them during research.
 
 ## Step-by-step workflow
 
@@ -29,7 +29,7 @@ The user provides:
 
 Before researching, confirm:
 1. **What decision does this inform?** (library choice, vendor selection, architecture approach, etc.)
-2. **What project is this for?** (check `projects/` for active projects - constraints differ per project)
+2. **What project is this for?** (check `projects/` for active projects — constraints differ per project)
 3. **Any known candidates?** If the user already has 2-3 options in mind, start there. If not, discovery is part of the research.
 4. **Dealbreakers?** (e.g., "must be open source", "needs EU hosting", "no vendor lock-in")
 
@@ -63,10 +63,10 @@ qmd vsearch "[topic keywords]"
 ```
 
 Also check:
-- `research/` - any prior /last30days raw output on this topic?
-- `research/` - any existing spike or research note on this topic?
-- `decisions/` - any past decision that's relevant?
-- `projects/` - constraints from the target project?
+- `research/` — any prior /last30days raw output on this topic?
+- `research/` — any existing spike or research note on this topic?
+- `decisions/` — any past decision that's relevant?
+- `projects/` — constraints from the target project?
 
 ### 4. Synthesize into comparison matrix
 
@@ -93,16 +93,16 @@ Create a structured comparison. The format depends on the spike type:
 | Risk | | |
 | Community support | | |
 
-Criteria should be tailored to the specific decision - don't use generic filler rows.
+Criteria should be tailored to the specific decision — don't use generic filler rows.
 
 ### 5. Write recommendation
 
 Produce a clear recommendation with reasoning:
 
-1. **Recommendation** - which option and why (1-2 sentences)
-2. **Confidence level** - high / medium / low, and what would change it
-3. **Key risk** - the biggest risk with the recommended option
-4. **Next step** - what to do to move forward (e.g., "spike a prototype", "check pricing", "discuss with team")
+1. **Recommendation** — which option and why (1-2 sentences)
+2. **Confidence level** — high / medium / low, and what would change it
+3. **Key risk** — the biggest risk with the recommended option
+4. **Next step** — what to do to move forward (e.g., "spike a prototype", "check pricing", "discuss with team")
 
 ### 6. Save to brain vault
 
@@ -120,7 +120,7 @@ tags: [spike, {relevant-tags}]
 
 # Spike: {Descriptive title}
 
-> Research spike for [[{project}]] - {date}
+> Research spike for [[{project}]] — {date}
 
 ## Context
 
@@ -128,7 +128,7 @@ tags: [spike, {relevant-tags}]
 
 ## Community Signals (last 30 days)
 
-{Summarized findings from /last30days - key themes, sentiment, warnings, endorsements. Include source counts (e.g., "across 45 Reddit threads and 12 HN discussions"). Cite specific high-signal posts where relevant.}
+{Summarized findings from /last30days — key themes, sentiment, warnings, endorsements. Include source counts (e.g., "across 45 Reddit threads and 12 HN discussions"). Cite specific high-signal posts where relevant.}
 
 ## Comparison Matrix
 
@@ -136,9 +136,9 @@ tags: [spike, {relevant-tags}]
 
 ## Recommendation
 
-**{Recommended option}** - {1-2 sentence rationale}
+**{Recommended option}** — {1-2 sentence rationale}
 
-- **Confidence:** {high/medium/low} - {what would change it}
+- **Confidence:** {high/medium/low} — {what would change it}
 - **Key risk:** {biggest risk}
 - **Next step:** {concrete action}
 
@@ -164,16 +164,16 @@ Next step: {action}
 - **Ground in data, not vibes.** Every claim in the matrix should trace back to community signals or documentation. If data is thin, say so.
 - **Recency matters.** Prefer signals from the last 30 days over older knowledge. Flag if the landscape changed recently.
 - **No auto-posting.** Never push results to Jira, Linear, or Confluence without the user asking. The note lives in the brain vault.
-- **Respect existing decisions.** Check `decisions/` first - if there's a prior decision on this topic, reference it and explain what changed.
+- **Respect existing decisions.** Check `decisions/` first — if there's a prior decision on this topic, reference it and explain what changed.
 - **Dedup.** If `research/` already has a spike on this exact topic, update it rather than creating a new file.
 
 ## Examples
 
-**User:** "spike on vector databases for my project"
-→ `/last30days vector databases 2024` → comparison of pgvector vs Pinecone vs Weaviate vs Qdrant → saves `research/spike-vector-db.md` with recommendation grounded in community data + project constraints
+**User:** "spike on vector databases for my-saas"
+→ `/last30days vector databases 2024` → comparison of pgvector vs Pinecone vs Weaviate vs Qdrant → saves `research/spike-vector-db-my-saas.md` with recommendation grounded in community data + project constraints (cloud, language, existing stack)
 
 **User:** "evaluate Playwright vs Cypress"
 → `/last30days Playwright vs Cypress` (comparison mode) → side-by-side matrix → saves `research/spike-playwright-vs-cypress.md`
 
-**User:** "what auth provider should we use?"
-→ Checks `projects/` for constraints → `/last30days Next.js auth providers` → comparison of NextAuth vs Clerk vs Auth0 vs Keycloak → saves `research/spike-auth-provider.md`
+**User:** "what auth provider should we use for the client project?"
+→ Checks `projects/` for project constraints → `/last30days Next.js auth providers` → comparison of NextAuth vs Clerk vs Auth0 vs Keycloak → saves `research/spike-auth-client.md`
