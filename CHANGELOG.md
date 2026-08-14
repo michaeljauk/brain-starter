@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.5.0](https://github.com/michaeljauk/brain-starter/compare/v3.4.0...v3.5.0) (2026-08-14)
+
+
+### Features
+
+* **skill:** sync brain-starter with enhanced ingest, lint, and research skills ([7551aff](https://github.com/michaeljauk/brain-starter/commit/7551affc774e4fc891e61fca14206731ed499391))
+
 ## [3.4.0](https://github.com/michaeljauk/brain-starter/compare/v3.3.1...v3.4.0) (2026-04-24)
 
 
