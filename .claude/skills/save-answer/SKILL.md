@@ -1,6 +1,8 @@
 ---
 name: save-answer
 description: File a conversation output (research, analysis, comparison, framework) back into the brain vault so it compounds instead of vanishing into chat history. Use when the user says "save this", "file this", "keep this", or when a valuable answer should persist.
+context: fork
+model: sonnet
 ---
 
 # Save Answer
@@ -122,3 +124,7 @@ Linked to: [[note-a]], [[note-b]]
 ## Proactive use
 
 The `/wrap-session-up` skill checks for unsaved session outputs in its "Compound session outputs" step. This skill can be invoked directly when the user wants to save something mid-conversation without waiting for wrap-up.
+
+## Return contract
+
+Return only: file path + action (created/appended) + linked-to wikilinks. Never paste back the saved note body or the original answer text. Cap at 6 lines.

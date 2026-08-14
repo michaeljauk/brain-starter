@@ -1,6 +1,8 @@
 ---
 name: research-spike
 description: Research a topic using /last30days community signals, then produce a structured comparison matrix and recommendation note in the brain vault. Use when evaluating tools, libraries, vendors, or approaches — e.g. "spike on auth providers", "research X vs Y", "evaluate options for Z".
+context: fork
+model: sonnet
 ---
 
 # Research Spike
@@ -175,5 +177,9 @@ Next step: {action}
 **User:** "evaluate Playwright vs Cypress"
 → `/last30days Playwright vs Cypress` (comparison mode) → side-by-side matrix → saves `research/spike-playwright-vs-cypress.md`
 
-**User:** "what auth provider should we use for the client project?"
-→ Checks `projects/` for project constraints → `/last30days Next.js auth providers` → comparison of NextAuth vs Clerk vs Auth0 vs Keycloak → saves `research/spike-auth-client.md`
+**User:** "what auth provider should we use for my-project?"
+→ Checks `projects/` for project constraints → `/last30days Next.js auth providers` → comparison of NextAuth vs Clerk vs Auth0 vs Keycloak → saves `research/spike-auth-my-project.md`
+
+## Return contract
+
+Return only: file path of the saved spike + the recommendation (1-2 lines) + comparison-matrix dimensions (header row only, not data). Never paste back the full matrix, all citations, or the full pros/cons body — parent reads the file. Cap at 10 lines.

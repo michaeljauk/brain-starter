@@ -1,3 +1,10 @@
+---
+name: project-sync
+description: On-demand AI-powered sync of a project's repo state into the brain vault. Reads live git/GitHub/Jira data, updates the project status doc, and makes targeted edits to relevant brain docs where content is clearly stale. Triggered by "/project-sync [name]", "sync [project]", "what's the current state of [project]".
+context: fork
+model: sonnet
+---
+
 # project-sync
 
 On-demand AI-powered sync of a project's repo state into the brain vault. Reads live git/GitHub/Jira data, updates the project status doc, and makes targeted edits to relevant brain docs where content is clearly stale.
@@ -5,18 +12,18 @@ On-demand AI-powered sync of a project's repo state into the brain vault. Reads 
 ## Trigger phrases
 
 - `/project-sync [project-name]`
-- "sync my-project"
+- "sync acme"
 - "update project docs for [project]"
 - "what's the current state of [project]"
 
-Default project: first entry in `repos.json` if no argument given.
+Default project: set your own default, or require an explicit argument.
 
 ## Config
 
 Load project config from `~/brain/scripts/repos.json`. Each entry has:
 - `repo_path` — local repo path
 - `gh_repo` — GitHub `owner/repo` for `gh` CLI
-- `jira` — (optional) `{ "project_key": "PROJ", "site": "your-org.atlassian.net" }`
+- `jira` — (optional) `{ "project_key": "ACME", "site": "your-org.atlassian.net" }`
 - `status_doc` — AI-owned status file (always overwritten)
 - `brain_docs` — list of brain notes to review and potentially update
 
@@ -63,7 +70,7 @@ acli jira workitem search --jql "project = {project_key} AND duedate <= endOfWee
 
 If `acli` is not authenticated or fails, skip Jira data and note it in the status doc.
 
-**Jira workflow awareness:** If your project uses custom Jira statuses (e.g. Dev Review, Waiting for Merge, Staging), document them here so the skill doesn't misclassify them as stale. Only flag mismatches where Jira says "To Do" but a PR/branch exists, or Jira says "In Progress" but no activity in weeks.
+**Jira status interpretation:** Understand your project's Jira workflow states and what they mean for your team. Flag mismatches where a status says "To Do" but a PR/branch exists, or "In Progress" but no recent activity has been observed.
 
 ### 3. Read brain docs
 
@@ -146,8 +153,8 @@ Project sync complete: {project}
 Status doc: projects/{project}-status.md ✓ (overwritten)
 
 Brain doc changes:
-- projects/my-project.md — updated ticket status
-- projects/my-project-overview.md — no changes needed
+- projects/acme-ai.md — updated ACME-123 status
+- projects/acme.md — no changes needed
 
 Review with: git diff
 Commit when satisfied.

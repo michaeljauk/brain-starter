@@ -237,7 +237,7 @@ Present a structured summary:
 | # | Item | Status | Action |
 |---|------|--------|--------|
 | 1 | ... | ✅ Created in Todoist | td#{id} |
-| 2 | ... | ⏭ Already in Jira | PROJ-1234 |
+| 2 | ... | ⏭ Already in Jira | ACME-123 |
 | 3 | ... | ⚠️ Skipped (WIP) | {reason} |
 
 ### Documented

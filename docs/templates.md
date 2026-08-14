@@ -93,12 +93,12 @@ Why the chosen option wins.
 
 ## Daily Drip — Frage des Tages
 
-Zweck: Täglich eine kurze Frage stellen, um `knowledge/me.md` organisch mit persönlichem Kontext anzureichern — Vorlieben, Gewohnheiten, Meinungen, die sich schwer in einem Rutsch abfragen lassen.
+Zweck: Täglich eine kurze Frage stellen, um `knowledge/{yourname}.md` organisch mit persönlichem Kontext anzureichern — Vorlieben, Gewohnheiten, Meinungen, die sich schwer in einem Rutsch abfragen lassen.
 
 **Ablauf:**
 1. Agent wählt eine Frage aus dem Pool (oder generiert eine neue, die noch nicht beantwortet ist)
 2. Frage wird dem User gestellt (Kanal offen — Todoist, Chat, Daily Note)
-3. Antwort wird in die passende Sektion von `knowledge/me.md` eingearbeitet
+3. Antwort wird in die passende Sektion von `knowledge/{yourname}.md` eingearbeitet
 
 **Fragen-Pool (Startset):**
 
@@ -133,7 +133,7 @@ Meta / AI:
 
 **Regeln:**
 - Max. 1 Frage pro Tag
-- Nicht fragen, was schon in `me.md` dokumentiert ist
+- Nicht fragen, was schon in `{yourname}.md` dokumentiert ist
 - Antworten direkt in die passende Sektion einpflegen (nicht als separate Datei)
 - Kurz halten — eine Frage, nicht ein Interview
 
@@ -294,6 +294,56 @@ Update this file when:
 - Frontmatter fields change (add/remove/rename a field)
 - A new note type is introduced that needs its own template
 - The meeting or project template structure is revised
+
+---
+
+## Entity page (person / company)
+
+Save in `projects/{project}/people/{slug}.md` or `projects/{project}/companies/{slug}.md`. One file per entity.
+
+Pattern: **compiled truth at top** (current best understanding, rewritten as facts change) + **append-only timeline** below (dated bullets, never edited). New facts are appended; outdated lines move into the compiled-truth section above.
+
+```markdown
+---
+title: "Entity name"
+type: person | company
+project: primary-project-slug
+related-projects: []
+status: active | dormant | closed
+tags: []
+---
+
+# Entity name
+
+## State
+
+One paragraph of current truth. Role, relationship, what is true today. Rewritten when facts change. Reader should be able to walk into a meeting after reading just this section.
+
+## Open threads
+
+- Thing currently in motion that has no resolution yet
+- Decision waiting on something or someone
+
+## Timeline
+
+Append-only. Newest at the bottom. Never edit past entries — if a fact reverses, append the reversal.
+
+- 2026-MM-DD — what happened, where it came from (meeting / email / call / note link)
+- 2026-MM-DD — ...
+
+## Raw
+
+Optional. Links to source material: meeting notes, transcripts, emails, attachments.
+
+-
+```
+
+**Conventions:**
+- Slug uses lowercase ASCII, dashes only: `jane-doe`, `acme-gmbh`
+- One entity = one file across projects. Cross-references via `related-projects`
+- Companies and people sit in sibling subdirs (`people/`, `companies/`) inside the primary project
+- Cross-cutting people (e.g. accountants, advisors used by every venture) belong in `knowledge/people/` instead
+- The `meeting-entity-propagate` skill appends to the Timeline section automatically — never the State section
 
 ---
 

@@ -124,7 +124,7 @@ qmd query --json --explain "q"    # Show score traces (RRF + rerank blend)
 qmd search "keywords"             # BM25 only (no LLM)
 qmd get "#abc123"                 # By docid
 qmd multi-get "journals/2026-*.md" -l 40  # Batch pull snippets by glob
-qmd multi-get research/ai-agents/foo.md,projects/my-saas/bar.md   # Comma-separated list, preserves order
+qmd multi-get research/ai-agents/foo.md,projects/acme/bar.md   # Comma-separated list, preserves order
 ```
 
 ## HTTP API

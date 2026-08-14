@@ -1,6 +1,8 @@
 ---
 name: ingest-article
 description: Ingest an article from a URL or raw text into the brain vault. Extracts key knowledge, determines placement, creates or updates notes, and links to relevant projects. Use when the user shares a URL or text and wants to absorb it into their knowledge base.
+context: fork
+model: sonnet
 ---
 
 # Ingest Article
@@ -41,14 +43,17 @@ defuddle parse <url> -p description
 
 **If raw text:** Use the text as-is. Ask the user for a title/source if not obvious.
 
+**Paywall bail-out:** If defuddle output is < 500 chars AND contains markers like `subscribe`, `paywall`, `sign up to read`, `become a member`, abort the auto-ingest. Tell the user the source is paywalled and ask them to paste the full text. Do NOT write a thin note from a paywalled snippet.
+
 ### 2. Analyze and classify
 
 Read the extracted content and determine:
 
 1. **Topic summary** — What is this article about? (1-2 sentences)
 2. **Key insights** — The 3-8 most actionable or notable takeaways
-3. **Relevance** — Which existing projects, notes, or topics does this relate to?
-4. **Placement decision** — Where should this go?
+3. **Actionable insights with application targets** — For each key insight, identify the specific project/area where it could be applied. Format as `{insight} → {project or area} — {what to do}`. This is mandatory output, not optional. If an insight has no application target across active projects (check memory for active projects list), label it `general reference` and explain why.
+4. **Relevance** — Which existing projects, notes, or topics does this relate to?
+5. **Placement decision** — Where should this go?
 
 ### 3. Determine placement
 
@@ -69,6 +74,12 @@ Use this decision tree:
 Before writing, search for related existing notes:
 
 Use Grep to search file contents and Glob to find related files. Also use `qmd vsearch "{keywords}"` for semantic matches if keyword search is insufficient.
+
+**Short-content shortcut:** If extracted content is < 1000 chars, skip `qmd vsearch` and run only Grep+Glob over the most likely subdir (e.g. `research/ai-agents/` for an AI tweet).
+
+**Do NOT skip `qmd vsearch` based on domain.** The old rule exempted `x.com` / `twitter.com` / `bsky.app` on the theory that "dedup risk on short social posts is low". Both duplicate pairs ever found in this vault were X-sourced, and X long-form Articles are not short posts. Judge by actual content length only.
+
+**If `qmd` errors, do not silently continue on Grep alone** — say the dedup check was degraded and run `qmd-doctor`. A broken index is exactly how `llm-wiki-pattern.md` and `karpathy-llm-knowledge-bases.md` both got created.
 
 Check:
 - `projects/` — any project this relates to?
@@ -125,7 +136,7 @@ source: "{URL or description}"
 
 #### If skipping ephemeral content:
 
-- Still mention related projects using `[[wikilinks]]` in the warning message (e.g., "This relates to [[my-project]] but is too time-sensitive to ingest")
+- Still mention related projects using `[[wikilinks]]` in the warning message (e.g., "This relates to [[acme-ai]] but is too time-sensitive to ingest")
 
 ### 6. Cross-link and ripple
 
@@ -140,9 +151,13 @@ source: "{URL or description}"
 2. **Related research notes** -- if the article strengthens, contradicts, or extends an existing research note, add a brief cross-reference there
 3. **Concept pages** -- if the article introduces or significantly develops a concept that has its own page, update that page
 
-Target: 2-5 files touched per ingest (including the primary note). The primary note + at least one project/research backlink is the minimum. Only skip backlinks if there is genuinely no connection to any existing note.
+Target: 8-15 files touched per ingest (including the primary note). Karpathy's pattern touches 10-15 and 0xkkai's claims 8-15; the old 2-5 target was the largest structural gap between this vault and both reference patterns. Ripple means updating the entity, concept and project pages the source actually bears on — not padding the count. The primary note + at least one project/research backlink is the minimum. Only skip backlinks if there is genuinely no connection to any existing note.
+
+**Parallelize ripple Edits.** Once you have the list of files to update, issue all Edit tool calls in a single tool-use block. Do not chain them sequentially - the parent waits for each round-trip. For 3+ backlinks this cuts latency ~40%.
 
 ### 6b. Append to activity log
+
+**Dedupe rule:** Before appending, Grep `log.md` for the source URL on today's date. If an entry already exists for the same URL today, update that entry in place (rewrite the action/insights/linked-to fields) instead of appending a duplicate.
 
 Add an entry to `log.md` in the vault root:
 
@@ -156,7 +171,7 @@ Add an entry to `log.md` in the vault root:
 
 ### 7. Report to user
 
-Summarize what was done:
+Summarize what was done, give a quick roundup of the content, AND surface the actionable insights with their application targets. All three sections are mandatory.
 
 ```
 Ingested: "{article title}"
@@ -166,7 +181,24 @@ Action: {Created new note | Updated existing note | Updated project note}
 Location: {file path}
 Key insights: {count} extracted
 Linked to: [[project-a]], [[existing-note-b]]
+
+## Roundup
+
+{3-6 bullet points or 4-8 sentences distilling what the article actually says. This is the "what's in there" -- enough that the user understands the core claims/content without reading the source. Lead with the thesis, then the supporting structure (key primitives, numbers, frameworks). Skip fluff and meta-framing. Use bullets when the content has discrete parts (e.g. a tool with N primitives); use prose when it's a narrative argument.}
+
+## Actionable insights
+
+| Insight | Where to apply | What to do |
+|---------|----------------|------------|
+| {one-line insight} | {project path or area, e.g. projects/acme/ai/} | {concrete next action} |
+| ... | ... | ... |
 ```
+
+Rules for the actionable insights table:
+- One row per insight that has a concrete application target. Skip insights that are pure reference.
+- "Where to apply" must be a specific project directory or named area, not a vague topic.
+- "What to do" must be an action verb phrase (audit, add, design, pitch, benchmark, expose, etc.) — not "consider" or "think about."
+- If the article yields zero actionable insights for active projects, say so explicitly: `No actionable insights for active projects — filed as general reference.` Do not pad with generic advice.
 
 ### 8. Prompt for next steps
 
@@ -208,3 +240,13 @@ This replaces step 8 for batch mode -- one assessment at the end instead of per-
 
 **User:** "add this to my brain: [pasted text about EU AI Act compliance]"
 → Raw text → directly relevant to an active project → updates `projects/my-project.md` with key compliance insights
+
+## Return contract
+
+Return only:
+1. file path created/updated, insight count, linked-to wikilinks
+2. **Roundup** — 3-6 bullets or 4-8 sentences distilling what the article says (the "what's in there"). Required.
+3. **Actionable insights table** (insight | where to apply | what to do). Required.
+4. nothing else
+
+Never paste back the full article text, the full insights body, or raw quotes — the parent reads the file from disk if it needs the content. Roundup + actionable insights table are the exceptions: they must be in the return so the parent surfaces them without re-reading the note.

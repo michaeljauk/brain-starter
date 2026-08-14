@@ -1,6 +1,8 @@
 ---
 name: sync-brain-starter
 description: Sync reusable skills, configs, and templates from the private brain repo to the public brain-starter template repo. Use when you've updated a skill or config and want to push it to the open-source template.
+context: fork
+model: haiku
 ---
 
 # Sync Brain Starter
@@ -37,12 +39,11 @@ cd ~/tech/brain-starter && git diff
 ```
 
 **Check for leaks before committing:**
-- Personal names (your name, family members, colleagues)
-- Company or client names
+- Personal names (your name, family members, colleagues, company names)
 - Email addresses or OAuth accounts
-- Hardcoded absolute paths (e.g. `/Users/yourname/`)
-- Internal project references (Jira ticket keys, specific repo names)
-- Company-specific tool configs
+- Hardcoded absolute paths (e.g. `/Users/username/`)
+- Internal project references (Jira tickets, specific repo names, issue numbers)
+- Company-specific tool configs or project names
 
 If any personal references slipped through, fix them in the brain-starter copy before committing. Do NOT modify the brain repo source — the template versions may intentionally differ.
 
@@ -79,7 +80,7 @@ Synced:
 No changes:
 - [list of files that were already up to date]
 
-Pushed to: {your brain-starter fork URL}
+Pushed to: https://github.com/{your-username}/brain-starter
 ```
 
 ## Important constraints
@@ -90,3 +91,7 @@ Pushed to: {your brain-starter fork URL}
 - **Don't modify brain repo** — this skill only copies brain → brain-starter, never the reverse
 - **If a new vault skill was added to brain** that should be public, add it to the `SKILLS` array in `~/brain/scripts/sync-brain-starter.sh`
 - **Global/plugin skills are NOT synced** -- brain-starter only ships vault-native skills. Plugin skills (gstack, gws, todoist, render, etc.) install themselves globally via their own repos
+
+## Return contract
+
+Return only: lists of files synced vs unchanged + commit SHA (if pushed). Never paste back diffs, file contents, or sync-script output. Cap at 15 lines.
