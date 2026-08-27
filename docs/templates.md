@@ -91,51 +91,56 @@ Why the chosen option wins.
 
 ---
 
-## Daily Drip — Frage des Tages
+## Daily Drip - Question of the Day
 
-Zweck: Täglich eine kurze Frage stellen, um `knowledge/{yourname}.md` organisch mit persönlichem Kontext anzureichern — Vorlieben, Gewohnheiten, Meinungen, die sich schwer in einem Rutsch abfragen lassen.
+Purpose: ask one short question a day so `knowledge/me.md` fills up with personal context
+organically - preferences, habits, opinions. Hard to collect in one sitting, easy one question at
+a time.
 
-**Ablauf:**
-1. Agent wählt eine Frage aus dem Pool (oder generiert eine neue, die noch nicht beantwortet ist)
-2. Frage wird dem User gestellt (Kanal offen — Todoist, Chat, Daily Note)
-3. Antwort wird in die passende Sektion von `knowledge/{yourname}.md` eingearbeitet
+Wired up as a `UserPromptSubmit` hook in `.claude/settings.json`. The hook stays silent until
+`knowledge/me.md` exists, so a fresh fork is never interrupted.
 
-**Fragen-Pool (Startset):**
+**How it runs:**
+1. The agent picks a question from the pool below, or writes a new one that is still unanswered
+2. It asks the question before answering your actual prompt
+3. Your answer goes into the matching section of `knowledge/me.md`
 
-Essen & Trinken:
-- Wie trinkst du deinen Kaffee? (Oder Tee?)
-- Lieblingsgericht unter der Woche vs. wenn du dir was gönnst?
-- Gibt's Essen, das gar nicht geht?
-- Lieblingsrestaurant / Lieblings-Bestell-App?
+**Question pool (starter set):**
 
-Arbeit & Produktivität:
-- Wann bist du am produktivsten? (Tageszeit, Umgebung)
-- Welche Musik/Podcasts beim Arbeiten?
-- Wie sieht dein idealer Deep-Work-Block aus?
-- Tool, ohne das du nicht arbeiten könntest?
+Food and drink:
+- How do you take your coffee? Or tea?
+- Go-to weekday meal, versus what you order when you treat yourself?
+- Anything you will not eat?
+- Favourite restaurant or delivery app?
 
-Freizeit & Interessen:
-- Letzter Film/Serie, die dich gepackt hat?
-- Lieblingsspiel (Board, Video, Sport)?
-- Wo fährst du am liebsten hin, wenn du mal rauskommst?
-- Bucket-List-Item Nr. 1?
+Work and productivity:
+- When are you most productive? Time of day, environment
+- Music or podcasts while you work?
+- What does your ideal deep-work block look like?
+- Which tool could you not work without?
 
-Persönlichkeit & Werte:
-- Worüber kannst du dich richtig aufregen?
-- Welcher Ratschlag hat dir am meisten gebracht?
-- Was würdest du deinem 18-jährigen Ich sagen?
-- Introvertiert oder extrovertiert? (Oder situationsabhängig?)
+Free time and interests:
+- Last film or series that got you hooked?
+- Favourite game: board, video, or sport?
+- Where do you go when you get out of town?
+- Number one item on your bucket list?
 
-Meta / AI:
-- Welche AI-Aufgabe spart dir am meisten Zeit?
-- Was soll AI niemals für dich entscheiden?
-- Gibt's eine Aufgabe, die du gern automatisieren würdest, aber noch nicht geschafft hast?
+Personality and values:
+- What really winds you up?
+- Which piece of advice paid off the most?
+- What would you tell your 18-year-old self?
+- Introvert or extrovert? Or does it depend?
 
-**Regeln:**
-- Max. 1 Frage pro Tag
-- Nicht fragen, was schon in `{yourname}.md` dokumentiert ist
-- Antworten direkt in die passende Sektion einpflegen (nicht als separate Datei)
-- Kurz halten — eine Frage, nicht ein Interview
+Meta and AI:
+- Which AI task saves you the most time?
+- What should AI never decide for you?
+- Any task you would like to automate but have not got to yet?
+
+**Rules:**
+- One question a day, maximum
+- Never ask what `knowledge/me.md` already answers
+- File answers into the matching section, not as a separate note
+- Keep it short - one question, not an interview
 
 ---
 

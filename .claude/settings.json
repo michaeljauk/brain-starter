@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/daily-drip.sh"
+            "command": "bash docs/scripts/daily-drip.sh"
           }
         ]
       }
