@@ -23,7 +23,7 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 
 ### What's included
 
-- 15 vault-native Claude Code skills - session wrap-up, article ingestion, vault health, semantic search, project sync, and more
+- 17 vault-native Claude Code skills - guided setup, session wrap-up, article ingestion, vault health, semantic search, project sync, and more
 - MANIFEST.md indexes - auto-generated directory indexes for LLM two-tier retrieval
 - Conventional commits - enforced via commitlint + husky
 - Pre-commit meta-doc sync warning - warns if project files changed but README/AGENTS.md weren't updated
@@ -49,21 +49,17 @@ pnpm install
 
 ### Bootstrap your brain
 
-After cloning, open Claude Code in your vault directory and paste this prompt to personalize everything:
+Open Claude Code in your vault directory and run:
 
 ```
-I just forked brain-starter. Help me set it up:
-
-1. Update CLAUDE.md with my identity (name, role, company, stack defaults)
-2. Create my first project file in projects/
-3. Set up qmd for semantic search: `bun install -g @tobilu/qmd && qmd collection add . --name brain && qmd embed`
-4. Create knowledge/me.md with background context about me
-5. Run a test: /wrap-session-up
-
-Here's who I am: [tell Claude about yourself, your role, your projects]
+/kickoff
 ```
 
-Claude Code will walk you through personalizing the vault, installing tools, and creating your first notes.
+It walks you through six phases and checks its own work at each one - identity, first project,
+search, integrations, indexes, first commit. Each phase is optional, state is saved to
+`.claude/kickoff-state.json`, and re-running resumes where you left off rather than starting over.
+
+Roughly 15 minutes for all six. Skip to a single phase with `/kickoff search` or `/kickoff identity`.
 
 ---
 
@@ -99,6 +95,7 @@ These ship with brain-starter in `.claude/skills/` and work out of the box:
 
 | Skill | Trigger | What it does |
 |-------|---------|-------------|
+| **kickoff** | `/kickoff` | Guided first-run setup: identity, first project, search, integrations, first commit |
 | **wrap-session-up** | `/wrap-session-up` | End-of-session review: replay what happened, commit changes, create tasks for loose ends |
 | **ingest-article** | `/ingest-article [URL]` | Extract knowledge from a URL or text, classify it, place it in the right vault location |
 | **lint-brain** | `/lint-brain` | Vault health check: orphan notes, broken wikilinks, missing frontmatter, staleness |
@@ -107,6 +104,7 @@ These ship with brain-starter in `.claude/skills/` and work out of the box:
 | **research-spike** | `/research-spike [topic]` | Chain community research into a structured comparison matrix + recommendation note |
 | **gws-obsidian-prep** | "prep notes for today" | Fetch Google Calendar events and create meeting prep notes |
 | **sync-brain-starter** | `/sync-brain-starter` | Sync vault skills and configs to a public template repo |
+| **log-decision** | `/log-decision` or "log decision: X" | Write a dated decision record with alternatives and rationale |
 | **find-skills** | `/find-skills [query]` | Discover and install community agent skills |
 | **defuddle** | Auto (URL extraction) | Clean web page extraction via Defuddle CLI - removes clutter, saves tokens |
 | **qmd** | Auto (vault search) | Semantic search over the vault via QMD - hybrid BM25 + vector + LLM reranking |
@@ -131,11 +129,14 @@ When you install a plugin, it adds its skill to `~/.claude/skills/` and Claude C
 
 ### Installing plugins
 
-Most plugins install via `npx skills add`:
+Some install via `npx skills add`, others are a clone plus a setup script:
 
 ```bash
-# Example: install the gstack browser testing skill pack
-npx skills add https://github.com/anthropics/gstack --agent claude-code --global
+# A skill published for npx skills add
+npx skills add https://github.com/owner/repo --agent claude-code --global
+
+# gstack ships its own installer
+git clone https://github.com/garrytan/gstack ~/tech/gstack && cd ~/tech/gstack && ./setup
 ```
 
 Some plugins are standalone CLIs with companion skills. See [`docs/integrations.md`](docs/integrations.md) for setup guides.
@@ -146,13 +147,13 @@ These pair well with a second brain workflow:
 
 | Category | Plugin | What it adds | Install |
 |----------|--------|-------------|---------|
-| **Search** | [QMD](https://github.com/tobi/qmd) | Local semantic search over your vault | `bun install -g @tobilu/qmd` + [setup](docs/integrations.md#qmd--local-semantic-search-optional) |
-| **Research** | [last30days](https://github.com/mvanhorn/last30days-skill) | Real-time community research (Reddit, X, HN, YouTube) | [setup](docs/integrations.md#last30days--real-time-community-research-optional) |
+| **Search** | [QMD](https://github.com/tobi/qmd) | Local semantic search over your vault | `bun install -g @tobilu/qmd` + [setup](docs/integrations.md#qmd---local-semantic-search-optional) |
+| **Research** | [last30days](https://github.com/mvanhorn/last30days-skill) | Real-time community research (Reddit, X, HN, YouTube) | [setup](docs/integrations.md#last30days---real-time-community-research-optional) |
 | **Calendar** | [gws](https://github.com/googleworkspace/cli) | Google Calendar + Gmail from Claude Code | `npm install -g @googleworkspace/cli` + [setup](docs/integrations.md#google-calendar-via-gws-cli-optional) |
 | **Tasks** | [Todoist CLI](https://www.npmjs.com/package/@doist/todoist-cli) | Manage Todoist tasks from the terminal | `npm install -g @doist/todoist-cli` + [setup](docs/integrations.md#todoist-cli-optional) |
 | **Email** | [m365 CLI](https://pnp.github.io/cli-microsoft365/) | Outlook email triage and management | [setup](docs/integrations.md#microsoft-365-cli-optional) |
-| **Jira** | [acli](https://bobswift.atlassian.net/wiki/spaces/ACLI) | Atlassian CLI for Jira/Confluence | [setup](docs/integrations.md#atlassian-cli-optional) |
-| **Browser QA** | [gstack](https://github.com/anthropics/gstack) | Headless browser for QA testing and site dogfooding | [setup](docs/integrations.md#gstack--browser-qa-optional) |
+| **Jira** | [acli](https://developer.atlassian.com/cloud/acli/) | Atlassian CLI for Jira/Confluence | [setup](docs/integrations.md#atlassian-cli-optional) |
+| **Browser QA** | [gstack](https://github.com/garrytan/gstack) | Headless browser for QA testing and site dogfooding | [setup](docs/integrations.md#gstack---browser-qa-optional) |
 | **Browser automation** | [browser-use](https://github.com/browser-use/browser-use) | AI-powered browser interactions | `pip install browser-use` |
 | **Documents** | Built into Claude Code | PDF, DOCX, XLSX, PPTX creation and editing | No install needed |
 | **Deployments** | [Render CLI](https://render.com/docs/cli) | Deploy, debug, and monitor Render services | [setup](docs/integrations.md#render-cli-optional) |
