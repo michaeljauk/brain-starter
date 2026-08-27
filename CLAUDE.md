@@ -3,6 +3,12 @@
 ## Purpose
 This repo is a personal second brain - reference docs, project notes, meeting notes, and knowledge. Your task manager (Todoist, Linear, etc.) is the task source of truth.
 
+## Not set up yet?
+
+If this file still describes a generic vault, the fork has not been personalised. Run `/kickoff`.
+It walks through identity, first project, semantic search, integrations, indexes, and the first
+commit, and verifies each phase before moving on.
+
 ## File Placement Rules
 
 ### Directory Guide

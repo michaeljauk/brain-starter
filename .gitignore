@@ -27,6 +27,7 @@ node_modules/
 
 # Claude Code — transient session state
 .claude/worktrees/
+.claude/kickoff-state.json
 
 # Logs
 logs/
