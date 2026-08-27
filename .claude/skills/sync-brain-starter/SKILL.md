@@ -38,14 +38,25 @@ It does NOT copy:
 cd ~/tech/brain-starter && git diff
 ```
 
-**Check for leaks before committing:**
-- Personal names (your name, family members, colleagues, company names)
-- Email addresses or OAuth accounts
-- Hardcoded absolute paths (e.g. `/Users/username/`)
-- Internal project references (Jira tickets, specific repo names, issue numbers)
-- Company-specific tool configs or project names
+**Run the leak gate. Do not eyeball the diff.**
 
-If any personal references slipped through, fix them in the brain-starter copy before committing. Do NOT modify the brain repo source — the template versions may intentionally differ.
+```bash
+bash docs/scripts/leak-gate.sh --worktree
+```
+
+Reading a diff is not a check. Edit the `TERMS` list in that script first — it should name every
+client, employer, colleague, product and account that must never reach the public copy, plus the
+token shapes for secrets. Keep the script in the private repo; the list is itself sensitive.
+
+A hit is a blocker. Replace it with a placeholder (`acme`, `jane-doe`, `your-org.atlassian.net`,
+`ACME-123`, `~/`), then run the gate again. Do not report the sync as clean until the command
+prints nothing.
+
+**To judge whether the public repo was ever exposed, scan the history, not the tree.**
+`git grep <rev>` searches that revision's tree and says nothing about older commits:
+`bash docs/scripts/leak-gate.sh --history`.
+
+Fix leaks in the template copy, never in the source vault — the two versions differ on purpose.
 
 ### 3. Update the README
 
