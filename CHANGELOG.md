@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.6.0](https://github.com/michaeljauk/brain-starter/compare/v3.5.0...v3.6.0) (2026-08-27)
+
+
+### Features
+
+* **scripts:** add a runnable leak gate for private to public syncs ([1dafedd](https://github.com/michaeljauk/brain-starter/commit/1dafedd95adf1ea528e6e484ccac978e3c01a626))
+* **skill:** add kickoff for guided first-run setup ([3d89ff3](https://github.com/michaeljauk/brain-starter/commit/3d89ff34fbe99b58cbc3715f3f524261ae03aa8c))
+
+
+### Bug Fixes
+
+* **hooks:** point the daily drip hook at the script that exists ([c5387ce](https://github.com/michaeljauk/brain-starter/commit/c5387cec4e8b21c54eceb299c6f9c73eb2e2aade))
+* **scripts:** run the name and token passes over separate inputs ([ec07ed5](https://github.com/michaeljauk/brain-starter/commit/ec07ed50556f1768f468a534831514549bb21b0e))
+
 ## [3.5.0](https://github.com/michaeljauk/brain-starter/compare/v3.4.0...v3.5.0) (2026-08-14)
 
 
