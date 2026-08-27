@@ -28,7 +28,7 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 - Conventional commits - enforced via commitlint + husky
 - Pre-commit meta-doc sync warning - warns if project files changed but README/AGENTS.md weren't updated
 - Obsidian-native - wikilinks, frontmatter, callouts, Bases, JSON Canvas, graph view as first-class citizens
-- Integration guides - Telegram Channels, Obsidian CLI, QMD, Google Calendar, and more in [`docs/integrations.md`](docs/integrations.md)
+- Integration guides - QMD semantic search, Google Calendar, Todoist, Outlook, Jira, browser QA, and more in [`docs/integrations.md`](docs/integrations.md), each with an install and a verify command
 - Structured directories - projects, research, knowledge, decisions, meetings, and archive
 
 ---
