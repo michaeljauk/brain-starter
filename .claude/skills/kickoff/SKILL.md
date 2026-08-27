@@ -5,9 +5,9 @@ description: Guided first-run setup for a forked brain-starter vault. Walks thro
 
 # Kickoff
 
-Takes a freshly forked brain-starter from empty template to working vault. Six phases, each one
-independently useful. The user can stop after any phase and still have something better than they
-started with.
+Takes a freshly forked brain-starter from empty template to working vault. A preflight check, then
+six phases, each one independently useful. The user can stop after any phase and still have
+something better than they started with.
 
 Target: 15 minutes for all six.
 
