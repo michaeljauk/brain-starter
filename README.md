@@ -9,7 +9,7 @@ An opinionated, Claude Code-powered second brain template built on Obsidian.
 
 ---
 
-## What this is
+## Why
 
 A ready-to-fork template that turns a markdown vault into an **AI-augmented knowledge system** using **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** and **[Obsidian](https://obsidian.md)**. Extracted from a real daily-driver vault - not a toy example.
 
@@ -247,10 +247,11 @@ These work well with this vault setup:
 
 ---
 
+## Support
+
+Built by [Michael Jauk](https://github.com/michaeljauk). If this saves you time, consider
+[buying me a coffee](https://buymeacoffee.com/michaeljauk).
+
 ## License
 
-MIT - use it, fork it, make it yours.
-
----
-
-Built by [Michael Jauk](https://github.com/michaeljauk). If this saves you time, consider [buying me a coffee](https://buymeacoffee.com/michaeljauk).
+[MIT](./LICENSE) © Michael Jauk. Use it, fork it, make it yours.
