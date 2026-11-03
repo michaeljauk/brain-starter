@@ -1,14 +1,1 @@
-{
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash docs/scripts/daily-drip.sh"
-          }
-        ]
-      }
-    ]
-  }
-}
+{}

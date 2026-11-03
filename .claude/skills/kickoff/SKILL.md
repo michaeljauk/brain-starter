@@ -102,14 +102,9 @@ Then:
 - **`CLAUDE.md`** - add an `## Identity` section near the top with their answers. Leave the File
   Placement Rules alone; those are the template's spine. If they named a task manager, replace the
   generic mention in `## Purpose`.
-- **`knowledge/me.md`** - create it with the background they gave, sectioned so the Daily Drip hook
-  has somewhere to file answers: Work, Preferences, Tools, Personal. Empty sections are fine and
-  are the point.
+- **`knowledge/me.md`** - create it with the background they gave, sectioned into Work,
+  Preferences, Tools, Personal. Empty sections are fine: later sessions fill them in.
 - **`.claude/memory/MEMORY.md`** - fill the placeholder comments with what you now know.
-
-Creating `knowledge/me.md` also switches on the Daily Drip hook, which stays silent until that file
-exists. Say so, and say it asks one question a day. If they do not want it, remove the
-`UserPromptSubmit` block from `.claude/settings.json`.
 
 **Verify:** read all three files back and show the user their `## Identity` section.
 
