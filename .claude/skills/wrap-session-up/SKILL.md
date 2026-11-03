@@ -25,7 +25,7 @@ Review the full conversation history. Extract:
 3. **Decisions made** — technology choices, architecture decisions, approach changes
 4. **New knowledge surfaced** — things learned about the project, codebase, or tools that should be persisted
 5. **Files touched** — all files created or modified during the session
-6. **Friction points** — anything that caused repeated correction, workarounds, or user frustration (skill misbehaved, tool returned wrong output, Claude misunderstood something repeatedly, a convention was unclear). Only log if it happened more than once or was explicitly called out.
+6. **Friction points** — anything that caused repeated correction, workarounds, or user frustration (skill misbehaved, tool returned wrong output, Claude misunderstood something repeatedly, a convention was unclear). Only count it if it happened more than once or was explicitly called out. Step 9a fixes these; it does not log them.
 
 Run `git diff --stat` to get a concrete picture of what changed.
 
@@ -198,18 +198,22 @@ If there are uncommitted changes, group and commit them intelligently:
 
 If unsure whether something should be committed (e.g., experimental changes, WIP code), ask the user before committing.
 
-### 9a. Log friction points (Kaizen data collection)
+### 9a. Fix friction points on the spot
 
-If any friction points were identified in step 1, append to `~/brain/log.md`:
+Do not keep a friction log. A log that no skill reads only grows: in the original vault, more than
+a thousand entries piled up, and the biggest problems recurred for months although a memory
+described each of them. Fixes that changed a script or a skill stuck; reminders did not.
 
-```markdown
-## [YYYY-MM-DD] kaizen-friction | {skill or system name}
-- **What:** {specific thing that broke or annoyed — be concrete}
-- **Frequency:** {first time | recurring}
-- **Hypothesis:** {why it probably happened}
-```
+For each friction point from step 1, pick the strongest fix that fits, in this order:
 
-One entry per distinct friction point. Skip if nothing was genuinely friction — don't manufacture entries. The goal is a data trail for the weekly Kaizen review, not noise.
+1. **Script, hook or tool change** that makes the mistake impossible or loud.
+2. **A required step in the skill** where it happened, with a check that fails visibly.
+3. **A memory**, only if 1 and 2 do not fit. First check whether a memory on it already exists.
+   If it exists and the problem recurred, the memory is not working: propose 1 or 2 instead of
+   adding another case to it.
+
+A fix outside this vault (global settings, hooks, other repos) is a proposal in the step 10 report,
+not an action.
 
 ### 9c. Mine session for shared agent knowledge (cq)
 
