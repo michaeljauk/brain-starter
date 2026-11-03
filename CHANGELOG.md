@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.7.0](https://github.com/michaeljauk/brain-starter/compare/v3.6.0...v3.7.0) (2026-11-03)
+
+
+### Features
+
+* **skill:** fix friction at the source instead of logging it in wrap-session-up ([662a744](https://github.com/michaeljauk/brain-starter/commit/662a744b02b6b04770bcb91a8471fd2bda0bab1c))
+
 ## [3.6.0](https://github.com/michaeljauk/brain-starter/compare/v3.5.0...v3.6.0) (2026-08-27)
 
 
