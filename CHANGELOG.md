@@ -7,6 +7,11 @@
 
 * **skill:** fix friction at the source instead of logging it in wrap-session-up ([662a744](https://github.com/michaeljauk/brain-starter/commit/662a744b02b6b04770bcb91a8471fd2bda0bab1c))
 
+
+### Removed
+
+* **Daily Drip:** the `UserPromptSubmit` hook in `.claude/settings.json`, `docs/scripts/daily-drip.sh` and the question pool in `docs/templates.md` ([15371df](https://github.com/michaeljauk/brain-starter/commit/15371df)). Forks that use it keep their copy.
+
 ## [3.6.0](https://github.com/michaeljauk/brain-starter/compare/v3.5.0...v3.6.0) (2026-08-27)
 
 
