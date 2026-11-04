@@ -22,6 +22,7 @@
     ".claude/skills/sync-brain-starter/",
     ".claude/skills/update-brain-starter/",
     ".claude/skills/wrap-up/",
+    ".github/workflows/release.yml",
     ".husky/",
     "docs/integrations.md",
     "docs/scripts/brain-starter-check.sh",

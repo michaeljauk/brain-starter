@@ -216,8 +216,8 @@ agree. It then downloads your installed release and the new one and merges three
 branch `brain-starter-update/<version>`:
 
 - It touches only files the release lists as template-owned in `.brain-starter.json`: the shipped
-  skills, scripts, templates, git hooks and configs. Your notes, `.claude/memory/` and your own
-  skills are never touched.
+  skills, scripts, templates, git hooks, configs and the release workflow. Your notes,
+  `.claude/memory/` and your own skills are never touched.
 - A file you did not change takes the new version. A file you and the template both changed is
   merged, and Claude explains every conflict. A file you deleted stays deleted. A file the
   template deleted is only proposed for deletion.
