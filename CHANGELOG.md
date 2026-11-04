@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.8.0](https://github.com/michaeljauk/brain-starter/compare/v3.7.0...v3.8.0) (2026-11-04)
+
+
+### Features
+
+* **skill:** check for new brain-starter releases and merge them in ([165f87f](https://github.com/michaeljauk/brain-starter/commit/165f87f83897a09dfb6def57fba235bb8d62f998))
+* **skill:** rename /wrap-session-up to /wrap-up ([27cd5e0](https://github.com/michaeljauk/brain-starter/commit/27cd5e067c25939adc23b89418da5d34cf185467))
+
+
+### Bug Fixes
+
+* **skill:** bring the release workflow guard to existing vaults on update ([8186d3a](https://github.com/michaeljauk/brain-starter/commit/8186d3a4b682e4977008eda092395668e7c5e6cc))
+
 ## [3.7.0](https://github.com/michaeljauk/brain-starter/compare/v3.6.0...v3.7.0) (2026-11-03)
 
 
