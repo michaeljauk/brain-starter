@@ -205,7 +205,7 @@ git commit -m "chore(vault): initial setup via kickoff"
 
 **Ask before committing.** Never commit unprompted, even inside this skill.
 
-Then run `/wrap-session-up` as an end-to-end smoke test. It exercises the skill loader, the vault
+Then run `/wrap-up` as an end-to-end smoke test. It exercises the skill loader, the vault
 conventions, and the task integration in one go. If it works, the vault works.
 
 ## Final report

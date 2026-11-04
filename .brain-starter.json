@@ -21,7 +21,7 @@
     ".claude/skills/save-answer/",
     ".claude/skills/sync-brain-starter/",
     ".claude/skills/update-brain-starter/",
-    ".claude/skills/wrap-session-up/",
+    ".claude/skills/wrap-up/",
     ".husky/",
     "docs/integrations.md",
     "docs/scripts/brain-starter-check.sh",
@@ -36,6 +36,9 @@
     "commitlint.config.js",
     "package.json"
   ],
+  "renamed": {
+    ".claude/skills/wrap-session-up/": ".claude/skills/wrap-up/"
+  },
   "merge": {
     ".claude/settings.json": "hooks",
     "CLAUDE.md": "sections"

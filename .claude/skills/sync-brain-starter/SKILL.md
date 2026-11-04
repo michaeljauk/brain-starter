@@ -25,7 +25,7 @@ bash ~/brain/scripts/sync-brain-starter.sh
 ```
 
 This copies:
-- **Vault skills** (curated list): `wrap-session-up`, `ingest-article`, `defuddle`, `obsidian-cli`, `obsidian-markdown`, `obsidian-bases`, `json-canvas`, `gws-obsidian-prep`, `project-sync`, `research-spike`, `save-answer`, `lint-brain`, `qmd`, `find-skills`, `sync-brain-starter`
+- **Vault skills** (curated list): `wrap-up`, `ingest-article`, `defuddle`, `obsidian-cli`, `obsidian-markdown`, `obsidian-bases`, `json-canvas`, `gws-obsidian-prep`, `project-sync`, `research-spike`, `save-answer`, `lint-brain`, `qmd`, `find-skills`, `sync-brain-starter`
 - **Configs**: `commitlint.config.js`, `.husky/commit-msg`, `docs/templates.md`, `docs/integrations.md`
 
 It does NOT copy:

@@ -105,7 +105,7 @@ td auth login
 td task list --filter today
 ```
 
-Used by: the `wrap-session-up` skill, which files loose ends as tasks rather than leaving them in a
+Used by: the `wrap-up` skill, which files loose ends as tasks rather than leaving them in a
 note nobody re-reads.
 
 ## Microsoft 365 CLI (optional)

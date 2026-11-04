@@ -97,7 +97,7 @@ These ship with brain-starter in `.claude/skills/` and work out of the box:
 |-------|---------|-------------|
 | **kickoff** | `/kickoff` | Guided first-run setup: identity, first project, search, integrations, first commit |
 | **update-brain-starter** | `/update-brain-starter` | Show what a newer brain-starter release changes and merge it in, keeping your own edits |
-| **wrap-session-up** | `/wrap-session-up` | End-of-session review: replay what happened, commit changes, create tasks for loose ends |
+| **wrap-up** | `/wrap-up` | End-of-session review: replay what happened, commit changes, create tasks for loose ends |
 | **ingest-article** | `/ingest-article [URL]` | Extract knowledge from a URL or text, classify it, place it in the right vault location |
 | **lint-brain** | `/lint-brain` | Vault health check: orphan notes, broken wikilinks, missing frontmatter, staleness |
 | **project-sync** | `/project-sync [name]` | Pull live git/GitHub/Jira data and update project status docs |
@@ -183,7 +183,7 @@ Conventional Commits are enforced via commitlint. Common patterns for a brain va
 docs(project): update project status        # project notes
 docs(decision): log auth provider selection  # decisions
 chore(vault): backup 2026-03-20             # obsidian auto-sync
-chore(skill): improve wrap-session-up        # skill changes
+chore(skill): improve wrap-up                # skill changes
 feat(skill): add new article-ingest skill    # new skills
 ```
 
@@ -221,6 +221,8 @@ branch `brain-starter-update/<version>`:
 - A file you did not change takes the new version. A file you and the template both changed is
   merged, and Claude explains every conflict. A file you deleted stays deleted. A file the
   template deleted is only proposed for deletion.
+- A skill the template renamed moves to its new name together with your edits, and Claude tells
+  you the new command (in 3.8.0: `/wrap-session-up` became `/wrap-up`).
 - `.claude/settings.json` gets new hooks added; your own hooks and settings stay.
 - In `CLAUDE.md`, only the parts between `<!-- brain-starter:begin NAME -->` and
   `<!-- brain-starter:end NAME -->` belong to the template. Write your own instructions outside

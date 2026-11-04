@@ -60,7 +60,7 @@ When asked to log a decision:
 - Common scopes: `vault`, `project`, `decision`, `meeting`, `skill`, `config`
 - Examples:
   - `docs(project): update project status`
-  - `chore(skill): improve wrap-session-up`
+  - `chore(skill): improve wrap-up`
   - `docs(decision): log vendor selection for auth provider`
   - `chore(vault): backup 2026-03-20` (Obsidian auto-sync)
 <!-- brain-starter:end commit-style -->

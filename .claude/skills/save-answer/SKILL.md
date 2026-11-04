@@ -123,7 +123,7 @@ Linked to: [[note-a]], [[note-b]]
 
 ## Proactive use
 
-The `/wrap-session-up` skill checks for unsaved session outputs in its "Compound session outputs" step. This skill can be invoked directly when the user wants to save something mid-conversation without waiting for wrap-up.
+The `/wrap-up` skill checks for unsaved session outputs in its "Compound session outputs" step. This skill can be invoked directly when the user wants to save something mid-conversation without waiting for wrap-up.
 
 ## Return contract
 

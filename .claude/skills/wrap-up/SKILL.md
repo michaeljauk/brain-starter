@@ -1,15 +1,15 @@
 ---
-name: wrap-session-up
-description: End-of-session review for a Claude Code conversation. Replays what was discussed, checks for open action items, documents relevant outcomes in the brain vault, and creates Todoist tasks for anything untracked. Use at the end of a work session to ensure nothing falls through the cracks.
+name: wrap-up
+description: End-of-session review for a Claude Code conversation. Replays what was discussed, checks for open action items, documents relevant outcomes in the brain vault, and creates Todoist tasks for anything untracked. Use at the end of a work session to ensure nothing falls through the cracks. Triggers on "/wrap-up" and "wrap up" (named wrap-session-up before brain-starter 3.8.0).
 ---
 
-# Wrap Session Up
+# Wrap Up
 
 End-of-conversation review skill. Replays the current Claude Code session, identifies what was accomplished, what's still open, and documents everything in the right places before the context is lost.
 
 ## Trigger phrases
 
-- `/wrap-session-up`
+- `/wrap-up`
 - "wrap up this session"
 - "anything left open?"
 - "let's wrap up"
