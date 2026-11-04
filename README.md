@@ -23,7 +23,7 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 
 ### What's included
 
-- 17 vault-native Claude Code skills - guided setup, session wrap-up, article ingestion, vault health, semantic search, project sync, and more
+- 18 vault-native Claude Code skills - guided setup, template updates, session wrap-up, article ingestion, vault health, semantic search, project sync, and more
 - MANIFEST.md indexes - auto-generated directory indexes for LLM two-tier retrieval
 - Conventional commits - enforced via commitlint + husky
 - Pre-commit meta-doc sync warning - warns if project files changed but README/AGENTS.md weren't updated
@@ -96,6 +96,7 @@ These ship with brain-starter in `.claude/skills/` and work out of the box:
 | Skill | Trigger | What it does |
 |-------|---------|-------------|
 | **kickoff** | `/kickoff` | Guided first-run setup: identity, first project, search, integrations, first commit |
+| **update-brain-starter** | `/update-brain-starter` | Show what a newer brain-starter release changes and merge it in, keeping your own edits |
 | **wrap-session-up** | `/wrap-session-up` | End-of-session review: replay what happened, commit changes, create tasks for loose ends |
 | **ingest-article** | `/ingest-article [URL]` | Extract knowledge from a URL or text, classify it, place it in the right vault location |
 | **lint-brain** | `/lint-brain` | Vault health check: orphan notes, broken wikilinks, missing frontmatter, staleness |
@@ -189,6 +190,57 @@ feat(skill): add new article-ingest skill    # new skills
 This template is actively maintained. Check the [**Releases**](https://github.com/michaeljauk/brain-starter/releases) page for the latest version, changelog, and downloadable snapshots. Releases are cut automatically from conventional commits - `feat` bumps minor, `fix` bumps patch.
 
 > **Tip:** Watch this repo (Releases only) to get notified when new skills or features land.
+
+## Updating your brain
+
+Your vault learns about new brain-starter releases by itself and can take them over. This works for
+vaults made with "Use this template" and for clones, because it does not use git history.
+
+**The check.** A `SessionStart` hook in `.claude/settings.json` runs
+`docs/scripts/brain-starter-check.sh`. Once every 7 days it sends one unauthenticated GET request
+to `api.github.com/repos/michaeljauk/brain-starter/releases/latest`, in the background. If that
+request fails (for example offline), it tries again after an hour at the earliest.
+Nothing from your vault is sent; GitHub sees your IP address, as with any request. If a newer
+release exists, the session starts with one line:
+
+```
+brain-starter 3.9.0 is available (you have 3.8.0). Run /update-brain-starter to see what changes.
+```
+
+Settings live in `.brain-starter.json`: `"check": false` turns the check off, and
+`"checkIntervalDays"` changes the interval. The result is cached in
+`$XDG_CACHE_HOME/brain-starter/` (default `~/.cache/brain-starter/`).
+
+**The update.** `/update-brain-starter` shows the changelog first and changes nothing until you
+agree. It then downloads your installed release and the new one and merges three ways, on a new
+branch `brain-starter-update/<version>`:
+
+- It touches only files the release lists as template-owned in `.brain-starter.json`: the shipped
+  skills, scripts, templates, git hooks and configs. Your notes, `.claude/memory/` and your own
+  skills are never touched.
+- A file you did not change takes the new version. A file you and the template both changed is
+  merged, and Claude explains every conflict. A file you deleted stays deleted. A file the
+  template deleted is only proposed for deletion.
+- `.claude/settings.json` gets new hooks added; your own hooks and settings stay.
+- In `CLAUDE.md`, only the parts between `<!-- brain-starter:begin NAME -->` and
+  `<!-- brain-starter:end NAME -->` belong to the template. Write your own instructions outside
+  those markers.
+
+Nothing is committed or pushed without your go.
+
+**Vaults from 3.7.0 or older** have neither the check nor the skill yet. Fetch both once from the
+latest release, then run the skill; it reads your version from `.release-please-manifest.json`:
+
+```bash
+TAG=$(curl -fsSL https://api.github.com/repos/michaeljauk/brain-starter/releases/latest \
+  | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)
+RAW=https://raw.githubusercontent.com/michaeljauk/brain-starter/$TAG
+mkdir -p .claude/skills/update-brain-starter
+curl -fsSL "$RAW/.claude/skills/update-brain-starter/SKILL.md" -o .claude/skills/update-brain-starter/SKILL.md
+curl -fsSL "$RAW/docs/scripts/brain-starter-update.mjs" -o docs/scripts/brain-starter-update.mjs
+```
+
+Then start a new Claude Code session in the vault and run `/update-brain-starter`.
 
 ---
 

@@ -1,0 +1,4 @@
+# Store text with LF and check it out with LF on every platform. Git for Windows enables
+# core.autocrlf by default; CRLF breaks the shell scripts and the brain-starter updater's
+# comparison with the release.
+* text=auto eol=lf

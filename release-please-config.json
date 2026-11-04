@@ -2,7 +2,11 @@
   "packages": {
     ".": {
       "release-type": "simple",
+      "include-component-in-tag": false,
       "bump-minor-pre-major": true,
+      "extra-files": [
+        { "type": "json", "path": ".brain-starter.json", "jsonpath": "$.version" }
+      ],
       "changelog-sections": [
         { "type": "feat", "section": "Features" },
         { "type": "fix", "section": "Bug Fixes" },

@@ -3,12 +3,15 @@
 ## Purpose
 This repo is a personal second brain - reference docs, project notes, meeting notes, and knowledge. Your task manager (Todoist, Linear, etc.) is the task source of truth.
 
+<!-- brain-starter:begin kickoff-hint -->
 ## Not set up yet?
 
 If this file still describes a generic vault, the fork has not been personalised. Run `/kickoff`.
 It walks through identity, first project, semantic search, integrations, indexes, and the first
 commit, and verifies each phase before moving on.
+<!-- brain-starter:end kickoff-hint -->
 
+<!-- brain-starter:begin file-placement -->
 ## File Placement Rules
 
 ### Directory Guide
@@ -37,7 +40,9 @@ commit, and verifies each phase before moving on.
 - **Stable reference, convention, or template?** → `docs/`
 - **Output files (email drafts, PDFs, data files)?** → `projects/{project}/outputs/`
 - **Truly ephemeral, no project association?** → `tmp/`
+<!-- brain-starter:end file-placement -->
 
+<!-- brain-starter:begin decision-logging -->
 ## Decision Logging
 
 Trigger: *"log decision: [topic]"*
@@ -46,7 +51,9 @@ When asked to log a decision:
 1. Ask for context if not provided (what needed deciding, who was involved, alternatives considered)
 2. Create `decisions/YYYY-MM-DD-short-slug.md` using the template in `docs/templates.md`
 3. Use today's date
+<!-- brain-starter:end decision-logging -->
 
+<!-- brain-starter:begin commit-style -->
 ## Commit Style
 - **Conventional Commits** enforced via commitlint + husky
 - Common types for this repo: `docs`, `chore`, `feat`, `fix`, `refactor`
@@ -56,3 +63,4 @@ When asked to log a decision:
   - `chore(skill): improve wrap-session-up`
   - `docs(decision): log vendor selection for auth provider`
   - `chore(vault): backup 2026-03-20` (Obsidian auto-sync)
+<!-- brain-starter:end commit-style -->

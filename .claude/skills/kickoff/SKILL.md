@@ -83,7 +83,14 @@ done
 Also confirm the working directory is the vault root: `.claude/skills/` and `CLAUDE.md` both exist.
 If not, stop and ask where the vault is. Every later phase writes relative paths.
 
-**Verify:** git is present and `git rev-parse --show-toplevel` succeeds.
+Then read `.brain-starter.json` and tell the user which brain-starter version this vault came from.
+Explain the update check in two sentences: a SessionStart hook asks the GitHub releases API for the
+latest brain-starter version at most every 7 days (one unauthenticated request, nothing from the
+vault is sent) and shows one line when a newer one exists; `/update-brain-starter` takes it over.
+Ask whether to keep the check on. If not, set `"check": false` in `.brain-starter.json`.
+
+**Verify:** git is present, `git rev-parse --show-toplevel` succeeds, and `.brain-starter.json`
+parses: `node -e 'console.log(require("./.brain-starter.json").version)'` prints the version.
 
 ## Phase 1 - Identity
 
@@ -101,7 +108,9 @@ Then:
 
 - **`CLAUDE.md`** - add an `## Identity` section near the top with their answers. Leave the File
   Placement Rules alone; those are the template's spine. If they named a task manager, replace the
-  generic mention in `## Purpose`.
+  generic mention in `## Purpose`. Write outside the `<!-- brain-starter:begin/end NAME -->`
+  markers: the text between them is template-owned, and `/update-brain-starter` merges new
+  template versions into it.
 - **`knowledge/me.md`** - create it with the background they gave, sectioned into Work,
   Preferences, Tools, Personal. Empty sections are fine: later sessions fill them in.
 - **`.claude/memory/MEMORY.md`** - fill the placeholder comments with what you now know.

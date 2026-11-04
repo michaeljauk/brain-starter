@@ -1,0 +1,43 @@
+{
+  "repo": "michaeljauk/brain-starter",
+  "version": "3.7.0",
+  "check": true,
+  "checkIntervalDays": 7,
+  "owned": [
+    ".claude/skills/defuddle/",
+    ".claude/skills/find-skills/",
+    ".claude/skills/gws-obsidian-prep/",
+    ".claude/skills/ingest-article/",
+    ".claude/skills/json-canvas/",
+    ".claude/skills/kickoff/",
+    ".claude/skills/lint-brain/",
+    ".claude/skills/log-decision/",
+    ".claude/skills/obsidian-bases/",
+    ".claude/skills/obsidian-cli/",
+    ".claude/skills/obsidian-markdown/",
+    ".claude/skills/project-sync/",
+    ".claude/skills/qmd/",
+    ".claude/skills/research-spike/",
+    ".claude/skills/save-answer/",
+    ".claude/skills/sync-brain-starter/",
+    ".claude/skills/update-brain-starter/",
+    ".claude/skills/wrap-session-up/",
+    ".husky/",
+    "docs/integrations.md",
+    "docs/scripts/brain-starter-check.sh",
+    "docs/scripts/brain-starter-update.mjs",
+    "docs/scripts/classify-meetings.sh",
+    "docs/scripts/generate-manifests.sh",
+    "docs/scripts/leak-gate.sh",
+    "docs/scripts/repos.json.example",
+    "docs/templates.md",
+    ".gitattributes",
+    ".gitignore",
+    "commitlint.config.js",
+    "package.json"
+  ],
+  "merge": {
+    ".claude/settings.json": "hooks",
+    "CLAUDE.md": "sections"
+  }
+}
