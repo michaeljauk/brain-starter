@@ -50,10 +50,15 @@ For each open item, check if it's already tracked:
 
 **Check Todoist:**
 ```bash
-td task list --filter "search: {keywords}" --json 2>/dev/null
+td task list --filter "search: {keywords}" 2>/dev/null
 ```
 
-**Check Jira (if related to a Jira-tracked project):**
+Read the plain output. In at least one `td` version, `--json` returned an empty list for
+searches that had matches, so every item looked untracked and the step proposed duplicates. If a
+search returns nothing, run it once more with a shorter keyword before calling the item untracked.
+
+**Check the issue tracker for every item, not only for dev work.** Product and ops tasks often
+live there too. Example for Jira:
 ```bash
 acli jira workitem search --jql "summary ~ '{keywords}' AND status != Done" --fields "key,summary,status,assignee" --limit 5 --json 2>/dev/null
 ```
@@ -132,7 +137,7 @@ If the current working directory is **not** `~/brain`, check whether it matches 
 
 1. Read `~/brain/scripts/repos.json`
 2. Expand `~` in each project's `repo_paths` and compare against `$PWD` (match if `$PWD` starts with any repo path)
-3. If a match is found, run the `/project-sync` skill for that project name -- this updates the brain's status doc and brain docs with fresh repo/Jira data
+3. If a match is found, run the `/project-sync` skill for that project name -- this updates the brain's status doc and brain docs with fresh repo/issue-tracker data
 4. If no match is found, skip silently -- the repo isn't tracked in the brain
 
 This ensures the brain vault stays current whenever you wrap up a session in a project repo. The synced files will be included in the smart commit step later.
@@ -208,7 +213,8 @@ For each friction point from step 1, pick the strongest fix that fits, in this o
 
 1. **Script, hook or tool change** that makes the mistake impossible or loud.
 2. **A required step in the skill** where it happened, with a check that fails visibly.
-3. **A memory**, only if 1 and 2 do not fit. First check whether a memory on it already exists.
+3. **A memory**, only if 1 and 2 do not fit. First check whether a memory on it already exists
+   (`qmd query`).
    If it exists and the problem recurred, the memory is not working: propose 1 or 2 instead of
    adding another case to it.
 
