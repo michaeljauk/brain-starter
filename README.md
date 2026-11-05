@@ -23,7 +23,8 @@ A ready-to-fork template that turns a markdown vault into an **AI-augmented know
 
 ### What's included
 
-- 18 vault-native Claude Code skills - guided setup, template updates, session wrap-up, article ingestion, vault health, semantic search, project sync, and more
+- 19 vault-native Claude Code skills - guided setup, template updates, session wrap-up, article ingestion, vault health, semantic search, project sync, and more
+- Optional automatic wrap-up - a background job wraps up every finished session and leaves proposals for you to approve ([details](docs/scripts/wrapup-queue/README.md))
 - MANIFEST.md indexes - auto-generated directory indexes for LLM two-tier retrieval
 - Conventional commits - enforced via commitlint + husky
 - Pre-commit meta-doc sync warning - warns if project files changed but README/AGENTS.md weren't updated
@@ -98,6 +99,7 @@ These ship with brain-starter in `.claude/skills/` and work out of the box:
 | **kickoff** | `/kickoff` | Guided first-run setup: identity, first project, search, integrations, first commit |
 | **update-brain-starter** | `/update-brain-starter` | Show what a newer brain-starter release changes and merge it in, keeping your own edits |
 | **wrap-up** | `/wrap-up` | End-of-session review: replay what happened, commit changes, create tasks for loose ends |
+| **wrapup-inbox** | `/wrapup-inbox` | Work through the proposals of the optional automatic wrap-up queue; creates only what you approve |
 | **ingest-article** | `/ingest-article [URL]` | Extract knowledge from a URL or text, classify it, place it in the right vault location |
 | **lint-brain** | `/lint-brain` | Vault health check: orphan notes, broken wikilinks, missing frontmatter, staleness |
 | **project-sync** | `/project-sync [name]` | Pull live git/GitHub/Jira data and update project status docs |

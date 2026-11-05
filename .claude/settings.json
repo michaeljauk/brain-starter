@@ -11,6 +11,17 @@
           }
         ]
       }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -f \"${CLAUDE_PROJECT_DIR}/.claude/wrapup-queue/config.json\" ] && node \"${CLAUDE_PROJECT_DIR}/docs/scripts/wrapup-queue/enqueue.mjs\"; exit 0",
+            "timeout": 5
+          }
+        ]
+      }
     ]
   }
 }

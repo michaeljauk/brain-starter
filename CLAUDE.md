@@ -64,3 +64,13 @@ When asked to log a decision:
   - `docs(decision): log vendor selection for auth provider`
   - `chore(vault): backup 2026-03-20` (Obsidian auto-sync)
 <!-- brain-starter:end commit-style -->
+
+<!-- brain-starter:begin wrapup-queue -->
+## Automatic wrap-up (optional)
+
+If the wrap-up queue is on (`node docs/scripts/wrapup-queue/worker.mjs status`), a background job
+wraps up every finished session. It files notes directly and leaves proposals in
+`docs/wrapup-inbox/`. Run `/wrapup-inbox` to work through them; nothing in a task manager or issue
+tracker is created without the user's answer. To find recent work of other sessions, run
+`node docs/scripts/recent-sessions.mjs --hours 8 -k <keyword>`.
+<!-- brain-starter:end wrapup-queue -->

@@ -9,6 +9,9 @@
 # carries no data from this vault.
 #
 # Turn it off with "check": false in .brain-starter.json. Every error is silent.
+#
+# It also prints one line while the wrap-up queue (docs/scripts/wrapup-queue/) has open proposals
+# in docs/wrapup-inbox/ or failed jobs. That line does not depend on "check".
 
 root="${CLAUDE_PROJECT_DIR:-$(pwd)}"
 cfg="$root/.brain-starter.json"
@@ -24,6 +27,40 @@ read_key() {
 
 is_version() { [[ "$1" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; }
 
+msg=""
+ctx=""
+add_notice() { msg="${msg:+$msg }$1"; ctx="${ctx:+$ctx }$2"; }
+emit() {
+  [ -n "$msg" ] || return 0
+  printf '{"systemMessage": "%s", "hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": "%s"}}\n' "$msg" "$ctx"
+}
+
+# Asks Claude to say a notice in its first reply once per day, vault and key. If the state cannot
+# be written, stay quiet rather than repeat the request in every session.
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/brain-starter"
+first_today() {
+  local file="$cache_dir/announced-$1-$(printf '%s' "$root" | cksum | cut -d ' ' -f 1)"
+  local stamp="$(date +%Y-%m-%d) $2"
+  [ "$(head -n 1 "$file" 2>/dev/null)" != "$stamp" ] \
+    && mkdir -p "$cache_dir" 2>/dev/null && { printf '%s\n' "$stamp" > "$file"; } 2>/dev/null
+}
+
+# 0. Wrap-up queue: open proposals and failed jobs. Local files only.
+inbox_open=0
+if [ -d "$root/docs/wrapup-inbox" ]; then
+  inbox_open="$(grep -l '^status:[[:space:]]*open[[:space:]]*$' "$root"/docs/wrapup-inbox/*.md 2>/dev/null | wc -l | tr -d ' ')"
+fi
+jobs_failed="$(ls "$root/.claude/wrapup-queue/failed/" 2>/dev/null | grep '\.json$' | grep -vc '\.result\.json$')"
+if [ "${inbox_open:-0}" -gt 0 ] || [ "${jobs_failed:-0}" -gt 0 ]; then
+  wmsg="Wrap-up queue: $inbox_open open proposal file(s), run /wrapup-inbox."
+  [ "${jobs_failed:-0}" -gt 0 ] && wmsg="$wmsg $jobs_failed session(s) not wrapped (failed, skipped or interrupted), see: node docs/scripts/wrapup-queue/worker.mjs status."
+  wctx="$wmsg The wrapup-inbox skill works through the proposals."
+  if first_today wrapup "$inbox_open-$jobs_failed"; then
+    wctx="$wctx In your first reply of this session, add one short line for the user with this notice. Say it only once in this session."
+  fi
+  add_notice "$wmsg" "$wctx"
+fi
+
 # Returns 0 if version $1 is greater than version $2.
 version_gt() {
   local IFS=. i
@@ -35,34 +72,30 @@ version_gt() {
   return 1
 }
 
-[ "$(read_key check)" = "false" ] && exit 0
+[ "$(read_key check)" = "false" ] && { emit; exit 0; }
 
 installed="$(read_key version)"
 repo="$(read_key repo)"
 days="$(read_key checkIntervalDays)"
-is_version "$installed" || exit 0
-[[ "$repo" =~ ^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$ ]] || exit 0
+is_version "$installed" || { emit; exit 0; }
+[[ "$repo" =~ ^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$ ]] || { emit; exit 0; }
 [[ "$days" =~ ^[1-9][0-9]{0,3}$ ]] || days=7
 
-cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/brain-starter"
 cache="$cache_dir/latest-${repo//\//_}"
 attempt="$cache.attempt"
 
 # 1. Report from the cache. No network.
 latest="$(head -n 1 "$cache" 2>/dev/null)"
 if is_version "$latest" && version_gt "$latest" "$installed"; then
-  msg="brain-starter $latest is available (you have $installed). Run /update-brain-starter to see what changes."
-  ctx="A newer brain-starter template release is available: $latest (installed: $installed). Mention it only if the user asks about updates; the update-brain-starter skill shows the changes and applies them."
-  # Ask Claude to say it once per day and vault. If the state cannot be written, stay quiet
-  # rather than repeat the request in every session.
-  announced="$cache_dir/announced-${repo//\//_}-$(printf '%s' "$root" | cksum | cut -d ' ' -f 1)"
-  stamp="$(date +%Y-%m-%d) $latest"
-  if [ "$(head -n 1 "$announced" 2>/dev/null)" != "$stamp" ] \
-    && mkdir -p "$cache_dir" 2>/dev/null && { printf '%s\n' "$stamp" > "$announced"; } 2>/dev/null; then
-    ctx="A newer brain-starter template release is available: $latest (installed: $installed). In your first reply of this session, add one short line for the user, for example: brain-starter $latest is available, run /update-brain-starter to see what changes. Say it only once in this session. The update-brain-starter skill shows the changes and applies them."
+  umsg="brain-starter $latest is available (you have $installed). Run /update-brain-starter to see what changes."
+  uctx="A newer brain-starter template release is available: $latest (installed: $installed). Mention it only if the user asks about updates; the update-brain-starter skill shows the changes and applies them."
+  # Ask Claude to say it once per day and vault.
+  if first_today "${repo//\//_}" "$latest"; then
+    uctx="A newer brain-starter template release is available: $latest (installed: $installed). In your first reply of this session, add one short line for the user, for example: brain-starter $latest is available, run /update-brain-starter to see what changes. Say it only once in this session. The update-brain-starter skill shows the changes and applies them."
   fi
-  printf '{"systemMessage": "%s", "hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": "%s"}}\n' "$msg" "$ctx"
+  add_notice "$umsg" "$uctx"
 fi
+emit
 
 # 2. Refresh the cache in the background if the last success is older than the interval and no
 #    attempt ran in the last hour (keeps an offline machine from retrying on every session).

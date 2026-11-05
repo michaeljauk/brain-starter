@@ -193,6 +193,36 @@ managed will happily edit files that the next sync overwrites.
 
 Used by: `docs/scripts/classify-meetings.sh`, which tags meeting notes by content.
 
+## Automatic wrap-up queue (optional)
+
+Wraps up every finished Claude Code session in the background, like `/wrap-up` but without you.
+A `SessionEnd` hook only queues the session. A worker started by the OS scheduler (launchd on
+macOS, systemd user units on Linux, Task Scheduler on Windows) runs a headless `claude -p` with
+Sonnet when memory pressure is low. The job files notes directly, commits them locally, and puts
+task, issue and decision proposals into `docs/wrapup-inbox/` for `/wrapup-inbox`.
+
+**Cost:** every wrapped session is one headless Claude run on your plan. That is why it is off
+until you install it. Needs Node.js 18 or newer and the `claude` CLI.
+
+Install (sessions in this vault only; add `--global` to also wrap sessions in other folders):
+
+```bash
+node docs/scripts/wrapup-queue/worker.mjs install
+```
+
+Verify:
+
+```bash
+node docs/scripts/wrapup-queue/worker.mjs status
+```
+
+It must print `wrap-up queue: on`. End a session with at least two prompts, then run `status`
+again: the session shows as pending or the inbox count grows. Turn it off with
+`node docs/scripts/wrapup-queue/worker.mjs uninstall`. Windows support is untested. Details:
+[`docs/scripts/wrapup-queue/README.md`](scripts/wrapup-queue/README.md).
+
+Used by: `/wrapup-inbox`, and the session start notice in `docs/scripts/brain-starter-check.sh`.
+
 ## Keeping this file current
 
 An integration that is documented but broken is worse than one that is missing - it sends you
