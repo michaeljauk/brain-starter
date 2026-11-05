@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.9.0](https://github.com/michaeljauk/brain-starter/compare/v3.8.1...v3.9.0) (2026-11-05)
+
+
+### Features
+
+* **skill:** add an opt-in wrap-up queue that wraps up finished sessions ([37aa138](https://github.com/michaeljauk/brain-starter/commit/37aa138c8c5a191af38453d19ebef94dc0695e2b))
+
 ## [3.8.1](https://github.com/michaeljauk/brain-starter/compare/v3.8.0...v3.8.1) (2026-11-05)
 
 
