@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.8.1](https://github.com/michaeljauk/brain-starter/compare/v3.8.0...v3.8.1) (2026-11-05)
+
+
+### Bug Fixes
+
+* **skill:** have claude mention a new brain-starter release in its first reply ([740497e](https://github.com/michaeljauk/brain-starter/commit/740497e8132c0f794ab8a1432174f576740c4f7c))
+* **skill:** name the issue tracker in wrap-up instead of only jira ([432386b](https://github.com/michaeljauk/brain-starter/commit/432386ba3fc033bf5127da3e10851ed09cfe0376))
+* **skill:** stop wrap-up from missing tracked tasks ([9b7b498](https://github.com/michaeljauk/brain-starter/commit/9b7b49882009a96252ab616279a7fb6e0718e26c))
+* **skill:** stop wrap-up from missing tracked tasks ([995b56b](https://github.com/michaeljauk/brain-starter/commit/995b56b47b1fb26b8ad4f51705228b092c4056a0))
+
 ## [3.8.0](https://github.com/michaeljauk/brain-starter/compare/v3.7.0...v3.8.0) (2026-11-04)
 
 
