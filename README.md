@@ -233,8 +233,22 @@ branch `brain-starter-update/<version>`:
 
 Nothing is committed or pushed without your go.
 
-**Vaults from 3.7.0 or older** have neither the check nor the skill yet. Fetch both once from the
-latest release, then run the skill; it reads your version from `.release-please-manifest.json`:
+**Manual update.** You can start an update at any time, without waiting for the notice. From
+3.8.0 on, run `/update-brain-starter`. Vaults from 3.7.0 or older have neither the check nor the
+skill yet. Paste this prompt into Claude Code in your vault; it works for every version:
+
+```text
+Update this vault to the latest brain-starter release (github.com/michaeljauk/brain-starter).
+1. Get the latest release tag from https://api.github.com/repos/michaeljauk/brain-starter/releases/latest
+2. If .claude/skills/update-brain-starter/SKILL.md or docs/scripts/brain-starter-update.mjs is
+   missing, download both from https://raw.githubusercontent.com/michaeljauk/brain-starter/<tag>/
+   to the same paths.
+3. Read .claude/skills/update-brain-starter/SKILL.md and follow it. Show me the changelog and the
+   plan first, and change nothing until I agree.
+```
+
+The skill reads your version from `.brain-starter.json`, or from `.release-please-manifest.json`
+in vaults from 3.7.0 or older. To do the download yourself instead, run this in the vault:
 
 ```bash
 TAG=$(curl -fsSL https://api.github.com/repos/michaeljauk/brain-starter/releases/latest \
