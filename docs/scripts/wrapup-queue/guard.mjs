@@ -19,8 +19,8 @@
 //   path is appended to WRAPUP_TOUCHED, so the worker commits only what the job wrote.
 // - Bash: every link of a chain (| || && ;) must start with a read-only command from the allow
 //   list, as a bare name. Redirects only 2>&1 and >/dev/null. No &, subshells, backticks, $( or
-//   newlines. Outside single quotes no $, globs, braces or ~, so the shell cannot expand a word
-//   into something the guard did not see. No VAR=value prefix.
+//   newlines. No VAR=value prefix. Shell expansions pass only in forms that cannot turn a word into
+//   one the guard did not check (see tokenize). gh only against the vault's own repository.
 // - Read, Glob, Grep, LS, ToolSearch, TodoWrite: allowed. Everything else (Agent, Skill, Web*,
 //   MCP tools) is denied.
 
@@ -57,10 +57,15 @@ const BAD_ARGS = {
   rg: [/^--pre/],
   sort: [/^-[^-]*o/, /^--[oc]/],
   date: [/^-[^-]*s/, /^--s/, /^[^-+]/], // a bare argument sets the clock (BSD date 202611051200)
+  // Another repository or a URL would send the job's text to a place the user does not own.
+  gh: [/^-R/, /^--r/, /:\/\//, /github\.com/],
   tail: [/^-[^-]*[fF]/, /^--f/], // follow mode never ends
 };
-// Outside single quotes, these make the shell expand a word: variables, globs, braces, ~ and !.
-const EXPANDING = new Set(['$', '*', '?', '[', ']', '{', '}', '~', '!']);
+// A $ before one of these is literal, for example a regex anchor in grep "USER$". Outside quotes
+// a $ before a quote is not: $'..' and $".." are bash quoting forms that decode to other text.
+const DOLLAR_SAFE_NEXT = new Set(['', ' ', '\t', '"', '|', ')', ';']);
+const DOLLAR_SAFE_NEXT_UNQUOTED = new Set(['', ' ', '\t', '|', ')', ';']);
+const GLOB = new Set(['*', '?', '[']);
 const FORBIDDEN_RAW = /[`\n\r]|\$\(/;
 const CHAIN_OPS = new Set(['|', '||', '&&', ';']);
 const PUNCT = new Set(['(', ')', ';', '<', '>', '|', '&']);
@@ -72,9 +77,17 @@ function deny(reason) {
 }
 
 // Splits a command like a POSIX shell would for our purposes: quotes and backslashes bind words,
-// unquoted runs of ();<>|& become operator tokens. A quoted "a|b" stays one word. A character the
-// shell would expand (EXPANDING outside single quotes, $ inside double quotes) is denied, because
-// the guard would check a different word than the one the shell runs.
+// unquoted runs of ();<>|& become operator tokens. A quoted "a|b" stays one word.
+// Shell expansions pass only where the guard still knows the word the shell runs:
+// - $ only as a literal (end of word, before a quote, space or |): grep "USER$". $HOME, ${X:--d},
+//   $'..' and $".." are denied.
+// - * ? [ only after a literal prefix that does not start with -, or after a --long= option:
+//   docs/x/*.md, --include=*.md. The expansion keeps that prefix, so it cannot become -delete.
+//   A quoted prefix counts ('-delet'* is -delet*), an empty one does not (''*).
+// - ~ only as ~/ at the start of a word (the home directory).
+// - { } ! and a word that starts with = (zsh turns =rm into /bin/rm) are always denied.
+// Measured 2026-11-05: denying every expansion refused 32 of 301 Bash calls of real wrap-up jobs,
+// mostly cd ~/dir, *.md globs and grep anchors.
 export function tokenize(cmd) {
   const toks = [];
   let word = null;
@@ -106,7 +119,7 @@ export function tokenize(cmd) {
           s += cmd[j + 1];
           j += 2;
         } else {
-          if (cmd[j] === '$') deny('no $ expansion inside double quotes; use single quotes');
+          if (cmd[j] === '$' && !DOLLAR_SAFE_NEXT.has(cmd[j + 1] ?? '')) deny('no $ expansion; use single quotes');
           s += cmd[j++];
         }
       }
@@ -117,9 +130,18 @@ export function tokenize(cmd) {
       word = (word ?? '') + (cmd[i + 1] ?? '');
       i += 2;
     } else {
-      // zsh expands a word that starts with = to a path (=rm becomes /bin/rm).
       if (c === '=' && word === null) deny('a word must not start with an unquoted =');
-      if (EXPANDING.has(c)) deny(`unquoted ${JSON.stringify(c)}: quote patterns and paths in single quotes`);
+      if ('{}!'.includes(c)) deny(`unquoted ${JSON.stringify(c)}: put patterns in single quotes`);
+      if (c === '~' && !(word === null && ['/', ' ', '\t', undefined].includes(cmd[i + 1]))) {
+        deny('~ only as ~/ at the start of a path');
+      }
+      if (c === '$' && !DOLLAR_SAFE_NEXT_UNQUOTED.has(cmd[i + 1] ?? '')) deny('no $ expansion; use single quotes');
+      if (GLOB.has(c)) {
+        const prefix = word ?? '';
+        if (!prefix || (prefix.startsWith('-') && !(prefix.startsWith('--') && prefix.includes('=')))) {
+          deny(`unquoted ${JSON.stringify(c)} after ${JSON.stringify(prefix)}: a glob could expand into an option; quote it`);
+        }
+      }
       word = (word ?? '') + c;
       i++;
     }

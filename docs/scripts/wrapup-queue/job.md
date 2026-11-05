@@ -34,9 +34,10 @@ that you should find another way.
   `head`, `find`, `td task list`, `linear issue list`, `acli jira workitem search`,
   `gh issue list`, `node <VAULT>/docs/scripts/recent-sessions.mjs` (absolute path), `echo`.
   Chains with `|`, `;` and `&&` work if every part is on that list. Redirects only `2>&1` and
-  `>/dev/null`. Put patterns, globs and anything with `$` in single quotes
-  (`grep -rn 'a|b' projects`, `find projects -name '*.md'`); unquoted `$`, `*`, `?`, `{}` and `~`
-  are refused. Use the Glob tool to list files. Use the Write and Edit tools for every change.
+  `>/dev/null`. Call commands by their bare name (`ls`, not `/bin/ls`). Put patterns with `$`,
+  `{}` or `!` in single quotes (`grep -rn 'a|b' projects`). A glob needs a path in front
+  (`docs/wrapup-inbox/*.md`, not `*.md`); `~` only as `~/`. `gh` only for this vault's own
+  repository: no `-R`, no URLs. Use the Write and Edit tools for every change.
 - Do not invent items. File only what the segment shows was done, decided or left open.
 - The session itself may already have filed things (see the `tool Write` and `tool Edit` lines).
   Read the current file before you add anything, and do not file it twice.
