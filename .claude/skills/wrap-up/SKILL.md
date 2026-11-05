@@ -58,13 +58,14 @@ searches that had matches, so every item looked untracked and the step proposed 
 search returns nothing, run it once more with a shorter keyword before calling the item untracked.
 
 **Check the issue tracker for every item, not only for dev work.** Product and ops tasks often
-live there too. Example for Jira:
+live there too. Example for Jira with the Atlassian CLI `acli` (install it yourself, see
+`docs/integrations.md`):
 ```bash
 acli jira workitem search --jql "summary ~ '{keywords}' AND status != Done" --fields "key,summary,status,assignee" --limit 5 --json 2>/dev/null
 ```
 
 Categorize each item:
-- **Already tracked** — exists in Todoist/Jira
+- **Already tracked** — exists in Todoist or the issue tracker
 - **Needs tracking** — not found, should be created
 - **Can skip** — trivial or already handled
 
@@ -144,7 +145,7 @@ This ensures the brain vault stays current whenever you wrap up a session in a p
 
 ### 6. Create Todoist tasks for untracked items
 
-For open items that need tracking and aren't already in Todoist/Jira:
+For open items that need tracking and aren't already in Todoist or the issue tracker:
 
 **IMPORTANT: Always show the proposed tasks to the user first and wait for confirmation before creating them.** Present as a table:
 
@@ -166,7 +167,7 @@ td task add "{action item}" --project "{project if clear}" --priority {p1-p4} --
 - Nice-to-have → p3
 
 **Do NOT create Todoist tasks for:**
-- Items already tracked in Jira (Jira is source of truth for dev work)
+- Items already tracked in the issue tracker (it is the source of truth for dev work)
 - Vague ideas without a clear next step
 - Things the user explicitly deferred ("maybe someday")
 
@@ -247,7 +248,7 @@ Present a structured summary:
 | # | Item | Status | Action |
 |---|------|--------|--------|
 | 1 | ... | ✅ Created in Todoist | td#{id} |
-| 2 | ... | ⏭ Already in Jira | ACME-123 |
+| 2 | ... | ⏭ Already in the issue tracker | ACME-123 |
 | 3 | ... | ⚠️ Skipped (WIP) | {reason} |
 
 ### Documented
@@ -263,8 +264,8 @@ Present a structured summary:
 
 - **Don't invent items** — only surface action items that were actually discussed or implied in the conversation, not hypothetical improvements
 - **Ask before creating** — if more than 3 Todoist tasks would be created, list them first and ask for confirmation
-- **Jira over Todoist for dev work** — dev tasks for Jira-tracked projects should be flagged for Jira, not created in Todoist
+- **Issue tracker over Todoist for dev work** — dev tasks for projects with an issue tracker should be flagged for the tracker, not created in Todoist
 - **Respond in session language** — if the session was in German, report in German
 - **Don't duplicate** — if something is already tracked, don't create a second tracker
-- **Use acli for Jira** — never use Atlassian Rovo MCP tools, always `acli` CLI
+- **Use acli for Jira** — if you use Jira, prefer the `acli` CLI over Atlassian MCP tools
 - **Git safety** — smart commit changes (grouped logically), but never push; skip secrets, broken files, and explicit user-deferred changes
