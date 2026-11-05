@@ -86,7 +86,8 @@ If not, stop and ask where the vault is. Every later phase writes relative paths
 Then read `.brain-starter.json` and tell the user which brain-starter version this vault came from.
 Explain the update check in two sentences: a SessionStart hook asks the GitHub releases API for the
 latest brain-starter version at most every 7 days (one unauthenticated request, nothing from the
-vault is sent) and shows one line when a newer one exists; `/update-brain-starter` takes it over.
+vault is sent) and shows one line when a newer one exists, which Claude repeats in its first reply
+once a day; `/update-brain-starter` takes it over.
 Ask whether to keep the check on. If not, set `"check": false` in `.brain-starter.json`.
 
 **Verify:** git is present, `git rev-parse --show-toplevel` succeeds, and `.brain-starter.json`

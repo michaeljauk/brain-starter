@@ -207,6 +207,9 @@ release exists, the session starts with one line:
 brain-starter 3.9.0 is available (you have 3.8.0). Run /update-brain-starter to see what changes.
 ```
 
+Claude Code shows that line dimmed. So once a day per vault, and again when a newer release
+appears, Claude also mentions the update in its first reply.
+
 Settings live in `.brain-starter.json`: `"check": false` turns the check off, and
 `"checkIntervalDays"` changes the interval. The result is cached in
 `$XDG_CACHE_HOME/brain-starter/` (default `~/.cache/brain-starter/`).

@@ -2,8 +2,9 @@
 # brain-starter update check. Runs as a SessionStart hook (see .claude/settings.json).
 #
 # Prints one line when a newer brain-starter release exists than the version in
-# .brain-starter.json. The line comes from a local cache, so session start never waits on the
-# network. If the last successful check is older than checkIntervalDays, a detached background
+# .brain-starter.json. Claude Code shows that line dimmed, so once a day per vault (and again
+# when a newer release appears) Claude is also asked to mention the update in its first reply.
+# The line comes from a local cache, so session start never waits on the network. If the last successful check is older than checkIntervalDays, a detached background
 # process refreshes the cache with one unauthenticated GET to the GitHub releases API. The request
 # carries no data from this vault.
 #
@@ -52,6 +53,14 @@ latest="$(head -n 1 "$cache" 2>/dev/null)"
 if is_version "$latest" && version_gt "$latest" "$installed"; then
   msg="brain-starter $latest is available (you have $installed). Run /update-brain-starter to see what changes."
   ctx="A newer brain-starter template release is available: $latest (installed: $installed). Mention it only if the user asks about updates; the update-brain-starter skill shows the changes and applies them."
+  # Ask Claude to say it once per day and vault. If the state cannot be written, stay quiet
+  # rather than repeat the request in every session.
+  announced="$cache_dir/announced-${repo//\//_}-$(printf '%s' "$root" | cksum | cut -d ' ' -f 1)"
+  stamp="$(date +%Y-%m-%d) $latest"
+  if [ "$(head -n 1 "$announced" 2>/dev/null)" != "$stamp" ] \
+    && mkdir -p "$cache_dir" 2>/dev/null && { printf '%s\n' "$stamp" > "$announced"; } 2>/dev/null; then
+    ctx="A newer brain-starter template release is available: $latest (installed: $installed). In your first reply of this session, add one short line for the user, for example: brain-starter $latest is available, run /update-brain-starter to see what changes. Say it only once in this session. The update-brain-starter skill shows the changes and applies them."
+  fi
   printf '{"systemMessage": "%s", "hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": "%s"}}\n' "$msg" "$ctx"
 fi
 
