@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.9.1](https://github.com/michaeljauk/brain-starter/compare/v3.9.0...v3.9.1) (2026-11-05)
+
+
+### Bug Fixes
+
+* **skill:** narrow the wrap-up guard's expansion rules and limit gh to the vault repo ([757ee74](https://github.com/michaeljauk/brain-starter/commit/757ee7450444052a237347fa126b27a02fae8cde))
+
 ## [3.9.0](https://github.com/michaeljauk/brain-starter/compare/v3.8.1...v3.9.0) (2026-11-05)
 
 
